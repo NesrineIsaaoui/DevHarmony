@@ -55,18 +55,6 @@ public class AjouterCours implements Initializable {
     @FXML
     private ImageView imagev;
 
-    @FXML
-    void ReturnToAfficherCours(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherCours.fxml"));
-        try {
-            Parent root = loader.load();
-            nh.getChildren().setAll(root);
-
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -82,6 +70,21 @@ public class AjouterCours implements Initializable {
 
         categorieCours.setItems(list);
     }
+    private FXMLLoader createFXMLLoader(String fxmlPath) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader;
+    }
+    @FXML
+    private void ReturnToAfficherCours(MouseEvent event) {
+        try {
+            FXMLLoader loader = createFXMLLoader("/AfficherCours.fxml");
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+        } catch (IOException ex) {
+            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+        }
+    }
 
     @FXML
     void uploadimageHandler(MouseEvent event) {
@@ -89,7 +92,7 @@ public class AjouterCours implements Initializable {
         Stage stage = (Stage) nh.getScene().getWindow();
         File file = open.showOpenDialog(stage);
         if (file != null) {
-            String path = file.getName();
+            String path = file.getAbsolutePath(); // Utilisez getAbsolutePath() au lieu de getName()
             file_path.setText(path);
             Image image = new Image(file.toURI().toString(), 500, 500, false, true);
             imagev.setImage(image);

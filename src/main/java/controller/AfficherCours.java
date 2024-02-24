@@ -27,6 +27,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AfficherCours  implements Initializable {
+    static int id;
+    static String coursName;
+    static String coursDescription;
+    static int idCategory;
+    static int coursPrix;
+    static String coursImage;
+
+
 
     @FXML
     private Button mod;
@@ -43,25 +51,19 @@ public class AfficherCours  implements Initializable {
     @FXML
     private Button supprimer;
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ListView<Cours> list1= affichercours;
         ServiceCours inter = new ServiceCours();
         List<Cours> list2 = inter.afficherCours();
         for (int i = 0; i < list2.size(); i++) {
-            Cours C = list2.get(i);
-            list1.getItems().add(C);
-
-        }
+        Cours C = list2.get(i);
+        list1.getItems().add(C);
 
     }
 
-    static int id;
-    static String coursName;
-    static String coursDescription;
-    static int idCategory;
-    static int coursPrix;
-    static String coursImage;
+}
 
 
     @FXML

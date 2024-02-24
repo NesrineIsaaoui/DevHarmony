@@ -57,18 +57,23 @@ public class AjouterCoursCategory {
     }
 
 
+
     @FXML
     private void returnToAffiche(MouseEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherCoursCategory.fxml"));
         try {
+            FXMLLoader loader = createFXMLLoader("/AfficherCoursCategory.fxml");
             Parent root = loader.load();
             nh.getChildren().setAll(root);
-
         } catch (IOException ex) {
-            System.out.println(ex);
+            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
         }
     }
+    private FXMLLoader createFXMLLoader(String fxmlPath) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader;
+    }
+
 
 
 }

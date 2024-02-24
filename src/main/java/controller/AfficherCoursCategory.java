@@ -70,11 +70,8 @@ public class AfficherCoursCategory  implements Initializable {
         ServiceCoursCategory inter = new ServiceCoursCategory();
         int selectedIndex = list.getSelectionModel().getSelectedIndex();
         CoursCategory A = list.getSelectionModel().getSelectedItem();
-
         id = A.getId();
         categoryName = A.getCategoryName();
-
-
         try {
 
             Parent page1
@@ -113,34 +110,34 @@ public class AfficherCoursCategory  implements Initializable {
                 list1.getItems().remove(selectedIndex);
             }
         } else {
-
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-
             //  System.out.println("Veuillez sélectionner une catégorie à supprimer.");
             confirmationAlert.setHeaderText("Veuillez sélectionner une categorie à supprimer.?");
-
             // Ajoutez des boutons Oui et Non à la boîte de dialogue
             confirmationAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
             // Affichez la boîte de dialogue et attendez la réponse de l'utilisateur
             ButtonType userChoice = confirmationAlert.showAndWait().orElse(ButtonType.NO);
-
         }
 
     }
 
     @FXML
     private void returnToLocation(MouseEvent event) {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Location_category.fxml"));
         try {
+            FXMLLoader loader = createFXMLLoader("/Location_category.fxml");
             Parent root = loader.load();
             nh.getChildren().setAll(root);
-
         } catch (IOException ex) {
-            System.out.println(ex);
+            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
         }
     }
+
+    private FXMLLoader createFXMLLoader(String fxmlPath) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader;
+    }
+
 
     @FXML
     void returnToAdd(ActionEvent event) {

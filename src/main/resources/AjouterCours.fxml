@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -23,6 +24,10 @@
       <ComboBox fx:id="categorieCours" layoutX="244.0" layoutY="351.0" prefWidth="150.0" />
       <Label fx:id="file_path" layoutX="57.0" layoutY="243.0" text="URL_IMAGE" />
       <Button fx:id="btnAjouter" layoutX="418.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterCours" text="Ajouter" />
-      <Button layoutX="481.0" layoutY="351.0" mnemonicParsing="false" onAction="#ReturnToAfficherCours" text="Annuler" />
+      <ImageView fitHeight="42.0" fitWidth="55.0" layoutX="22.0" layoutY="14.0" onDragDetected="#ReturnToAfficherCours" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

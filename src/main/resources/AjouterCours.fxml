@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterCours">
+   <children>
+      <TextField fx:id="fx_nom" layoutX="246.0" layoutY="50.0" prefHeight="26.0" prefWidth="173.0" />
+      <Text layoutX="85.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     nom du cours " wrappingWidth="137.30584716796875" />
+      <Text layoutX="99.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description " wrappingWidth="96.33905029296875" />
+      <Text layoutX="91.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image " wrappingWidth="81.5765380859375" />
+      <ImageView fx:id="imagev" fitHeight="103.0" fitWidth="174.0" layoutX="244.0" layoutY="178.0" onDragDetected="#uploadimageHandler" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="91.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" wrappingWidth="96.33905029296875" />
+      <Text layoutX="91.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categorie " wrappingWidth="81.5765380859375" />
+      <TextArea fx:id="fx_description" layoutX="244.0" layoutY="83.0" prefHeight="86.0" prefWidth="174.0" />
+      <TextField fx:id="fx_prix" layoutX="244.0" layoutY="295.0" prefHeight="26.0" prefWidth="158.0" />
+      <ComboBox fx:id="categorieCours" layoutX="244.0" layoutY="351.0" prefWidth="150.0" />
+      <Label fx:id="file_path" layoutX="57.0" layoutY="243.0" text="URL_IMAGE" />
+      <Button fx:id="btnAjouter" layoutX="418.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterCours" text="Ajouter" />
+      <Button layoutX="481.0" layoutY="351.0" mnemonicParsing="false" onAction="#ReturnToAfficherCours" text="Annuler" />
+   </children>
+</AnchorPane>

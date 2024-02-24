@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterCoursCategory">
+   <children>
+      <Label layoutX="78.0" layoutY="104.0" text="Label" />
+      <TextField fx:id="fx_categorie" layoutX="160.0" layoutY="109.0" />
+      <Label layoutX="223.0" layoutY="14.0" text="Ajouter Categorie" />
+      <Button fx:id="ajouter_categorie" layoutX="329.0" layoutY="296.0" mnemonicParsing="false" onAction="#ajouter_categorie" text="Ajouter" />
+      <ImageView fx:id="returnToAffiche" fitHeight="43.0" fitWidth="70.0" layoutX="14.0" layoutY="14.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@back.png" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>

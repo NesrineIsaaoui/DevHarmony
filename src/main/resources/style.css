@@ -1,0 +1,30 @@
+/* styles.css */
+
+.course-pane {
+    -fx-background-color: #f8f5f5;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.course-name-label {
+    -fx-font-family: "titleFont";
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-text-fill: #333333; /* Darker text color for better readability */
+}
+
+.title-label {
+    -fx-font-family: "titleFont";
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+    -fx-text-fill: #008080; /* Dark teal color for the title */
+}
+
+.price-label {
+    -fx-font-family: "priceFont";
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-text-fill: #4CAF50; /* Green color for the price */
+}
+
+/* Add any other styling as needed */

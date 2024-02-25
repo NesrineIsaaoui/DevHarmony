@@ -1,17 +1,20 @@
 package controller;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import models.Cours;
 import services.ServiceCours;
 
@@ -30,86 +33,109 @@ public class AfficherCoursFront implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         List<Cours> coursList = sa.afficherCours();
 
-        // Ajouter une marge entre les cours
         vbox1.setSpacing(10);
-
-        // Centrer la VBox dans le conteneur parent
         vbox1.setAlignment(Pos.CENTER);
 
-        for (Cours cours : coursList) {
-            Pane articlePane = createArticlePane(cours);
-            vbox1.getChildren().add(articlePane);
+        int coursCount = coursList.size();
+        int coursesPerRow = 3;
+
+        for (int i = 0; i < coursCount; i += coursesPerRow) {
+            HBox row = createRow();
+
+            for (int j = i; j < Math.min(i + coursesPerRow, coursCount); j++) {
+                Cours cours = coursList.get(j);
+                BorderPane coursePane = createCoursePane(cours);
+                row.getChildren().add(coursePane);
+            }
+
+            vbox1.getChildren().add(row);
         }
     }
 
-    private Pane createArticlePane(Cours cours) {
-        Pane articlePane = new Pane();
-        articlePane.setPrefSize(450.0, 395.0);
-        articlePane.setMinHeight(360);
-        articlePane.setMaxWidth(430);
-        articlePane.setStyle("-fx-background-color: #f8f5f5; -fx-background-radius: 10; -fx-padding:10px;");
+    private HBox createRow() {
+        HBox row = new HBox();
+        row.setSpacing(10);
+        row.setAlignment(Pos.CENTER);
+        return row;
+    }
 
-        DropShadow shadow = new DropShadow();
-        shadow.setRadius(10.0);
-        shadow.setColor(Color.gray(0.5));
-        shadow.setOffsetX(2.0);
-        shadow.setOffsetY(2.0);
+    private BorderPane createCoursePane(Cours cours) {
+        BorderPane coursePane = new BorderPane();
+        coursePane.getStyleClass().add("course-pane");
+        coursePane.setPrefSize(200, 300);
+        coursePane.setPadding(new Insets(10));
+        coursePane.setEffect(new DropShadow(5.0, Color.gray(0.5)));
 
-        articlePane.setEffect(shadow);
+        Label courseNameLabel = new Label(cours.getCoursName());
+        courseNameLabel.getStyleClass().add("course-name-label");
 
         ImageView image = createArticleImage(cours);
-        Label title = createArticleTitle(cours);
         Label price = createArticlePrice(cours);
 
-        articlePane.getChildren().addAll(image, title, price);
+        VBox imageAndPriceContainer = new VBox(image, price);
+        imageAndPriceContainer.setAlignment(Pos.CENTER);
 
-        // Ajouter une marge entre les cours
-        VBox.setMargin(articlePane, new Insets(0, 0, 10, 0));
+        coursePane.setTop(courseNameLabel);
+        coursePane.setAlignment(courseNameLabel, Pos.CENTER);
+        coursePane.setCenter(imageAndPriceContainer);
 
-        return articlePane;
+        ImageView reservationImageView = createCartImageView(cours);
+        coursePane.setBottom(reservationImageView);
+        coursePane.setAlignment(reservationImageView, Pos.BOTTOM_RIGHT);
+
+        VBox.setMargin(coursePane, new Insets(0, 0, 10, 0));
+
+        return coursePane;
     }
 
     private ImageView createArticleImage(Cours cours) {
         ImageView image = new ImageView();
-        image.setFitHeight(218.0);
-        image.setFitWidth(287.0);
-        image.setLayoutX(78);
-        image.setLayoutY(90.0);
-        image.setPickOnBounds(true);
+        image.setFitHeight(150.0);
+        image.setFitWidth(200.0);
         image.setPreserveRatio(true);
 
         try {
             File uploadedFile = new File(cours.getCoursImage());
-            if (uploadedFile.exists()) {
-                String fileUrl = uploadedFile.toURI().toString();
-                Image imageSource = new Image(fileUrl);
-                image.setImage(imageSource);
-            } else {
-                System.out.println("Le fichier image n'existe pas : " + cours.getCoursImage());
-            }
+            String fileUrl = uploadedFile.toURI().toString();
+            Image imageSource = new Image(fileUrl);
+            image.setImage(imageSource);
         } catch (Exception e) {
-            System.out.println("Erreur lors du chargement de l'image : " + e.getMessage());
+            e.printStackTrace();
+            System.out.println("Erreur lors du chargement de l'image pour : " + cours.getCoursImage());
         }
 
         return image;
     }
 
-    private Label createArticleTitle(Cours cours) {
-        Label title = new Label();
-        title.setLayoutX(150.0);
-        title.setLayoutY(47.0);
-        title.setText(cours.getCoursName());
-        title.setFont(Font.font("titleFont", FontWeight.BOLD, 23));
-        title.setAlignment(Pos.CENTER);
-        return title;
-    }
-
     private Label createArticlePrice(Cours cours) {
         Label price = new Label();
-        price.setLayoutX(280.0);
-        price.setLayoutY(325.0);
         price.setText("PRIX : " + (float) cours.getCoursPrix() + " DT");
-        price.setFont(Font.font("priceFont", FontWeight.BOLD, 20));
+        price.getStyleClass().add("price-label");
         return price;
+    }
+
+    private ImageView createCartImageView(Cours cours) {
+        ImageView cartImageView = new ImageView();
+        cartImageView.setFitHeight(30.0);
+        cartImageView.setFitWidth(30.0);
+        cartImageView.setPreserveRatio(true);
+
+        Image cartImage = new Image(getClass().getResourceAsStream("/reservation.png"));
+        cartImageView.setImage(cartImage);
+
+        Tooltip tooltip = new Tooltip("Réserver le cours");
+        Tooltip.install(cartImageView, tooltip);
+
+        cartImageView.setOnMouseClicked(event -> handleCartClick(cours));
+
+        return cartImageView;
+    }
+
+    private void handleCartClick(Cours cours) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Cours réservé");
+        alert.setHeaderText(null);
+        alert.setContentText("Vous avez réservé le cours : " + cours.getCoursName());
+        alert.showAndWait();
     }
 }

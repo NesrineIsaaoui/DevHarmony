@@ -6,40 +6,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="nh" prefHeight="502.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Location_categoryController">
+<AnchorPane fx:id="nh" prefHeight="430.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Location_categoryController">
    <children>
-      <AnchorPane prefHeight="502.0" prefWidth="94.0" style="-fx-background-color: #BA55D3;">
-         <children>
-            <Label layoutX="7.0" layoutY="75.0" prefHeight="23.0" prefWidth="39.0" text="Home" textFill="#613131">
-               <font>
-                  <Font name="Californian FB Italic" size="19.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="517.0" fitWidth="585.0" layoutX="2.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@cours.png" />
+            <Image url="@bg.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="goToCours" fitHeight="148.0" fitWidth="100.0" layoutX="519.0" layoutY="85.0" onDragDetected="#goToCours" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="goToCours" fitHeight="175.0" fitWidth="172.0" layoutX="586.0" layoutY="278.0" onDragDetected="#goToCours" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@goToCours.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="goToCategory" fitHeight="90.0" fitWidth="129.0" layoutX="524.0" layoutY="323.0" onDragDetected="#goToCategory" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="goToCategory" fitHeight="135.0" fitWidth="205.0" layoutX="811.0" layoutY="296.0" onDragDetected="#goToCategory" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@category.png" />
+            <Image url="@catgerie2.png" />
          </image>
       </ImageView>
-      <Label layoutX="541.0" layoutY="413.0" text="Category">
+      <Label layoutX="652.0" layoutY="422.0" prefHeight="18.0" prefWidth="39.0" text="Cours" textFill="#ff9d26">
          <font>
-            <Font name="Californian FB" size="15.0" />
+            <Font name="Times New Roman Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="549.0" layoutY="205.0" prefHeight="18.0" prefWidth="39.0" text="Cours">
+      <Label layoutX="847.0" layoutY="438.0" prefHeight="18.0" prefWidth="74.0" text="Categorie" textFill="#ff9d26">
          <font>
-            <Font name="Californian FB Italic" size="15.0" />
+            <Font name="Times New Roman Bold" size="15.0" />
          </font>
       </Label>
    </children>

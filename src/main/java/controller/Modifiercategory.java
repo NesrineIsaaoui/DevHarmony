@@ -67,7 +67,7 @@ public class Modifiercategory {
 
 
     @FXML
-    private void ReturnToAfficherCours(MouseEvent event) {
+    private void returnToAffiche(MouseEvent event) {
         try {
             FXMLLoader loader = createFXMLLoader("/AfficherCoursCategory.fxml");
             Parent root = loader.load();
@@ -81,5 +81,6 @@ public class Modifiercategory {
         loader.setLocation(getClass().getResource(fxmlPath));
         return loader;
     }
+
 
 }

@@ -28,3 +28,16 @@
 }
 
 /* Add any other styling as needed */
+
+.list-cell {
+    -fx-background-color: #f0f0f0; /* Couleur de fond des cellules */
+    -fx-padding: 10px; /* Marge intérieure des cellules */
+}
+
+.list-cell:hover {
+    -fx-background-color: #d0d0d0; /* Couleur de fond lorsqu'une cellule est survolée */
+}
+
+.list-view {
+    -fx-background-color: #e0e0e0; /* Couleur de fond de la ListView */
+}

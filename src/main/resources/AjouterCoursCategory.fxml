@@ -6,16 +6,30 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterCoursCategory">
    <children>
-      <Label layoutX="78.0" layoutY="104.0" text="Label" />
-      <TextField fx:id="fx_categorie" layoutX="160.0" layoutY="109.0" />
-      <Label layoutX="223.0" layoutY="14.0" text="Ajouter Categorie" />
-      <Button fx:id="ajouter_categorie" layoutX="329.0" layoutY="296.0" mnemonicParsing="false" onAction="#ajouter_categorie" text="Ajouter" />
-      <ImageView fx:id="returnToAffiche" fitHeight="43.0" fitWidth="70.0" layoutX="14.0" layoutY="14.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+      <ImageView layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@back.png" />
+            <Image url="@bg2.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="223.0" layoutY="14.0" text="Ajouter Categorie" />
+      <TextField fx:id="fx_categorie" layoutX="608.0" layoutY="261.0" prefHeight="42.0" prefWidth="310.0" />
+      <Label layoutX="612.0" layoutY="201.0" prefHeight="42.0" prefWidth="276.0" text="    Nom du catégorie" textFill="#ff9d26">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="ajouter_categorie" layoutX="801.0" layoutY="383.0" mnemonicParsing="false" onAction="#ajouter_categorie" prefHeight="41.0" prefWidth="118.0" style="-fx-background-radius: 18; -fx-background-color: #ff9d26;" text="Ajouter" textFill="#261a0c">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="82.0" fitWidth="77.0" layoutX="860.0" layoutY="25.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@returnt2.png" />
          </image>
       </ImageView>
 

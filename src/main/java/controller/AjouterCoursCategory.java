@@ -56,8 +56,6 @@ public class AjouterCoursCategory {
 
     }
 
-
-
     @FXML
     private void returnToAffiche(MouseEvent event) {
         try {

@@ -17,13 +17,13 @@
             <Image url="@bg2.png" />
          </image>
       </ImageView>
-      <ListView fx:id="affichercategory" layoutX="483.0" layoutY="140.0" prefHeight="298.0" prefWidth="472.0" />
-      <Button fx:id="supprimer" layoutX="547.0" layoutY="442.0" mnemonicParsing="false" onAction="#supprimercategory" text="Supprimer" />
-      <Button fx:id="mod" layoutX="638.0" layoutY="442.0" mnemonicParsing="false" onAction="#mod" text="Modifier" />
+      <ListView fx:id="affichercategory" layoutX="483.0" layoutY="140.0" prefHeight="298.0" prefWidth="472.0" style="-fx-background-radius: 25;" />
+      <Button fx:id="supprimer" layoutX="547.0" layoutY="445.0" mnemonicParsing="false" onAction="#supprimercategory" style="-fx-background-radius: 18;" text="Supprimer" />
+      <Button fx:id="mod" layoutX="638.0" layoutY="445.0" mnemonicParsing="false" onAction="#mod" style="-fx-background-radius: 18;" text="Modifier" />
       <Button fx:id="returnToAdd" layoutX="896.0" layoutY="100.0" mnemonicParsing="false" onAction="#returnToAdd" text="Ajouter" />
-      <ImageView fx:id="fx_return" fitHeight="40.0" fitWidth="55.0" layoutX="28.0" layoutY="17.0" onDragDetected="#returnToLocation" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fx_return" fitHeight="53.0" fitWidth="55.0" layoutX="894.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@back.png" />
+            <Image url="@returnt2.png" />
          </image>
       </ImageView>
 

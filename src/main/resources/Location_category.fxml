@@ -13,7 +13,7 @@
             <Image url="@bg.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="goToCours" fitHeight="175.0" fitWidth="172.0" layoutX="586.0" layoutY="278.0" onDragDetected="#goToCours" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="goToCours" fitHeight="188.0" fitWidth="189.0" layoutX="603.0" layoutY="279.0" onDragDetected="#goToCours" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@goToCours.png" />
          </image>
@@ -23,14 +23,14 @@
             <Image url="@catgerie2.png" />
          </image>
       </ImageView>
-      <Label layoutX="652.0" layoutY="422.0" prefHeight="18.0" prefWidth="39.0" text="Cours" textFill="#ff9d26">
+      <Label layoutX="643.0" layoutY="436.0" prefHeight="38.0" prefWidth="112.0" text="Cours" textFill="#ff9d26">
          <font>
-            <Font name="Times New Roman Bold" size="15.0" />
+            <Font name="Times New Roman Bold" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="847.0" layoutY="438.0" prefHeight="18.0" prefWidth="74.0" text="Categorie" textFill="#ff9d26">
+      <Label layoutX="809.0" layoutY="438.0" prefHeight="35.0" prefWidth="135.0" text="Categorie" textFill="#ff9d26">
          <font>
-            <Font name="Times New Roman Bold" size="15.0" />
+            <Font name="Times New Roman Bold" size="31.0" />
          </font>
       </Label>
    </children>

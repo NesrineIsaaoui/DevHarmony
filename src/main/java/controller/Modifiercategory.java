@@ -69,7 +69,7 @@ public class Modifiercategory {
     @FXML
     private void returnToAffiche(MouseEvent event) {
         try {
-            FXMLLoader loader = createFXMLLoader("/AfficherCoursCategory.fxml");
+            FXMLLoader loader = createFXMLLoader("/AfficherCoursCategory2.fxml");
             Parent root = loader.load();
             nh.getChildren().setAll(root);
         } catch (IOException ex) {

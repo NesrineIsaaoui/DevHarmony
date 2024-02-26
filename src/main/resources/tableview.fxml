@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.table">
+    <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn" />
+            <TableColumn text="User ID" fx:id="userIdColumn" />
+            <TableColumn text="Course ID" fx:id="courseIdColumn" />
+            <TableColumn text="Status" fx:id="statusColumn" />
+            <TableColumn text="Date" fx:id="dateColumn" />
+            <TableColumn text="Promo ID" fx:id="promoIdColumn" />
+            <TableColumn text="Price" fx:id="priceColumn" />
+        </columns>
+    </TableView>
+    <Button layoutX="14.0" layoutY="415.0" mnemonicParsing="false" onAction="#insertReservation" text="Insert" />
+    <Button layoutX="84.0" layoutY="415.0" mnemonicParsing="false" onAction="#updateReservation" text="Update" />
+    <Button layoutX="156.0" layoutY="415.0" mnemonicParsing="false" onAction="#deleteReservation" text="Delete" />
+</AnchorPane>

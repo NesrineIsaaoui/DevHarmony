@@ -1,0 +1,89 @@
+/* Global Styles */
+* {
+    -fx-font-size: 14px;
+}
+
+/* AnchorPane Style */
+.anchor-pane {
+    -fx-background-color: #AA00FF;
+}
+
+/* BorderPane Style */
+.border-pane {
+    -fx-background-color: #FFFFFF;
+}
+
+/* SplitPane Style */
+.split-pane {
+    -fx-background-color: #1e1e1e;
+}
+
+/* TableView Style */
+.table-view {
+    -fx-table-cell-border-color: transparent;
+}
+
+/* TableColumn Style */
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+/* TextField Style */
+.text-field {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+}
+
+.text-field:focused {
+    -fx-border-color: #AA00FF;
+}
+
+/* Button Style */
+.button {
+    -fx-background-color: #AA00FF, linear-gradient(#FF00FF, #AA00FF);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5, 4;
+    -fx-pref-height: 50px;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #AA00FF, linear-gradient(#AA00FF, #FF00FF);
+}
+
+/* Label Style */
+.label {
+    -fx-font-size: 14px;
+}
+
+/* Top Pane Style */
+#top-pane {
+    -fx-background-color: #AA00FF;
+}
+
+/* ImageView Style */
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, #000, 10, 0, 0, 0);
+}
+
+/* Text Style */
+.text {
+    -fx-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #000, 5, 0, 0, 0);
+}
+
+/* Left Pane Buttons Style */
+#profile, #reservations, #calander, #promos {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 59.0;
+    -fx-background-color: #AA00FF;
+    -fx-text-fill: white;
+    -fx-font-size: 12.0;
+}
+
+#profile:hover, #reservations:hover, #calander:hover, #promos:hover {
+    -fx-background-color: #8B008B;
+}

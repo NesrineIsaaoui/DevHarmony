@@ -11,9 +11,19 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
-public class CreateCodePromoController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class AdminAjoutCodePromoController {
 
     @javafx.fxml.FXML
     private Button ajouter;
@@ -48,13 +58,34 @@ public class CreateCodePromoController {
     private TextField valm;
     @javafx.fxml.FXML
     private TextField chid;
+    @javafx.fxml.FXML
+    private Label code;
+    @javafx.fxml.FXML
+    private Label code1;
+    @javafx.fxml.FXML
+    private Label val1;
+    @javafx.fxml.FXML
+    private Button calander;
+    @javafx.fxml.FXML
+    private Button promos;
+    @javafx.fxml.FXML
+    private Label valeur;
+    @javafx.fxml.FXML
+    private Button profile;
+    @javafx.fxml.FXML
+    private Label nbuser;
+    @javafx.fxml.FXML
+    private Button reservations;
+    @javafx.fxml.FXML
+    private Label nb1;
 
-    public CreateCodePromoController() {
+    public AdminAjoutCodePromoController() {
         categorieCodePromoService = new CategorieCodePromoService();
     }
 
     @javafx.fxml.FXML
     public void initialize() {
+        // Initialize data for the TableView (fetch from the database)
         codePromoData = FXCollections.observableArrayList(categorieCodePromoService.getAllCategories());
 
         // Set cell value factories for each column
@@ -115,60 +146,62 @@ public class CreateCodePromoController {
     public void supprimerCode(ActionEvent actionEvent) {
         CategorieCodePromo selectedCodePromo = CodePromoTable.getSelectionModel().getSelectedItem();
         if (selectedCodePromo != null) {
-            // Handle deletion logic here
             codePromoData.remove(selectedCodePromo);
             System.out.println("Supprimer Code Promo: " + selectedCodePromo.getCode());
-            // Delete from the database if needed
             categorieCodePromoService.deleteCategorieCodePromo(selectedCodePromo.getId());
         }
     }
 
 
-  @javafx.fxml.FXML
-  public void ajouterCode(ActionEvent actionEvent) {
-      String code = codeField.getText();
-      String valueText = valueField.getText();
-      String nbUsersText = nbUsersField.getText();
+    @javafx.fxml.FXML
+    public void ajouterCode(ActionEvent actionEvent) {
+        String code = codeField.getText();
+        String valueText = valueField.getText();
+        String nbUsersText = nbUsersField.getText();
 
-      if (isValidInput(code, valueText, nbUsersText)) {
-          try {
-              int nbUsers = Integer.parseInt(nbUsersText);
-              float value = Float.parseFloat(valueText);
+        if (isValidInput(code, valueText, nbUsersText)) {
+            try {
+                int nbUsers = Integer.parseInt(nbUsersText);
+                float value = Float.parseFloat(valueText);
+                if (value <= 0 || nbUsers<0 ) {
 
-              // Check if the code already exists in the data
-              if (!isCodePromoCodeExists(code)) {
-                  // Add the new code promo to the TableView
-                  CategorieCodePromo newCodePromo = new CategorieCodePromo(code, value, nbUsers);
-                  CategorieCodePromoService newCodePromos = new CategorieCodePromoService();
+                    showErrorAlert("Invalid Input", "Value must be a positive number.");
+                    return;
+                }
+                // Check if the code already exists in the data
+                if (!isCodePromoCodeExists(code)) {
+                    // Add the new code promo to the TableView
+                    CategorieCodePromo newCodePromo = new CategorieCodePromo(code, value, nbUsers);
+                    CategorieCodePromoService newCodePromos = new CategorieCodePromoService();
 
-                  // Check if the code exists before adding
-                  CategorieCodePromo existingCodePromo = newCodePromos.getCategorieByCode(code);
-                  if (existingCodePromo == null) {
-                      // Add the code to the database and get the generated ID
-                      int generatedId = newCodePromos.addCategorieCodePromoId(newCodePromo);
+                    // Check if the code exists before adding
+                    CategorieCodePromo existingCodePromo = newCodePromos.getCategorieByCode(code);
+                    if (existingCodePromo == null) {
+                        // Add the code to the database and get the generated ID
+                        int generatedId = newCodePromos.addCategorieCodePromoId(newCodePromo);
 
-                      // Set the generated ID
-                      newCodePromo.setId_code(generatedId);
+                        // Set the generated ID
+                        newCodePromo.setId_code(generatedId);
 
-                      codePromoData.add(newCodePromo);
+                        codePromoData.add(newCodePromo);
 
-                      // Clear input fields
-                      codeField.clear();
-                      valueField.clear();
-                      nbUsersField.clear();
+                        // Clear input fields
+                        codeField.clear();
+                        valueField.clear();
+                        nbUsersField.clear();
 
-                      System.out.println("Ajouter Code Promo: " + code + " with ID: " + generatedId);
-                  } else {
-                      showErrorAlert("Code Promo Error", "Code Promo with code " + code + " already exists.");
-                  }
-              } else {
-                  showErrorAlert("Code Promo Error", "Code Promo with code " + code + " already exists.");
-              }
-          } catch (NumberFormatException e) {
-              showErrorAlert("Invalid Input", "Invalid input format for value or number of users. Please enter valid values.");
-          }
-      }
-  }
+                        System.out.println("Ajouter Code Promo: " + code + " with ID: " + generatedId);
+                    } else {
+                        showErrorAlert("Code Promo Error", "Code Promo with code " + code + " already exists.");
+                    }
+                } else {
+                    showErrorAlert("Code Promo Error", "Code Promo with code " + code + " already exists.");
+                }
+            } catch (NumberFormatException e) {
+                showErrorAlert("Invalid Input", "Invalid input format . Please enter valid values.");
+            }
+        }
+    }
 
     @FXML
     public void modifierCode(ActionEvent actionEvent) {
@@ -184,12 +217,13 @@ public class CreateCodePromoController {
                     int nbUsers = Integer.parseInt(nbUsersText);
                     float value = Float.parseFloat(valueText);
 
-                    // Check if the code already exists in the data excluding the selected code promo
-                    boolean isUniqueCode = codePromoData.stream()
-                            .filter(promo -> promo.getId() != selectedCodePromo.getId())
-                            .noneMatch(promo -> promo.getCode().equals(code));
+                    if (value <= 0 || nbUsers < 0) {
+                        showErrorAlert("Invalid Input", "Value and Number of Users must be positive numbers.");
+                        return;
+                    }
 
-                    if (isUniqueCode) {
+                    // Check if the code already exists in the data excluding the selected code promo
+                    if (!isCodePromoCodeExists(code, selectedCodePromo)) {
                         // Update the selected code promo
                         selectedCodePromo.setCode(code);
                         selectedCodePromo.setValue(value);
@@ -211,42 +245,59 @@ public class CreateCodePromoController {
                     }
                 }
             } catch (NumberFormatException e) {
-                showErrorAlert("Invalid Input", "Invalid input format for value or number of users. Please enter valid values.");
+                showErrorAlert("Invalid Input", "Invalid input format. Please enter valid values.");
             }
         }
     }
 
+    private boolean isCodePromoCodeExists(String code, CategorieCodePromo excludedCodePromo) {
+        // Get all code promos excluding the selected code promo
+        List<CategorieCodePromo> allCodePromosExceptSelected = codePromoData.stream()
+                .filter(promo -> promo.getId() != excludedCodePromo.getId())
+                .collect(Collectors.toList());
 
-
+        // Check if the code already exists in the remaining code promos
+        return allCodePromosExceptSelected.stream().anyMatch(promo -> promo.getCode().equals(code));
+    }
 
     private boolean isCodePromoCodeExists(String code) {
         return categorieCodePromoService.getCategorieByCode(code) != null;
     }
 
-    private boolean isCodePromoCodeExists(String code, CategorieCodePromo excludedCodePromo) {
-        CategorieCodePromo existingCodePromo = categorieCodePromoService.getCategorieByCode(code);
-        return existingCodePromo != null && !existingCodePromo.equals(excludedCodePromo);
+
+
+
+    // Helper method to check if the input values are valid
+    private boolean isValidInput(String code, String value, String nbUsers) {
+        if (code.isEmpty() || value.isEmpty() || nbUsers.isEmpty()) {
+            showErrorAlert("Invalid Input", "All fields must be filled.");
+            return false;
+        }
+
+        // Additional validation for integer fields
+        try {
+            Integer.parseInt(nbUsers);
+        } catch (NumberFormatException e) {
+            showErrorAlert("Invalid Input", "Number of users must be an integer.");
+            return false;
+        }
+        //float
+        try {
+            float floatValue = Float.parseFloat(value);
+            if (floatValue <= 0) {
+                showErrorAlert("Invalid Input", "Value must be a positive number.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showErrorAlert("Invalid Input", "Value must be a valid number.");
+            return false;
+        }
+
+        return true;
     }
 
 
-        private boolean isValidInput(String code, String value, String nbUsers) {
-            if (code.isEmpty() || value.isEmpty() || nbUsers.isEmpty()) {
-                showErrorAlert("Invalid Input", "All fields must be filled.");
-                return false;
-            }
-
-            // Additional validation for integer fields
-            try {
-                Integer.parseInt(nbUsers);
-            } catch (NumberFormatException e) {
-                showErrorAlert("Invalid Input", "Number of users must be an integer.");
-                return false;
-            }
-
-            return true;
-        }
-
-
+    // Helper method to show an error alert
     private void showErrorAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -256,4 +307,66 @@ public class CreateCodePromoController {
     }
 
 
+    @javafx.fxml.FXML  /// a verifier
+    public void reservationscharts(ActionEvent actionEvent) {
+
+        try {
+            URL fxmlUrl = getClass().getResource("/updatereservation.fxml");
+            System.out.println("FXML URL: " + fxmlUrl);
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("EDUWAVE");
+
+            // Set the new scene in the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @javafx.fxml.FXML
+    public void promospage(ActionEvent actionEvent) {
+
+
+
+    }
+
+    @javafx.fxml.FXML
+    public void calanderpage(ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void profileadmin(ActionEvent actionEvent) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) ajouter.getScene().getWindow();
+
+            // Close the current window
+            currentStage.close();
+
+            // Load the new window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/addreservationcours.fxml"));
+            Parent root = loader.load();
+
+            // Create the new stage
+            Stage newStage = new Stage();
+            newStage.setTitle("EDUWAVE");
+            newStage.setScene(new Scene(root));
+
+            // Show the new stage
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
+

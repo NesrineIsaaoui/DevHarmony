@@ -18,7 +18,7 @@ public class CategorieCodePromoService {
 
     }
 
-    public void addCategorieCodePromo(CategorieCodePromo categorieCodePromo) {
+    public void addCategorieCodePromo1(CategorieCodePromo categorieCodePromo) {
         try {
             String query = "INSERT INTO CategorieCodePromo(code, value, nb_users) VALUES (?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -143,6 +143,47 @@ public class CategorieCodePromoService {
         }
 
         return -1; // Return -1 if not found or an error occurs
+    }
+    public void addCategorieCodePromo(CategorieCodePromo categorieCodePromo) {
+        try {
+            // Check if the code already exists
+            if (isCodeExists(categorieCodePromo.getCode())) {
+                System.out.println("Code already exists");
+                return;
+            }
+
+            String query = "INSERT INTO CategorieCodePromo(code, value, nb_users) VALUES (?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, categorieCodePromo.getCode());
+                preparedStatement.setFloat(2, categorieCodePromo.getValue());
+                preparedStatement.setInt(3, categorieCodePromo.getNb_users());
+
+                if (preparedStatement.executeUpdate() > 0) {
+                    System.out.println("Categorie added ");
+                } else {
+                    System.out.println("Categorie PROBLEM ");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private boolean isCodeExists(String code) {
+        try {
+            String query = "SELECT id FROM CategorieCodePromo WHERE code = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, code);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                return resultSet.next(); // Returns true if the code already exists
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
 

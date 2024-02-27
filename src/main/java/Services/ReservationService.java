@@ -1,19 +1,23 @@
 package Services;
 
+import Models.CategorieCodePromo;
 import Models.Reservation;
 import Utils.DB;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationService {
+    private Connection connection;
 
+    public ReservationService() {
+
+        this.connection=DB.getInstance().getConnection();
+
+
+    }
     public void addEntity(Reservation t) {
         try {
             String rq = "INSERT INTO reservation (id_user, id_cours, resStatus, date_reservation, id_codepromo, prixd) VALUES (?, ?, ?, ?, ?, ?)";
@@ -152,6 +156,39 @@ public class ReservationService {
             System.out.println(ex.getMessage());
         }
         return myList;
+    }
+    public List<Reservation> getAllReservations() {
+        List<Reservation> reservations = new ArrayList<>();
+        String query = "SELECT * FROM reservation";
+
+        try {
+            Statement st = DB.getInstance().getConnection().createStatement();
+            ResultSet resultSet = st.executeQuery(query);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int id_user = resultSet.getInt("id_user");
+                int id_cours = resultSet.getInt("id_cours");
+                boolean resStatus = resultSet.getBoolean("resStatus");
+                LocalDateTime dateReservation = resultSet.getTimestamp("date_reservation").toLocalDateTime();
+                int id_codepromo = resultSet.getInt("id_codepromo");
+                float prixd = resultSet.getFloat("prixd");
+
+                Reservation reservation = new Reservation();
+                reservation.setId(id);
+                reservation.setId_user(id_user);
+                reservation.setId_cours(id_cours);
+                reservation.setResStatus(resStatus);
+                reservation.setDateReservation(dateReservation);
+                reservation.setId_codepromo(id_codepromo);
+                reservation.setPrixd(prixd);
+
+                reservations.add(reservation);
+            }
+            return reservations;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public List<Reservation> cours_reservations_by_year(int cours_id, int year) {

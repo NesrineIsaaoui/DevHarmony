@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evaluation.Formulaire_ajoutController">
+   <children>
+      <TextField fx:id="nom_text" layoutX="214.0" layoutY="113.0" />
+      <TextField fx:id="email_text" layoutX="214.0" layoutY="200.0" />
+      <ComboBox fx:id="etat_text" layoutX="213.0" layoutY="266.0" prefWidth="150.0" />
+      <Button layoutX="534.0" layoutY="382.0" mnemonicParsing="false" onAction="#ajouterf" text="ajouter" />
+      <Label layoutX="88.0" layoutY="117.0" text="nom eleve" />
+      <Label layoutX="103.0" layoutY="204.0" text="email" />
+      <Label layoutX="90.0" layoutY="270.0" text="Diplome ?" />
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="660.0" layoutY="13.0">
+         <image>
+            <Image url="@../../../../../../Downloads/415286478_1436514383890414_5078215153440631498_n.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

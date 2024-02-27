@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Modiftaskcontroller">
+   <children>
+      <Circle fill="#fff763" layoutX="483.0" layoutY="232.0" radius="106.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0">
+         <effect>
+            <Shadow height="255.0" radius="127.0" width="255.0">
+               <color>
+                  <Color red="0.9684210419654846" green="0.9190435409545898" blue="0.5451852083206177" />
+               </color>
+            </Shadow>
+         </effect>
+      </Circle>
+      <ImageView disable="true" fitHeight="233.0" fitWidth="253.0" layoutX="321.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@418515941_1102223294562012_4638356989405374625_n.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="117.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8759258985519409" green="0.7518518567085266" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.4452155073367692">
+                     <color>
+                        <Color red="0.9753934144973755" green="0.9300000071525574" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.952842116355896" green="0.8919298052787781" blue="0.9789473414421082" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <TextField fx:id="nmcour" layoutX="152.0" layoutY="84.0" promptText="nom du cour" style="-fx-background-color: #f0f0f0;" />
+      <TextField fx:id="datetask" layoutX="152.0" layoutY="125.0" promptText="date a reviser" style="-fx-background-color: #f0f0f0;" />
+      <TextField fx:id="etattask" layoutX="152.0" layoutY="164.0" promptText="etat" style="-fx-background-color: #f0f0f0;" text="en attente" />
+      <Button fx:id="submit" defaultButton="true" layoutX="236.0" layoutY="242.0" mnemonicParsing="false" onAction="#modifier" style="-fx-background-color: #f0f0f0;" text="modifier">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Button>
+      <Text fill="#68008e" layoutX="152.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier tache" underline="true" wrappingWidth="168.00002441406252">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="planbelong" layoutX="151.0" layoutY="202.0" prefWidth="150.0" style="-fx-background-color: #f0f0f0;" />
+      <ImageView fx:id="redlist" fitHeight="48.0" fitWidth="50.0" layoutX="35.0" layoutY="120.0" onMouseClicked="#handleRedListClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@view-list.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.58" hue="-0.48" saturation="1.0" />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="redadd" fitHeight="48.0" fitWidth="50.0" layoutX="35.0" layoutY="242.0" onMouseClicked="#handleRedAddClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@more.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.58" hue="-0.48" saturation="1.0" />
+         </effect>
+      </ImageView>
+   </children>
+</AnchorPane>

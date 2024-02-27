@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stck" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.pi.controller.SeconnecterController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="933.0" style="-fx-background-color: #FFF;">
+         <children>
+            <HBox prefHeight="700.0" prefWidth="417.0">
+               <children>
+                  <ImageView fitHeight="401.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/signIn.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="50.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox prefHeight="99.0" prefWidth="447.0" AnchorPane.bottomAnchor="150.0">
+               <children>
+                  <Label text="Vous n'avez pas de compte ? " textFill="#dd1ad4">
+                     <VBox.margin>
+                        <Insets left="100.0" top="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="86.0" prefWidth="417.0" AnchorPane.bottomAnchor="80.0">
+               <children>
+                  <Label text="Inscrivez-vous!" textFill="#cc2cc7">
+                     <VBox.margin>
+                        <Insets left="140.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="120.0" prefWidth="417.0" AnchorPane.bottomAnchor="50.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#NavPageInscription" prefHeight="31.0" prefWidth="203.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Inscription" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="120.0" top="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <HBox layoutX="447.0" layoutY="123.0" prefHeight="50.0" prefWidth="447.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="194.0" text="Connectez-vous à Edu">
+                     <HBox.margin>
+                        <Insets left="100.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Wave" textFill="#dd1ad4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="500.0" layoutY="224.0" prefHeight="61.0" prefWidth="389.0" AnchorPane.topAnchor="200.0">
+               <children>
+                  <TextField fx:id="tfemail" prefHeight="31.0" prefWidth="389.0" promptText="email">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="-430.0" top="20.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../icons/email.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox layoutX="500.0" layoutY="266.0" prefHeight="61.0" prefWidth="389.0">
+               <children>
+                  <PasswordField fx:id="tfmdp" prefHeight="31.0" prefWidth="389.0" promptText="mot de passe">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </PasswordField>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/mdp.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="-430.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox layoutX="476.0" layoutY="340.0" prefHeight="100.0" prefWidth="417.0">
+               <children>
+                  <Button fx:id="Seconnecterbtn" mnemonicParsing="false" onAction="#submit" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Connexion" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox layoutX="461.0" layoutY="430.0" prefHeight="21.0" prefWidth="447.0">
+               <children>
+                  <Label alignment="CENTER" onMouseClicked="#NavForgetPass" prefHeight="21.0" prefWidth="446.0" text="Mot de passe oublié?" textAlignment="CENTER" textFill="#dd1ad4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

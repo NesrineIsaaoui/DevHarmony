@@ -33,7 +33,6 @@ public class AfficherCoursCategory2 implements Initializable {
     private VBox vbox1;
     @FXML
     private Button returnToAdd;
-
     @FXML
     private AnchorPane nh;
     ServiceCoursCategory scom = new ServiceCoursCategory();
@@ -42,14 +41,13 @@ public class AfficherCoursCategory2 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<CoursCategory> coursCategories = scom.afficherCoursCategory();
-        System.out.println(coursCategories);
         vbox1.setFillWidth(true);
+
         for (CoursCategory coursCategory : coursCategories) {
             Pane pane = new Pane();
             pane.setPrefHeight(62.0);
             pane.setMinHeight(62.0);
             pane.setPrefWidth(840.0);
-         //   pane.setStyle("-fx-background-color: #F5F2DC;");
 
             Label label1 = new Label("ID: " + coursCategory.getId());
             label1.setLayoutX(15.0);
@@ -87,7 +85,7 @@ public class AfficherCoursCategory2 implements Initializable {
             });
 
             ImageView imageView2 = new ImageView();
-            Image image2 = new Image(getClass().getResourceAsStream("/ediit.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("/Ediit.png"));
             imageView2.setImage(image2);
             imageView2.setFitHeight(20.0);
             imageView2.setFitWidth(20.0);
@@ -99,7 +97,14 @@ public class AfficherCoursCategory2 implements Initializable {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Modifiercategory.fxml"));
                     Parent root = loader.load();
-                    // Vous pouvez vouloir transmettre des données au contrôleur ici si nécessaire
+
+                    // Récupérer le contrôleur de la fenêtre de modification
+                    Modifiercategory modifierController = loader.getController();
+
+                    // Transmettre les données nécessaires au contrôleur de modification
+                    modifierController.initData(coursCategory.getId(), coursCategory.getCategoryName());
+
+                    // Changer la scène
                     vbox1.getScene().setRoot(root);
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -121,7 +126,6 @@ public class AfficherCoursCategory2 implements Initializable {
         vbox1.setSpacing(5);
     }
 
-
     @FXML
     private void returnToAffiche(MouseEvent event) {
         try {
@@ -132,6 +136,7 @@ public class AfficherCoursCategory2 implements Initializable {
             System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
         }
     }
+
     private FXMLLoader createFXMLLoader(String fxmlPath) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(fxmlPath));
@@ -149,5 +154,4 @@ public class AfficherCoursCategory2 implements Initializable {
             System.out.println(ex);
         }
     }
-
 }

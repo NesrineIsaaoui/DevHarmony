@@ -1,44 +1,39 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Cours;
-import models.CoursCategory;
 import services.ServiceCours;
-import services.ServiceCoursCategory;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class ModifierCours implements Initializable {
+public class ModifierCours {
+
+    @FXML
+    private Button Modifer;
+
+
+    @FXML
+    private AnchorPane nh;
+
+    private int id; // Nouvelle variable pour stocker l'ID
 
     @FXML
     private Button btnAjouter;
 
     @FXML
     private Label file_path;
-
-    @FXML
-    private AnchorPane nh;
 
     @FXML
     private ComboBox<String> categorieCours;
@@ -55,42 +50,21 @@ public class ModifierCours implements Initializable {
     @FXML
     private ImageView imagev;
 
-
-
-    @FXML
-    private void ReturnToAfficherCours(MouseEvent event) {
-        try {
-            FXMLLoader loader = createFXMLLoader("/AfficherCours.fxml");
-            Parent root = loader.load();
-            nh.getChildren().setAll(root);
-        } catch (IOException ex) {
-            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
-        }
-    }
-    private FXMLLoader createFXMLLoader(String fxmlPath) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlPath));
-        return loader;
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> list = FXCollections.observableArrayList();
-        ServiceCoursCategory sc = new ServiceCoursCategory();
-        ObservableList<CoursCategory> obList = FXCollections.observableArrayList();
-        obList = sc.afficherCategory2();
-
-        categorieCours.getItems().clear();
-
-        for (CoursCategory nameCat : obList) {
-            list.add(nameCat.getCategoryName());
-        }
-
-        categorieCours.setItems(list);
-        fx_nom.setText(AfficherCours.coursName);
-        fx_description.setText(AfficherCours.coursDescription);
-        fx_prix.setText(String.valueOf(AfficherCours.coursPrix));
+    public void initialize() {
+        // Ne pas initialiser le champ de texte ici
     }
 
+    // Nouvelle méthode pour initialiser l'ID
+    public void initData(int id, String coursName, String coursDescription, String coursImage, int coursPrix, int idCategory) {
+        this.id = id;
+        fx_nom.setText(coursName);
+        fx_description.setText(coursDescription);
+        file_path.setText(coursImage);
+        fx_prix.setText(String.valueOf(coursPrix));
+
+        // Si 'categorieCours' est une ComboBox, vous devez ajouter une méthode pour définir la valeur sélectionnée
+        categorieCours.setValue(String.valueOf(idCategory));
+    }
     @FXML
     void uploadimageHandler(MouseEvent event) {
         FileChooser open = new FileChooser();
@@ -106,69 +80,41 @@ public class ModifierCours implements Initializable {
         }
     }
     @FXML
-    void modifierCours(javafx.event.ActionEvent event) {
-        String coursName = fx_nom.getText();
-        String coursDescription = fx_description.getText();
-        int coursPrix = 0;
-
-
-
-        if (coursName.length() == 0) {
+    void Modifier(ActionEvent event) {
+        ServiceCours inter = new ServiceCours();
+        String categoryName = fx_nom.getText();
+        if (categoryName.length() == 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Erreur : Veuillez entrer un nom de cours.");
+            alert.setContentText("Erreur : veuillez donner un nom de cours.");
             alert.show();
-            return;
-        }
+        } else {
+            Cours cours = new Cours(id, fx_nom.getText(), fx_description.getText(), file_path.getText(), Integer.parseInt(fx_prix.getText()), Integer.parseInt(categorieCours.getValue()));
+            inter.modifierCours(cours);
 
-        if (coursDescription.length() == 0) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Information dialog");
             alert.setHeaderText(null);
-            alert.setContentText("Erreur : Veuillez entrer une description de cours.");
+            alert.setContentText("Cours modifiée avec succès !");
             alert.show();
-            return;
         }
-        try {
-            coursPrix = Integer.parseInt(fx_prix.getText());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur : Veuillez entrer un nombre valide pour le prix.");
-            alert.show();
-            return;
-        }
-        if (coursPrix < 0) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur : Le prix du cours doit être positif.");
-            alert.show();
-            return;
-        }
-
-        ServiceCoursCategory sc = new ServiceCoursCategory();
-        int idCategory = sc.getIdCategorieByName(categorieCours.getValue());
-
-        if (idCategory == -1) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur : Catégorie non trouvée.");
-            alert.show();
-            return;
-        }
-
-        ServiceCours ss = new ServiceCours();
-        Cours modifiedCours = new Cours(AfficherCours.id, coursName, coursDescription, file_path.getText(),coursPrix,idCategory);
-        ss.modifierCours(modifiedCours);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success Message");
-        alert.setHeaderText(null);
-        alert.setContentText("Cours modifier avec succès !");
-        alert.showAndWait();
     }
 
+    @FXML
+    private void returnToAffiche(MouseEvent event) {
+        try {
+            FXMLLoader loader = createFXMLLoader("/AfficherCours.fxml");
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+        } catch (IOException ex) {
+            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+        }
+    }
+
+    private FXMLLoader createFXMLLoader(String fxmlPath) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader;
+    }
 }

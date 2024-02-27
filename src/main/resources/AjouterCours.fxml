@@ -8,26 +8,59 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterCours">
    <children>
-      <TextField fx:id="fx_nom" layoutX="246.0" layoutY="50.0" prefHeight="26.0" prefWidth="173.0" />
-      <Text layoutX="85.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     nom du cours " wrappingWidth="137.30584716796875" />
-      <Text layoutX="99.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description " wrappingWidth="96.33905029296875" />
-      <Text layoutX="91.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image " wrappingWidth="81.5765380859375" />
-      <ImageView fx:id="imagev" fitHeight="103.0" fitWidth="174.0" layoutX="244.0" layoutY="178.0" onDragDetected="#uploadimageHandler" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="91.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" wrappingWidth="96.33905029296875" />
-      <Text layoutX="91.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categorie " wrappingWidth="81.5765380859375" />
-      <TextArea fx:id="fx_description" layoutX="244.0" layoutY="83.0" prefHeight="86.0" prefWidth="174.0" />
-      <TextField fx:id="fx_prix" layoutX="244.0" layoutY="295.0" prefHeight="26.0" prefWidth="158.0" />
-      <ComboBox fx:id="categorieCours" layoutX="244.0" layoutY="351.0" prefWidth="150.0" />
-      <Label fx:id="file_path" layoutX="57.0" layoutY="243.0" text="URL_IMAGE" />
-      <Button fx:id="btnAjouter" layoutX="418.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterCours" text="Ajouter" />
-      <ImageView fitHeight="42.0" fitWidth="55.0" layoutX="22.0" layoutY="14.0" onDragDetected="#ReturnToAfficherCours" pickOnBounds="true" preserveRatio="true">
+      <ImageView layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@back.png" />
+            <Image url="@bg2.png" />
          </image>
       </ImageView>
+      <TextField fx:id="fx_nom" layoutX="768.0" layoutY="111.0" prefHeight="26.0" prefWidth="173.0" />
+      <ImageView fx:id="imagev" fitHeight="103.0" fitWidth="174.0" layoutX="768.0" layoutY="248.0" onDragDetected="#uploadimageHandler" pickOnBounds="true" preserveRatio="true" />
+      <TextArea fx:id="fx_description" layoutX="768.0" layoutY="149.0" prefHeight="86.0" prefWidth="174.0" />
+      <TextField fx:id="fx_prix" layoutX="776.0" layoutY="375.0" prefHeight="42.0" prefWidth="158.0" />
+      <ComboBox fx:id="categorieCours" layoutX="775.0" layoutY="431.0" prefHeight="26.0" prefWidth="158.0" />
+      <Button fx:id="btnAjouter" layoutX="776.0" layoutY="502.0" mnemonicParsing="false" onAction="#ajouterCours" prefHeight="26.0" prefWidth="129.0" style="-fx-background-radius: 18; -fx-background-color: #ff9900;" text="Ajouter">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <ImageView fitHeight="68.0" fitWidth="56.0" layoutX="869.0" layoutY="3.0" onDragDetected="#ReturnToAfficherCours" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@returnt2.png" />
+         </image>
+      </ImageView>
+      <Text fill="#ff9900" layoutX="592.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     Nom du cours " wrappingWidth="174.39999999999986">
+         <font>
+            <Font name="Times New Roman Bold" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#ff9900" layoutX="623.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description " wrappingWidth="121.1390380859375">
+         <font>
+            <Font name="Times New Roman Bold" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#ff9900" layoutX="639.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image " wrappingWidth="81.5765380859375">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#ff9900" layoutX="643.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" wrappingWidth="96.33905029296875">
+         <font>
+            <Font name="Times New Roman Bold" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#ff9900" layoutX="644.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie " wrappingWidth="128.77654647827148">
+         <font>
+            <Font name="Times New Roman Bold" size="22.0" />
+         </font>
+      </Text>
+      <Label fx:id="file_path" layoutX="511.0" layoutY="340.0" text="URL_IMAGE" textFill="#ff9900">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

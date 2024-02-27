@@ -63,10 +63,13 @@ public class ServiceCoursCategory implements IServiceCategory {
             PreparedStatement st = cnx.prepareStatement(req);
 
             st.setString(1, c.getCategoryName());
-
             st.setInt(2, c.getId());
+
+            System.out.println("Requête SQL pour la modification : " + st.toString()); // Ajoutez cette ligne pour le débogage
+
             st.executeUpdate();
-            System.out.println("Categorie Modifié avec succès");
+
+            System.out.println("Catégorie modifiée avec succès");
         } catch (SQLException ex) {
             System.out.println(ex);
         }

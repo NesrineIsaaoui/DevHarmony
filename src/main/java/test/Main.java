@@ -10,12 +10,12 @@ import services.ServiceCoursCategory;
 public class Main {
     public static void main(String[] args) {
 
-      CoursCategory c= new CoursCategory("salut");
+   //   CoursCategory c= new CoursCategory("salut");
        ServiceCoursCategory crud = new ServiceCoursCategory();
      //  crud.ajouterCoursCategory(c);
 
-
- //  crud.modifierCoursCategory(c);
+        CoursCategory c1= new CoursCategory(15,"salut");
+   crud.modifierCoursCategory(c1);
     //   crud.supprimerCoursCategory(11);
        // System.out.println( crud.afficherCoursCategory());
        // ServiceCours crudCours=new ServiceCours();

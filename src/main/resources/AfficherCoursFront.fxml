@@ -9,32 +9,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="645.0" prefWidth="824.0" style="-fx-background-color: #DDA0DD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherCoursFront">
+<AnchorPane prefHeight="507.0" prefWidth="750.0" style="-fx-background-color: #DDA0DD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherCoursFront">
    <stylesheets>
       <URL value="@style.css" />
    </stylesheets>
    <children>
+      <ImageView fitHeight="563.0" fitWidth="872.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@templatefront.PNG" />
+         </image>
+      </ImageView>
 
       <AnchorPane layoutX="84.0" layoutY="71.0" prefHeight="446.0" prefWidth="606.0">
          <children>
-            <ScrollPane prefHeight="502.0" prefWidth="704.0">
+            <ScrollPane layoutX="42.0" prefHeight="403.0" prefWidth="671.0">
                <content>
-                  <VBox fx:id="vbox1" prefHeight="494.0" prefWidth="702.0">
+                  <VBox fx:id="vbox1" prefHeight="430.0" prefWidth="702.0">
                      <children>
-                        <ImageView fitHeight="118.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@LOGO.png" />
-                           </image>
-                        </ImageView>
-                     </children></VBox>
+                        <Label prefHeight="63.0" prefWidth="477.0" text="                Les Cours" textFill="#6f0fa6">
+                           <font>
+                              <Font name="Curlz MT" size="41.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
                </content>
             </ScrollPane>
          </children>
       </AnchorPane>
-      <Label layoutX="5.0" layoutY="-1.0" prefHeight="63.0" prefWidth="477.0" text="Les Cours">
-         <font>
-            <Font name="Curlz MT" size="41.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

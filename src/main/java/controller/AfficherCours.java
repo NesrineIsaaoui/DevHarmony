@@ -38,6 +38,7 @@ public class AfficherCours implements Initializable {
     @FXML
     private AnchorPane nh;
     ServiceCours scom = new ServiceCours();
+    ServiceCoursCategory scomCat = new ServiceCoursCategory();
     Cours cours;
 
     @Override
@@ -70,8 +71,6 @@ public class AfficherCours implements Initializable {
             label3.setPrefWidth(200.0);
             label3.setFont(new Font(16.0));
 
-
-
             Label label5 = new Label(String.valueOf(cours.getCoursPrix()));
             label5.setLayoutX(380.0);
             label5.setLayoutY(18.0);
@@ -79,7 +78,11 @@ public class AfficherCours implements Initializable {
             label5.setPrefWidth(200.0);
             label5.setFont(new Font(16.0));
 
-            Label label6 = new Label(String.valueOf(cours.getIdCategory()));
+            // Récupérer le nom de la catégorie
+            CoursCategory category = scomCat.getCoursCategoryById(cours.getIdCategory());
+            String categoryName = category.getCategoryName();
+
+            Label label6 = new Label(categoryName);
             label6.setLayoutX(480.0);
             label6.setLayoutY(18.0);
             label6.setPrefHeight(25.0);
@@ -101,7 +104,7 @@ public class AfficherCours implements Initializable {
                 alert.setHeaderText("Êtes-vous sûr de supprimer cette categorie ?");
                 Optional<ButtonType> result = alert.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
+                if (result.isPresent() && result.get() == ButtonType.OK) {
                     Pane parent = (Pane) pane.getParent();
                     scom.supprimerCours(cours.getId());
                     coursCategories.remove(cours);
@@ -150,7 +153,6 @@ public class AfficherCours implements Initializable {
         }
         vbox1.setSpacing(5);
     }
-
 
     @FXML
     private void returnToAffiche(MouseEvent event) {

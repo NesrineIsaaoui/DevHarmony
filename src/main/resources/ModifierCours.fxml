@@ -53,7 +53,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnAjouter1" layoutX="793.0" layoutY="497.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="26.0" prefWidth="129.0" style="-fx-background-radius: 18; -fx-background-color: #ff9900;" text="Modifier">
+      <Button fx:id="btnAjouter1" layoutX="793.0" layoutY="497.0" mnemonicParsing="false" onAction="#modifierBtnHandler" prefHeight="26.0" prefWidth="129.0" style="-fx-background-radius: 18; -fx-background-color: #ff9900;" text="Modifier">
          <font>
             <Font size="18.0" />
          </font>

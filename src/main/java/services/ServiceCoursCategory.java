@@ -74,7 +74,25 @@ public class ServiceCoursCategory implements IServiceCategory {
             System.out.println(ex);
         }
     }
+    public CoursCategory getCoursCategoryById(int categoryId) {
+        CoursCategory category = null;
+        String sql = "SELECT * FROM CoursCategory WHERE id = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(sql)) {
+            statement.setInt(1, categoryId);
 
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    int id = result.getInt("id");
+                    String categoryName = result.getString("categoryName");
+                    category = new CoursCategory(id, categoryName);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return category;
+    }
     @Override
     public void supprimerCoursCategory(int id) {
 

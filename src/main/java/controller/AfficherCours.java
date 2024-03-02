@@ -88,12 +88,11 @@ public class AfficherCours implements Initializable {
             label6.setPrefHeight(25.0);
             label6.setPrefWidth(200.0);
             label6.setFont(new Font(16.0));
-
             ImageView imageView1 = new ImageView();
-            Image image1 = new Image(getClass().getResourceAsStream("/trash.png"));
+            Image image1 = new Image(getClass().getResourceAsStream("/poubelle.gif"));
             imageView1.setImage(image1);
-            imageView1.setFitHeight(20.0);
-            imageView1.setFitWidth(20.0);
+            imageView1.setFitHeight(25.0);
+            imageView1.setFitWidth(25.0);
             imageView1.setLayoutX(580.0);
             imageView1.setLayoutY(20.0);
             imageView1.setPickOnBounds(true);
@@ -113,10 +112,10 @@ public class AfficherCours implements Initializable {
             });
 
             ImageView imageView2 = new ImageView();
-            Image image2 = new Image(getClass().getResourceAsStream("/Ediit.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("/redaction.gif"));
             imageView2.setImage(image2);
-            imageView2.setFitHeight(20.0);
-            imageView2.setFitWidth(20.0);
+            imageView2.setFitHeight(25.0);
+            imageView2.setFitWidth(25.0);
             imageView2.setLayoutX(600.0);
             imageView2.setLayoutY(20.0);
             imageView2.setPickOnBounds(true);
@@ -170,9 +169,9 @@ public class AfficherCours implements Initializable {
         loader.setLocation(getClass().getResource(fxmlPath));
         return loader;
     }
-
     @FXML
-    void returnToAdd(ActionEvent event) {
+    void returnToAdd(MouseEvent event) {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
         try {
             Parent root = loader.load();
@@ -182,4 +181,19 @@ public class AfficherCours implements Initializable {
             System.out.println(ex);
         }
     }
+
+    @FXML
+    private void showStats(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatsCours.fxml"));
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+            // Accédez au controller StatsController pour initialiser les statistiques
+            StatsController statsController = loader.getController();
+            statsController.updatePieChartData(cours.getId());
+        } catch (IOException ex) {
+            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+        }
+    }
+
 }

@@ -30,9 +30,9 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <ImageView fitHeight="52.0" fitWidth="59.0" layoutX="878.0" layoutY="25.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="113.0" fitWidth="234.0" layoutX="842.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@returnt2.png" />
+            <Image url="@prev.gif" />
          </image>
       </ImageView>
 

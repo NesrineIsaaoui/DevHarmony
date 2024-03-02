@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterCours">
    <children>
-      <ImageView layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="580.0" fitWidth="1124.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@bg2.png" />
          </image>
@@ -27,9 +27,9 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <ImageView fitHeight="68.0" fitWidth="56.0" layoutX="869.0" layoutY="3.0" onDragDetected="#ReturnToAfficherCours" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="158.0" layoutX="869.0" layoutY="3.0" onDragDetected="#ReturnToAfficherCours" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@returnt2.png" />
+            <Image url="@prev.gif" />
          </image>
       </ImageView>
       <Text fill="#ff9900" layoutX="592.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     Nom du cours " wrappingWidth="174.39999999999986">

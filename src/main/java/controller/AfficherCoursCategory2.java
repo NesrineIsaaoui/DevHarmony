@@ -62,10 +62,10 @@ public class AfficherCoursCategory2 implements Initializable {
             label2.setFont(new Font(16.0));
 
             ImageView imageView1 = new ImageView();
-            Image image1 = new Image(getClass().getResourceAsStream("/trash.png"));
+            Image image1 = new Image(getClass().getResourceAsStream("/poubelle.gif"));
             imageView1.setImage(image1);
-            imageView1.setFitHeight(20.0);
-            imageView1.setFitWidth(20.0);
+            imageView1.setFitHeight(25.0);
+            imageView1.setFitWidth(25.0);
             imageView1.setLayoutX(280);
             imageView1.setLayoutY(20.0);
             imageView1.setPickOnBounds(true);
@@ -85,10 +85,10 @@ public class AfficherCoursCategory2 implements Initializable {
             });
 
             ImageView imageView2 = new ImageView();
-            Image image2 = new Image(getClass().getResourceAsStream("/Ediit.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("/redaction.gif"));
             imageView2.setImage(image2);
-            imageView2.setFitHeight(20.0);
-            imageView2.setFitWidth(20.0);
+            imageView2.setFitHeight(25.0);
+            imageView2.setFitWidth(25.0);
             imageView2.setLayoutX(300);
             imageView2.setLayoutY(20.0);
             imageView2.setPickOnBounds(true);
@@ -144,7 +144,7 @@ public class AfficherCoursCategory2 implements Initializable {
     }
 
     @FXML
-    void returnToAdd(ActionEvent event) {
+    void returnToAdd(MouseEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCoursCategory.fxml"));
         try {
             Parent root = loader.load();

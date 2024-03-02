@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXRippler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import models.Cours;
@@ -20,11 +22,16 @@ import services.ServiceCours;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class AfficherCoursFront implements Initializable {
     ServiceCours sa = new ServiceCours();
+    // Déclarez une liste de HBox pour chaque cours
+    private List<HBox> coursRatingBoxes = new ArrayList<>();
+    // Variable pour stocker la dernière ratingBox cliquée
+    private HBox lastRatingBox;
 
     @FXML
     private VBox vbox1;
@@ -83,6 +90,10 @@ public class AfficherCoursFront implements Initializable {
         coursePane.setBottom(reservationImageView);
         coursePane.setAlignment(reservationImageView, Pos.BOTTOM_RIGHT);
 
+        // Ajoutez un HBox pour contenir les étoiles
+        HBox ratingBox = createRatingBox(cours);
+        coursePane.setRight(ratingBox);
+
         VBox.setMargin(coursePane, new Insets(0, 0, 10, 0));
 
         return coursePane;
@@ -136,6 +147,66 @@ public class AfficherCoursFront implements Initializable {
         alert.setTitle("Cours réservé");
         alert.setHeaderText(null);
         alert.setContentText("Vous avez réservé le cours : " + cours.getCoursName());
+        alert.showAndWait();
+    }
+
+    // Créez un HBox pour contenir les étoiles
+    private HBox createRatingBox(Cours cours) {
+        HBox ratingBox = new HBox();
+        ratingBox.setSpacing(5);
+        ratingBox.setAlignment(Pos.CENTER);
+
+        // Créez une ImageView pour chaque étoile
+        ImageView star1 = createStarImageView(cours, 1);
+        ImageView star2 = createStarImageView(cours, 2);
+        ImageView star3 = createStarImageView(cours, 3);
+        ImageView star4 = createStarImageView(cours, 4);
+        ImageView star5 = createStarImageView(cours, 5);
+
+        // Ajoutez les étoiles à la liste
+        ratingBox.getChildren().addAll(star1, star2, star3, star4, star5);
+
+        // Ajoutez le HBox à la liste
+        coursRatingBoxes.add(ratingBox);
+
+        return ratingBox;
+    }
+
+    // Créez une ImageView pour une étoile
+    private ImageView createStarImageView(Cours cours, int rating) {
+        ImageView star = new ImageView();
+        star.setFitHeight(30.0);
+        star.setFitWidth(30.0);
+        star.setPreserveRatio(true);
+        star.setImage(new Image("/starvide.png"));
+
+        // Ajoutez un événement de clic pour l'étoile
+        star.setOnMouseClicked(event -> handleRatingClick(cours, rating, (HBox) star.getParent()));
+
+        return star;
+    }
+
+    // Gérez le clic sur une étoile
+    private void handleRatingClick(Cours cours, int rating, HBox ratingBox) {
+        // Faites quelque chose avec le rating, par exemple, sauvegardez-le dans la base de données
+        sa.addAvis(cours.getId(), rating);
+
+        // Affichez un message pour informer l'utilisateur que son avis a été enregistré
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Avis enregistré");
+        alert.setHeaderText(null);
+        alert.setContentText("Votre avis a été enregistré avec succès.");
+
+        // Changez la couleur des étoiles en fonction du rating
+        for (int i = 0; i < ratingBox.getChildren().size(); i++) {
+            ImageView star = (ImageView) ratingBox.getChildren().get(i);
+            if (i < rating) {
+                star.setImage(new Image("/star2.png"));
+            } else {
+                star.setImage(new Image("/starvide.png"));
+            }
+        }
+
         alert.showAndWait();
     }
 }

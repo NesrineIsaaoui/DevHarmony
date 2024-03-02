@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 
 public class ServiceCours implements IServiceCours {
     private Connection cnx = DataSource.getInstance().getConnection();
-    private ObservableList<Cours> obList = FXCollections.observableArrayList();
 
     @Override
     public void ajouterCours(Cours c)
@@ -91,6 +90,46 @@ public class ServiceCours implements IServiceCours {
             }
         } catch (SQLException ex) {
             System.out.println(ex);
+        }
+    }
+
+    public void addAvis(int coursId, int stars) {
+        String req = "INSERT INTO `avis` (`cours_id`, `etoiles`) VALUES (?, ?)";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setInt(1, coursId);
+            ps.setInt(2, stars);
+
+            ps.executeUpdate();
+            System.out.println("Avis ajouté avec succès !");
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public int getNombreAvis(int idCours) {
+        try (Connection connection = DataSource.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM avis WHERE cours_id = ?")) {
+            preparedStatement.setInt(1, idCours);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public int getNombreAvisByRating(int idCours, int rating) {
+        try (Connection connection = DataSource.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM avis WHERE cours_id = ? AND etoiles = ?")) {
+            preparedStatement.setInt(1, idCours);
+            preparedStatement.setInt(2, rating);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

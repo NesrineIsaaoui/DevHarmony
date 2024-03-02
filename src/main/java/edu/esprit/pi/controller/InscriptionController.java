@@ -15,8 +15,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Properties;
+import java.util.Random;
 
 public class InscriptionController   {
     UserService us = new UserService();
@@ -44,6 +50,7 @@ public class InscriptionController   {
     private Button btnconfirmer;
     @FXML
     private Button btnSeconnecter;
+
     @FXML
     private StackPane stck;
 
@@ -62,9 +69,33 @@ public class InscriptionController   {
                 || tfprenom.getText().equals("")
                 || tfmdp.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Champ vide");
+            alert.setTitle("Contrôle de saisie");
             alert.setContentText("vous pouvez les remplir soigneusement");
             alert.setHeaderText("Tous les champs sont requis");
+            alert.showAndWait();
+            tfnom.setText("");
+            tfprenom.setText("");
+            tfemail.setText("");
+            tfmdp.setText("");
+            tfconfirmmdp.setText("");
+            return;
+        }if (!tfemail.getText().contains("@") || !tfemail.getText().contains(".")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Contrôle de saisie");
+            alert.setContentText("Respecter format mail");
+            alert.setHeaderText("Warning Alert");
+            alert.showAndWait();
+            tfnom.setText("");
+            tfprenom.setText("");
+            tfemail.setText("");
+            tfmdp.setText("");
+            tfconfirmmdp.setText("");
+            return;
+        }if (tfmdp.getText().length() < 8 ){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Contrôle de saisie");
+            alert.setContentText("le Mot de passe doit contenir au moins 9 caractères");
+            alert.setHeaderText("Warning Alert");
             alert.showAndWait();
             tfnom.setText("");
             tfprenom.setText("");
@@ -115,6 +146,25 @@ public class InscriptionController   {
             u1 = new Eleve(tfnom.getText(),tfprenom.getText(),role,tfemail.getText(),tfmdp.getText());
             us.addEleve((Eleve) u1);
             }
+        //Confirmer Mail
+       /* Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Validation E-mail");
+        alert.setHeaderText("Check your email please ");
+        alert.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(MainFx.class.getResource("fxml/ConfirmerMail.fxml"));
+            javafx.scene.Parent menu = loader.load();
+            Scene editProfileScene = new Scene(menu, 1043, 730);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(editProfileScene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+
+
+
+        //Compte créer avec succée aprés la validation
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
          alert.setTitle("Compte créé avec succès");
          alert.setHeaderText("Votre Compte a été créé avec succès");
@@ -128,6 +178,8 @@ public class InscriptionController   {
          } catch (IOException e) {
              e.printStackTrace();
          }
+
+
 
 }
 

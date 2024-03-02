@@ -96,4 +96,7 @@ public class ResetPassController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    public void HandleConfirmCode(ActionEvent actionEvent) {
+    }
 }

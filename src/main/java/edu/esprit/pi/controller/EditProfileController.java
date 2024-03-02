@@ -90,6 +90,8 @@ public class EditProfileController implements Initializable {
     @FXML
     private void DesactiverProfile(ActionEvent event) {
         try {
+
+
             Us.InvertStatus(currentUser.getEmail());
             currentUser = Us.getByEmail(currentUser.getEmail());
             setUserData(currentUser);
@@ -123,6 +125,7 @@ public class EditProfileController implements Initializable {
             Us.update(updatedUser, currentUser.getEmail());
             currentUser = Us.getByEmail(currentUser.getEmail());
             setUserData(currentUser);
+            showAlert("Mise a jour fait avec succée");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {

@@ -13,9 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
+import java.util.prefs.Preferences;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -30,6 +32,10 @@ public class SeconnecterController {
     private  Button btnlogin;
     @FXML
     private Button btnconfirmer;
+    @FXML
+    private Button btnCnxGmail;
+    @FXML
+    private CheckBox checkRememberMe;
     public static int idCurrentUser;
     public static String roleCurrentUser;
     private User CurrentUser;
@@ -41,6 +47,7 @@ public class SeconnecterController {
         this.CurrentUser = us;
         tfemail.setText(us.getEmail());
         tfmdp.setText(us.getPwd());
+
     }
     @FXML
     private void NavPageInscription(ActionEvent event) throws IOException {
@@ -56,6 +63,21 @@ public class SeconnecterController {
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
     }
+
+    Preferences preferences;
+    boolean rememberpreference;
+    public void rememberMe(){
+        preferences=Preferences.userNodeForPackage(this.getClass());
+        rememberpreference= preferences.getBoolean("rememberMe",Boolean.valueOf(""));
+        if (rememberpreference){
+            tfemail.setText(preferences.get("email",""));
+            tfmdp.setText(preferences.get("pwd",""));
+            checkRememberMe.setSelected(rememberpreference);
+
+        }
+
+    }
+
     @FXML
     void submit(ActionEvent event) throws SQLException, IOException {
         if (tfemail.getText().equals("") || tfmdp.getText().equals("")) {
@@ -72,10 +94,21 @@ public class SeconnecterController {
         if (u != null && BCrypt.checkpw(tfmdp.getText(), u.getPwd())) {
             idCurrentUser = u.getId();
             roleCurrentUser = u.getRole();
+            rememberMe();
             if (u.getStatus().equals("Desactive")) {
                 if (showConfirmationDialog("Your account is currently deactivated. Do you want to reactivate and log in?")) {
                     Us.InvertStatus(u.getEmail());
                 }
+            }if (checkRememberMe.isSelected() && !rememberpreference){
+                preferences.put("email",tfemail.getText());
+                preferences.put("pwd",tfmdp.getText());
+                preferences.putBoolean("rememberMe",true);
+
+            } else if (!checkRememberMe.isSelected() && rememberpreference) {
+                preferences.put("email","");
+                preferences.put("pwd","");
+                preferences.putBoolean("rememberMe",false);
+                
             } else {
                 if (u.getRole().equals("Parent")) {
                     navigateToHome("fxml/HomeParent.fxml");
@@ -93,6 +126,7 @@ public class SeconnecterController {
             alert.showAndWait();
             System.out.println("2");
         }
+
     }
 
     private void navigateToHome(String fxmlPath) throws IOException {
@@ -108,5 +142,7 @@ public class SeconnecterController {
         stck.getChildren().removeAll();
         stck.getChildren().setAll(menu);
     }
+
+
 
 }

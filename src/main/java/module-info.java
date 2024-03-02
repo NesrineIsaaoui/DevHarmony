@@ -5,6 +5,7 @@ module edu.esprit.pi {
     requires org.apache.commons.io;
     requires java.mail;
     requires jbcrypt;
+    requires java.prefs;
 
     opens edu.esprit.pi to javafx.fxml;
     opens edu.esprit.pi.controller to javafx.fxml;

@@ -12,7 +12,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane fx:id="stck" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.pi.controller.InscriptionController">
    <children>
@@ -185,7 +187,7 @@
                </RadioButton>
             </children>
          </HBox>
-         <HBox layoutX="478.0" layoutY="519.0" prefHeight="100.0" prefWidth="417.0">
+         <HBox layoutX="478.0" layoutY="519.0" prefHeight="86.0" prefWidth="417.0">
             <children>
                <Button fx:id="btnconfirmer" mnemonicParsing="false" onAction="#inscrire" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Confirmer" textFill="WHITE">
                   <font>
@@ -197,6 +199,18 @@
                </Button>
             </children>
          </HBox>
+         <Line endX="22.0" layoutX="594.0" layoutY="620.0" startX="-100.0" />
+         <Line endX="100.0" layoutX="818.0" layoutY="620.0" startX="-16.0" />
+         <Text layoutX="645.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ou Connecter Avec" />
+         <Button fx:id="btnCnxGmail" layoutX="500.0" layoutY="646.0" mnemonicParsing="false" onAction="#ConnectionWithGmail" prefHeight="40.0" prefWidth="389.0" style="-fx-background-color: #fff;" text="Se Connecter avec Gmail">
+            <graphic>
+               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../icons/gmail.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
       </AnchorPane>
    </children>
 </StackPane>

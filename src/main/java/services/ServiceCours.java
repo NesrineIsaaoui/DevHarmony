@@ -1,20 +1,27 @@
 package services;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import models.Cours;
+import models.CoursCategory;
 import utils.DataSource;
 
+import java.io.FileOutputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 public class ServiceCours implements IServiceCours {
     private Connection cnx = DataSource.getInstance().getConnection();
+    private List<CoursCategory> coursCategories;
+
+    public CoursCategory getCoursCategoryById(int id) {
+        for (CoursCategory category : coursCategories) {
+            if (category.getId() == id) {
+                return category;
+            }
+        }
+        return null;
+    }
 
     @Override
     public void ajouterCours(Cours c) {
@@ -32,7 +39,6 @@ public class ServiceCours implements IServiceCours {
             Logger.getLogger(ServiceCours.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     @Override
     public List<Cours> afficherCours() {
@@ -106,40 +112,22 @@ public class ServiceCours implements IServiceCours {
             Logger.getLogger(ServiceCours.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public int getNombreAvis(int idCours) {
-        try (Connection connection = DataSource.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM avis WHERE cours_id = ?")) {
-            preparedStatement.setInt(1, idCours);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            return resultSet.getInt(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
+public  double getEtoiles(int idCours)
+{
+    try {
+        PreparedStatement preparedStatement = cnx.prepareStatement("SELECT etoiles FROM avis WHERE cours_id = ?");
+        preparedStatement.setInt(1, idCours);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        return resultSet.getDouble(1);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0;
     }
-
-
-
-    public int getNombreAvisByRating(int idCours, int rating) {
-        try (Connection connection = DataSource.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM avis WHERE cours_id = ? AND etoiles = ?")) {
-            preparedStatement.setInt(1, idCours);
-            preparedStatement.setInt(2, rating);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            return resultSet.getInt(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
+}
     public double getMoyenneEtoiles(int idCours) {
-        try
-        {
-             PreparedStatement preparedStatement = cnx.prepareStatement("SELECT AVG(etoiles) FROM avis WHERE cours_id= ?");
-
+        try {
+            PreparedStatement preparedStatement = cnx.prepareStatement("SELECT AVG(etoiles) FROM avis WHERE cours_id = ?");
             preparedStatement.setInt(1, idCours);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -148,6 +136,40 @@ public class ServiceCours implements IServiceCours {
             e.printStackTrace();
             return 0;
         }
+    }
+
+
+
+    public String getCourseFeedback(double averageStars) {
+        if (averageStars > 4.0) {
+            return "Excellent";
+        } else if (averageStars <= 4.0 && averageStars > 2.0) {
+            return "Bon";
+        } else {
+            return "Faible";
+        }
+    }
+
+    public Cours getCourseById(int courseId) {
+        Cours course = null;
+        String req = "SELECT * FROM cours WHERE id = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setInt(1, courseId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    course = new Cours();
+                    course.setId(rs.getInt("id"));
+                    course.setCoursName(rs.getString("coursName"));
+                    course.setCoursDescription(rs.getString("coursDescription"));
+                    course.setCoursImage(rs.getString("coursImage"));
+                    course.setCoursPrix(rs.getInt("coursPrix"));
+                    course.setIdCategory(rs.getInt("idCategory"));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return course;
     }
 
 
@@ -167,4 +189,26 @@ public class ServiceCours implements IServiceCours {
         return avisStats;
     }
 
+    public List<Cours> searchCourses(String searchText) {
+        List<Cours> courses = new ArrayList<>();
+        String req = "SELECT * FROM cours WHERE coursName LIKE ?";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setString(1, "%" + searchText + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Cours cours = new Cours();
+                    cours.setId(rs.getInt("id"));
+                    cours.setCoursName(rs.getString("coursName"));
+                    cours.setCoursDescription(rs.getString("coursDescription"));
+                    cours.setCoursImage(rs.getString("coursImage"));
+                    cours.setCoursPrix(rs.getInt("coursPrix"));
+                    cours.setIdCategory(rs.getInt("idCategory"));
+                    courses.add(cours);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return courses;
+    }
 }

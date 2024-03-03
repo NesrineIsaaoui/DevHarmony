@@ -14,5 +14,5 @@ public interface IServiceCours {
 
     public void supprimerCours(int id);
 
-    public int getNombreAvisByRating(int idCours, int rating);
+  //  public int getNombreAvisByRating(int idCours, int rating);
 }

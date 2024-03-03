@@ -12,6 +12,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -22,13 +23,23 @@ import models.Cours;
 import models.CoursCategory;
 import services.ServiceCours;
 import services.ServiceCoursCategory;
+import utils.DataSource;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFRow;
 
 public class AfficherCours implements Initializable {
     @FXML
@@ -191,6 +202,7 @@ public class AfficherCours implements Initializable {
 
         vbox1.getChildren().add(pane);
     }
+
     private void updatePieChart() {
         if (selectedCoursId == -1) {
             pieChart.getData().clear();
@@ -206,34 +218,87 @@ public class AfficherCours implements Initializable {
     }
 
 
-
-@FXML
-private void returnToAffiche(MouseEvent event) {
-    try {
-        FXMLLoader loader = createFXMLLoader("/Location_category.fxml");
-        Parent root = loader.load();
-        nh.getChildren().setAll(root);
-    } catch (IOException ex) {
-        System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+    @FXML
+    private void returnToAffiche(MouseEvent event) {
+        try {
+            FXMLLoader loader = createFXMLLoader("/Location_category.fxml");
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+        } catch (IOException ex) {
+            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+        }
     }
-}
 
-private FXMLLoader createFXMLLoader(String fxmlPath) {
-    FXMLLoader loader = new FXMLLoader();
-    loader.setLocation(getClass().getResource(fxmlPath));
-    return loader;
-}
-
-@FXML
-void returnToAdd(MouseEvent event) {
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
-    try {
-        Parent root = loader.load();
-        nh.getChildren().setAll(root);
-
-    } catch (IOException ex) {
-        System.out.println(ex);
+    private FXMLLoader createFXMLLoader(String fxmlPath) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader;
     }
-}
+
+    @FXML
+    void returnToAdd(MouseEvent event) {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
+        try {
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+
+    @FXML
+    private void excelmth(MouseEvent event) {
+        Connection cnx = DataSource.getInstance().getConnection();
+
+        try {
+            String filename = "C:\\Users\\LENOVO\\IdeaProjects\\GestionCours\\src\\main\\resources\\data.xls";
+            HSSFWorkbook hwb = new HSSFWorkbook();
+            HSSFSheet sheet = hwb.createSheet("new sheet");
+            HSSFRow rowhead = sheet.createRow((short) 0);
+            rowhead.createCell((short) 0).setCellValue("id");
+            rowhead.createCell((short) 1).setCellValue("coursName");
+            rowhead.createCell((short) 2).setCellValue("etoiles");
+            rowhead.createCell((short) 4).setCellValue("Retour");
+
+            ServiceCours sa = new ServiceCours();
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery("select * from avis");
+            int i = 1;
+            while (rs.next()) {
+                HSSFRow row = sheet.createRow((short) i);
+
+                int courseId = rs.getInt("cours_id");
+                Cours cours = sa.getCourseById(courseId);
+                String coursName = cours.getCoursName();
+                row.createCell((short) 0).setCellValue(rs.getString("id"));
+                row.createCell((short) 1).setCellValue(coursName);
+                row.createCell((short) 2).setCellValue(rs.getString("etoiles"));
+
+                double averageStars = sa.getEtoiles(courseId);
+
+                // Déterminez les informations de retour du cours
+                String feedback = sa.getCourseFeedback(averageStars);
+                row.createCell((short) 4).setCellValue(feedback);
+
+                i++;
+            }
+
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            hwb.write(fileOut);
+            fileOut.close();
+            System.out.println("Votre fichier Excel a été généré !");
+            File file = new File(filename);
+            if (file.exists()) {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(file);
+                }
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
 }

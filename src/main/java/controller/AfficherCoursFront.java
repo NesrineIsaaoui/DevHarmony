@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -35,9 +37,17 @@ public class AfficherCoursFront implements Initializable {
 
     @FXML
     private VBox vbox1;
-
+    @FXML
+    private ToggleButton darkModeToggle;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Scene scene = darkModeToggle.getScene();
+
+        // Vérifie l'état initial du ToggleButton
+        if (darkModeToggle.isSelected()) {
+            scene.getStylesheets().add(getClass().getResource("darkMode.css").toExternalForm());
+        }
+
         List<Cours> coursList = sa.afficherCours();
 
         vbox1.setSpacing(10);

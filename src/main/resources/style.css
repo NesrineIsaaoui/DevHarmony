@@ -41,3 +41,32 @@
 .list-view {
     -fx-background-color: #e0e0e0; /* Couleur de fond de la ListView */
 }
+
+.no-courses-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: red;
+    -fx-alignment: center;
+}
+
+
+.course-pane {
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.course-name-label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.price-label {
+    -fx-font-size: 12;
+    -fx-text-fill: #666;
+}
+
+.no-courses-label {
+    -fx-font-size: 18;
+    -fx-text-fill: #666;
+}

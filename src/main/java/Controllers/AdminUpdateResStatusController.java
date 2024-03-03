@@ -15,7 +15,10 @@ import Models.Reservation;
 import Services.ReservationService;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,6 +61,10 @@ public class AdminUpdateResStatusController implements Initializable {
     @FXML
     private TableColumn idColumn;
     private ObservableList<Reservation> Data;
+    @FXML
+    private Button chart;
+    @FXML
+    private Button excel1;
 
     public AdminUpdateResStatusController() {
         this.reservationService = new ReservationService();
@@ -151,9 +158,7 @@ public class AdminUpdateResStatusController implements Initializable {
         saveButton.setDisable(false);
     }
 
-    @FXML
-    public void reservationscharts(ActionEvent actionEvent) {
-    }
+
 @FXML
 public void promospage(ActionEvent actionEvent) {
     try {
@@ -211,4 +216,84 @@ public void promospage(ActionEvent actionEvent) {
     }
 
 
+    @FXML
+    public void piechart(ActionEvent actionEvent) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) saveButton.getScene().getWindow();
+
+            // Close the current window
+            currentStage.close();
+
+            // Load the new window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reservationchart.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of the new window
+            ReservationChartController reservationChartController = loader.getController();
+
+            // Fetch reservations using your ReservationService or your data retrieval logic
+            ReservationService reservationService = new ReservationService(); // Replace with your actual service
+            ObservableList<Reservation> reservations = FXCollections.observableArrayList(reservationService.getAllReservations());
+
+            // Pass the list of reservations to the ReservationChartController
+            reservationChartController.setReservations(reservations);
+
+            // Create the new stage
+            Stage newStage = new Stage();
+            newStage.setTitle("EDUWAVE");
+            newStage.setScene(new Scene(root));
+
+            // Show the new stage
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    public void fileexcel(ActionEvent actionEvent) {
+        try {
+            // Create a new Workbook
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Reservations");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Reservation ID");
+            headerRow.createCell(1).setCellValue("User ID");
+            headerRow.createCell(2).setCellValue("Course ID");
+            headerRow.createCell(3).setCellValue("Status");
+            headerRow.createCell(4).setCellValue("Reservation Date");
+            headerRow.createCell(5).setCellValue("Promo ID");
+            headerRow.createCell(6).setCellValue("Price");
+
+            // Fill data rows
+            int rowNum = 1;
+            for (Reservation reservation : Data) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(reservation.getId());
+                row.createCell(1).setCellValue(reservation.getId_user());
+                row.createCell(2).setCellValue(reservation.getId_cours());
+                row.createCell(3).setCellValue(reservation.isResStatus());
+                row.createCell(4).setCellValue(reservation.getDateReservation().toString());
+                row.createCell(5).setCellValue(reservation.getId_codepromo());
+                row.createCell(6).setCellValue(reservation.getPrixd());
+            }
+
+            // Save the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream("reservations.xlsx")) {
+                workbook.write(fileOut);
+            }
+
+            // Close the workbook to release resources
+            workbook.close();
+
+            System.out.println("Excel file created successfully.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

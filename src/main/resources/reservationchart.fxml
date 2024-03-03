@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.ReservationChartController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="502.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationChartController">
+   <children>
+      <PieChart fx:id="userCoursePieChart" layoutX="103.0" layoutY="60.0" prefHeight="381.0" prefWidth="500.0" />
+      <Label fx:id="label" layoutX="493.0" layoutY="187.0" />
+   </children>
 </AnchorPane>

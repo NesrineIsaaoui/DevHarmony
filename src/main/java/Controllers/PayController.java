@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
@@ -30,9 +31,9 @@ public class PayController {
     private AnchorPane nh;
     @FXML
     private TextField cvvField;
-
-
-
+    private float sum;
+    @FXML
+    private VBox vbox;
 
 
     @FXML
@@ -43,6 +44,12 @@ public class PayController {
             showConfirmationDialog();
         }
     }
+
+    public void setSum(float sum) {
+        this.sum = sum;
+        somme.setText("Somme à payer: " + String.valueOf(sum) + "$");
+    }
+
 
     private String createTestToken() {
         try {

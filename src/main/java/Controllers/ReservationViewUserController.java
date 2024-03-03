@@ -56,7 +56,6 @@ public class ReservationViewUserController {
 
     @FXML
     private void initialize() {
-        // Initialize the table and columns
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_user"));
         courseIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cours"));
@@ -158,10 +157,12 @@ public class ReservationViewUserController {
     }
 
 
-
     @FXML
     public void pay(ActionEvent actionEvent) {
         try {
+            // Calculate the sum of reservations with status true
+            float sum = calculateSumOfReservations();
+
             // Get the current stage
             Stage currentStage = (Stage) returntohome.getScene().getWindow();
 
@@ -171,6 +172,10 @@ public class ReservationViewUserController {
             // Load the new window
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Payment.fxml"));
             Parent root = loader.load();
+
+            // Pass the sum to the PayController
+            PayController payController = loader.getController();
+            payController.setSum(sum);
 
             // Create the new stage
             Stage newStage = new Stage();
@@ -184,6 +189,16 @@ public class ReservationViewUserController {
         }
     }
 
+
+    private float calculateSumOfReservations() {
+        float sum = 0;
+        for (Reservation reservation : reservations) {
+            if (reservation.isResStatus()) {
+                sum += reservation.getPrixd();
+            }
+        }
+        return sum;
+    }
     @FXML
     public void returntohome(ActionEvent actionEvent) {
 

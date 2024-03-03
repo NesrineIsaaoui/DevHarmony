@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 public class ServiceCours implements IServiceCours {
     private Connection cnx = DataSource.getInstance().getConnection();
 
     @Override
-    public void ajouterCours(Cours c)
-    {
+    public void ajouterCours(Cours c) {
         String req = "INSERT INTO `cours`(`coursName`, `coursDescription`, `coursImage`, `coursPrix`,`idCategory`) VALUES (?,?,?,?,?)";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {
             ps.setString(1, c.getCoursName());
@@ -119,6 +120,8 @@ public class ServiceCours implements IServiceCours {
         }
     }
 
+
+
     public int getNombreAvisByRating(int idCours, int rating) {
         try (Connection connection = DataSource.getInstance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM avis WHERE cours_id = ? AND etoiles = ?")) {
@@ -132,4 +135,36 @@ public class ServiceCours implements IServiceCours {
             return 0;
         }
     }
+    public double getMoyenneEtoiles(int idCours) {
+        try
+        {
+             PreparedStatement preparedStatement = cnx.prepareStatement("SELECT AVG(etoiles) FROM avis WHERE cours_id= ?");
+
+            preparedStatement.setInt(1, idCours);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            return resultSet.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+    public Map<Integer, Integer> getAvisStats(int idCours) {
+        Map<Integer, Integer> avisStats = new HashMap<>();
+        String req = "SELECT etoiles, COUNT(*) FROM avis WHERE cours_id = ? GROUP BY etoiles";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setInt(1, idCours);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    avisStats.put(rs.getInt(1), rs.getInt(2));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return avisStats;
+    }
+
 }

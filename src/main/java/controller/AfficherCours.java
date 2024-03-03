@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -25,6 +26,7 @@ import services.ServiceCoursCategory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -35,14 +37,23 @@ public class AfficherCours implements Initializable {
     private VBox vbox1;
     @FXML
     private Button returnToAdd;
+
+    @FXML
+    private PieChart pieChart;
+
+
     @FXML
     private AnchorPane nh;
-    ServiceCours scom = new ServiceCours();
-    ServiceCoursCategory scomCat = new ServiceCoursCategory();
-    Cours cours;
+    private ServiceCours scom = new ServiceCours();
+    private ServiceCoursCategory scomCat = new ServiceCoursCategory();
+    private Cours cours;
+    private int selectedCoursId = -1;
+    private Map<Integer, Integer> avisStats;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
         List<Cours> coursCategories = scom.afficherCours();
         vbox1.setFillWidth(true);
 
@@ -77,7 +88,6 @@ public class AfficherCours implements Initializable {
             label5.setPrefHeight(25.0);
             label5.setPrefWidth(200.0);
             label5.setFont(new Font(16.0));
-
             // Récupérer le nom de la catégorie
             CoursCategory category = scomCat.getCoursCategoryById(cours.getIdCategory());
             String categoryName = category.getCategoryName();
@@ -148,52 +158,82 @@ public class AfficherCours implements Initializable {
             line.setLayoutY(53.0);
 
             pane.getChildren().addAll(label1, label2, label3, label5, label6, imageView1, imageView2, line);
+            pane.setOnMouseClicked(event -> {
+                selectedCoursId = cours.getId();
+                updatePieChart();
+            });
             vbox1.getChildren().add(pane);
+        }
+        vbox1.setSpacing(5);
+
+
+        vbox1.setFillWidth(true);
+
+        for (Cours cours : coursCategories) {
+            // Code pour afficher les informations sur chaque cours
+            vbox1.setFillWidth(true);
+            // Code pour afficher les informations sur chaque cours
+            // Ajouter les statistiques d'avis au PieChart
+            updatePieChartForCours(cours);
         }
         vbox1.setSpacing(5);
     }
 
-    @FXML
-    private void returnToAffiche(MouseEvent event) {
-        try {
-            FXMLLoader loader = createFXMLLoader("/Location_category.fxml");
-            Parent root = loader.load();
-            nh.getChildren().setAll(root);
-        } catch (IOException ex) {
-            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+    private void updatePieChartForCours(Cours cours) {
+        // Ajouter un gestionnaire d'événements à chaque Pane
+        Pane pane = new Pane();
+        pane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            selectedCoursId = cours.getId();
+            updatePieChart();
+        });
+
+        // Autres éléments de la création du Pane...
+
+        vbox1.getChildren().add(pane);
+    }
+    private void updatePieChart() {
+        if (selectedCoursId == -1) {
+            pieChart.getData().clear();
+            return;
+        }
+
+        avisStats = scom.getAvisStats(selectedCoursId);
+        pieChart.getData().clear();
+        for (Map.Entry<Integer, Integer> entry : avisStats.entrySet()) {
+            PieChart.Data data = new PieChart.Data("Etoiles " + entry.getKey(), entry.getValue());
+            pieChart.getData().add(data);
         }
     }
 
-    private FXMLLoader createFXMLLoader(String fxmlPath) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxmlPath));
-        return loader;
+
+
+@FXML
+private void returnToAffiche(MouseEvent event) {
+    try {
+        FXMLLoader loader = createFXMLLoader("/Location_category.fxml");
+        Parent root = loader.load();
+        nh.getChildren().setAll(root);
+    } catch (IOException ex) {
+        System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
     }
-    @FXML
-    void returnToAdd(MouseEvent event) {
+}
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
-        try {
-            Parent root = loader.load();
-            nh.getChildren().setAll(root);
+private FXMLLoader createFXMLLoader(String fxmlPath) {
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource(fxmlPath));
+    return loader;
+}
 
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+@FXML
+void returnToAdd(MouseEvent event) {
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCours.fxml"));
+    try {
+        Parent root = loader.load();
+        nh.getChildren().setAll(root);
+
+    } catch (IOException ex) {
+        System.out.println(ex);
     }
-
-    @FXML
-    private void showStats(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatsCours.fxml"));
-            Parent root = loader.load();
-            nh.getChildren().setAll(root);
-            // Accédez au controller StatsController pour initialiser les statistiques
-            StatsController statsController = loader.getController();
-            statsController.updatePieChartData(cours.getId());
-        } catch (IOException ex) {
-            System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
-        }
-    }
-
+}
 }

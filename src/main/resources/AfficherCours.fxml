@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -61,7 +62,8 @@
             <Image url="@add.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="107.0" fitWidth="110.0" layoutX="566.0" layoutY="122.0" onDragDetected="#showStats" pickOnBounds="true" preserveRatio="true">
+      <PieChart fx:id="pieChart" layoutX="474.0" layoutY="14.0" prefHeight="237.0" prefWidth="382.0" />
+      <ImageView fitHeight="56.0" fitWidth="53.0" layoutX="781.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@stat.gif" />
          </image>

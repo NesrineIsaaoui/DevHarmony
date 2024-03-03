@@ -307,7 +307,7 @@ public class AdminAjoutCodePromoController {
     }
 
 
-    @javafx.fxml.FXML  /// a verifier
+    @javafx.fxml.FXML
     public void reservationscharts(ActionEvent actionEvent) {
 
         try {

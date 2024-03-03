@@ -23,7 +23,7 @@
                <children>
                     <RadioButton fx:id="statusRadioButton" layoutX="104.0" layoutY="360.0" text="Status" />
                     <Button fx:id="saveButton" layoutX="174.0" layoutY="356.0" mnemonicParsing="false" onAction="#saveReservation" prefHeight="25.0" prefWidth="137.0" text="Save" />
-                  <TableView fx:id="tableView" layoutX="51.0" layoutY="128.0" prefHeight="184.0" prefWidth="562.0" stylesheets="@style.css">
+                  <TableView fx:id="tableView" layoutX="15.0" layoutY="127.0" prefHeight="184.0" prefWidth="645.0" stylesheets="@style.css">
                      <columns>
                         <TableColumn fx:id="idColumn" text="ID" />
                         <TableColumn fx:id="userIdColumn" text="User ID" />
@@ -32,6 +32,7 @@
                         <TableColumn fx:id="dateColumn" text="Date" />
                         <TableColumn fx:id="promoIdColumn" text="Promo ID" />
                         <TableColumn fx:id="priceColumn" text="Price" />
+                        <TableColumn fx:id="paidcol" text="Paid" />
                      </columns>
                   </TableView>
                   <ImageView fitHeight="52.0" fitWidth="56.0" layoutX="122.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">

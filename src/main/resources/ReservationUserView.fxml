@@ -12,8 +12,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="451.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationViewUserController">
-   <BorderPane layoutY="-2.0" prefHeight="461.0" prefWidth="770.0" style="-fx-background-color: #AA00FF;">
+<AnchorPane prefHeight="580.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationViewUserController">
+   <BorderPane layoutY="-2.0" prefHeight="580.0" prefWidth="910.0" style="-fx-background-color: #AA00FF;">
       <center>
          <SplitPane dividerPositions="0.1539351851851852" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
            <items>
@@ -31,20 +31,21 @@
                      </TextField>
                   </children>
                </AnchorPane>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="769.0" style="-fx-background-color: #F1DEFF;">
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="914.0" style="-fx-background-color: #F1DEFF;">
                   <children>
-                      <TableView fx:id="tableView" layoutX="46.0" layoutY="3.0" prefHeight="214.0" prefWidth="574.0" stylesheets="@style.css">
+                      <TableView fx:id="tableView" layoutX="14.0" layoutY="58.0" prefHeight="214.0" prefWidth="677.0" stylesheets="@style.css">
                           <columns>
-                              <TableColumn fx:id="idColumn" text="ID" />
-                              <TableColumn fx:id="userIdColumn" text="User ID" />
-                              <TableColumn fx:id="courseIdColumn" text="Course ID" />
-                              <TableColumn fx:id="statusColumn" text="Status" />
-                              <TableColumn fx:id="dateColumn" text="Date" />
-                              <TableColumn fx:id="promoIdColumn" text="Promo ID" />
+                              <TableColumn fx:id="idColumn" prefWidth="59.20000648498535" text="ID" />
+                              <TableColumn fx:id="userIdColumn" prefWidth="80.80001831054688" text="User ID" />
+                              <TableColumn fx:id="courseIdColumn" prefWidth="63.99993896484375" text="Course ID" />
+                              <TableColumn fx:id="statusColumn" prefWidth="82.40005493164062" text="Status" />
+                              <TableColumn fx:id="dateColumn" prefWidth="136.0" text="Date" />
+                              <TableColumn fx:id="promoIdColumn" prefWidth="59.20001220703125" text="Promo ID" />
                               <TableColumn fx:id="priceColumn" prefWidth="93.60001220703123" text="Price" />
+                           <TableColumn fx:id="paidcol" prefWidth="93.60001220703123" text="paid" />
                           </columns>
                       </TableView>
-                      <Button layoutX="624.0" layoutY="14.0" mnemonicParsing="false" onAction="#insertReservation" prefHeight="78.0" prefWidth="114.0" style="-fx-background-color: #F1DEFF;">
+                      <Button layoutX="746.0" layoutY="41.0" mnemonicParsing="false" onAction="#insertReservation" prefHeight="78.0" prefWidth="114.0" style="-fx-background-color: #F1DEFF;">
                         <graphic>
                            <ImageView fitHeight="75.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -52,7 +53,7 @@
                               </image>
                            </ImageView>
                         </graphic></Button>
-                      <Button layoutX="648.0" layoutY="110.0" mnemonicParsing="false" onAction="#pay" prefHeight="86.0" prefWidth="82.0" style="-fx-background-color: #F1DEFF;">
+                      <Button fx:id="paybtn" layoutX="770.0" layoutY="137.0" mnemonicParsing="false" onAction="#pay" prefHeight="86.0" prefWidth="82.0" style="-fx-background-color: #F1DEFF;">
                         <graphic>
                            <ImageView fitHeight="66.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -60,7 +61,7 @@
                               </image>
                            </ImageView>
                         </graphic></Button>
-                      <Button layoutX="655.0" layoutY="216.0" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #F1DEFF;">
+                      <Button layoutX="777.0" layoutY="243.0" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #F1DEFF;">
                         <graphic>
                            <ImageView fitHeight="52.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                               <image>

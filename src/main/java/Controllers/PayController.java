@@ -1,5 +1,7 @@
 package Controllers;
 
+import Models.Reservation;
+import Services.ReservationService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
@@ -7,6 +9,10 @@ import com.stripe.model.Token;
 import com.stripe.net.RequestOptions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,8 +20,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -36,15 +46,63 @@ public class PayController {
     private VBox vbox;
 
 
+
+
     @FXML
     private void payNowButton(ActionEvent event) {
-        String token = createTestToken();
+        if (validateInput()) {
+            String token = createTestToken();
 
-        if (token != null) {
-            showConfirmationDialog();
+            if (token != null) {
+                // Update the paid status for selected reservations
+                updatePaidStatusForSelectedReservations();
+                showConfirmationDialog();
+                showPaymentSuccessWindow();
+            }
         }
     }
 
+
+    private boolean validateInput() {
+        if (cardNumberField.getText().isEmpty() || expiryDateField.getText().isEmpty() || cvvField.getText().isEmpty()) {
+            showAlert("Input Error", "Please fill in all the required fields.");
+            return false;
+        }
+
+        // Add more specific validation if needed
+
+        return true;
+    }
+
+    private void showPaymentSuccessWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PaymentSuccess.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Payment Successful");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void updatePaidStatusForSelectedReservations() {
+        try {
+            ReservationService reservationService = new ReservationService();
+
+            // Get the selected reservations with resStatus set to true
+            List<Reservation> selectedReservations = reservationService.getReservationsByStatus(true);
+
+            // Update the paid status in the database for selected reservations
+            for (Reservation reservation : selectedReservations) {
+                reservationService.addPaidStatus(reservation.getId(), true);
+                reservation.setResStatus(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void setSum(float sum) {
         this.sum = sum;
         somme.setText("Somme à payer: " + String.valueOf(sum) + "$");
@@ -99,6 +157,8 @@ public class PayController {
         }
     }
 
+
+
     private void handleStripeException(String title, String errorMessage) {
         showAlert("Payment Error", title + ": " + errorMessage);
     }
@@ -113,5 +173,24 @@ public class PayController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             chargeCard(createTestToken());
         }
+    }
+
+    @FXML
+    public void returntoreservations(ActionEvent actionEvent) {
+
+        try {
+            URL fxmlUrl = getClass().getResource("/ReservationUserView.fxml");
+            System.out.println("FXML URL: " + fxmlUrl);
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("EDUWAVE");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

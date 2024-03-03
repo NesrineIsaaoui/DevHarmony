@@ -65,6 +65,8 @@ public class AdminUpdateResStatusController implements Initializable {
     private Button chart;
     @FXML
     private Button excel1;
+    @FXML
+    private TableColumn paidcol;
 
     public AdminUpdateResStatusController() {
         this.reservationService = new ReservationService();
@@ -82,6 +84,7 @@ public class AdminUpdateResStatusController implements Initializable {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("dateReservation"));
         promoIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_codepromo"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("prixd"));
+        paidcol.setCellValueFactory(new PropertyValueFactory<>("paidStatus"));
 
         // Set the items in the TableView
         tableView.setItems(Data);
@@ -103,7 +106,9 @@ public class AdminUpdateResStatusController implements Initializable {
                         || String.valueOf(reservation.isResStatus()).toLowerCase().contains(lowerCaseFilter)
                         || reservation.getDateReservation().toString().toLowerCase().contains(lowerCaseFilter)
                         || String.valueOf(reservation.getId_codepromo()).toLowerCase().contains(lowerCaseFilter)
-                        || String.valueOf(reservation.getPrixd()).toLowerCase().contains(lowerCaseFilter);
+                        || String.valueOf(reservation.getPrixd()).toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(reservation.isPaidStatus()).toLowerCase().contains(lowerCaseFilter);
+
 
             });
         });
@@ -159,30 +164,30 @@ public class AdminUpdateResStatusController implements Initializable {
     }
 
 
-@FXML
-public void promospage(ActionEvent actionEvent) {
-    try {
-        // Get the current stage
-        Stage currentStage = (Stage) saveButton.getScene().getWindow();
+    @FXML
+    public void promospage(ActionEvent actionEvent) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) saveButton.getScene().getWindow();
 
-        // Close the current window
-        currentStage.close();
+            // Close the current window
+            currentStage.close();
 
-        // Load the new window
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminajoutcodep.fxml"));
-        Parent root = loader.load();
+            // Load the new window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminajoutcodep.fxml"));
+            Parent root = loader.load();
 
-        // Create the new stage
-        Stage newStage = new Stage();
-        newStage.setTitle("EDUWAVE");
-        newStage.setScene(new Scene(root));
+            // Create the new stage
+            Stage newStage = new Stage();
+            newStage.setTitle("EDUWAVE");
+            newStage.setScene(new Scene(root));
 
-        // Show the new stage
-        newStage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+            // Show the new stage
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
 
     @FXML

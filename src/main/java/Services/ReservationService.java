@@ -20,7 +20,7 @@ public class ReservationService {
     }
     public void addEntity(Reservation t) {
         try {
-            String rq = "INSERT INTO reservation (id_user, id_cours, resStatus, date_reservation, id_codepromo, prixd) VALUES (?, ?, ?, ?, ?, ?)";
+            String rq = "INSERT INTO reservation (id_user, id_cours, resStatus, date_reservation, id_codepromo, prixd, paidStatus) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pst = DB.getInstance().getConnection().prepareStatement(rq);
             pst.setInt(1, t.getId_user());
             pst.setInt(2, t.getId_cours());
@@ -28,6 +28,7 @@ public class ReservationService {
             pst.setTimestamp(4, Timestamp.valueOf(t.getDateReservation()));
             pst.setInt(5, t.getId_codepromo());
             pst.setFloat(6, t.getPrixd());
+            pst.setBoolean(7, t.isPaidStatus());
             pst.executeUpdate();
             System.out.println("Reservation has been added.");
         } catch (SQLException ex) {
@@ -62,13 +63,14 @@ public class ReservationService {
 
     public void updateEntity(Reservation t) {
         try {
-            String rq = "UPDATE reservation SET id_user=?, id_cours =? , resStatus = ?, date_reservation = ? WHERE id = ?";
+            String rq = "UPDATE reservation SET id_user=?, id_cours =? , resStatus = ?, date_reservation = ?, paidStatus = ? WHERE id = ?";
             PreparedStatement pst = DB.getInstance().getConnection().prepareStatement(rq);
             pst.setInt(1, t.getId_user());
             pst.setInt(2, t.getId_cours());
             pst.setBoolean(3, t.isResStatus());
             pst.setTimestamp(4, Timestamp.valueOf(t.getDateReservation()));
-            pst.setInt(5, t.getId());
+            pst.setBoolean(5, t.isPaidStatus());
+            pst.setInt(6, t.getId());
             pst.executeUpdate();
             System.out.println("Reservation has been updated.");
         } catch (SQLException ex) {
@@ -103,6 +105,7 @@ public class ReservationService {
                 r.setDateReservation(rs.getTimestamp("date_reservation").toLocalDateTime());
                 r.setResStatus(rs.getBoolean("resStatus"));
                 r.setPrixd(rs.getFloat("prixd"));
+                r.setPaidStatus(rs.getBoolean("paidStatus"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -126,6 +129,7 @@ public class ReservationService {
                 r.setDateReservation(rs.getTimestamp("date_reservation").toLocalDateTime());
                 r.setResStatus(rs.getBoolean("resStatus"));
                 r.setPrixd(rs.getFloat("prixd"));
+                r.setPaidStatus(rs.getBoolean("paidStatus"));
                 myList.add(r);
             }
         } catch (SQLException ex) {
@@ -134,29 +138,7 @@ public class ReservationService {
         return myList;
     }
 
-    public List<Reservation> cours_reservations(int cours_id) {
-        List<Reservation> myList = new ArrayList<>();
-        try {
-            String rq = "SELECT * FROM reservation WHERE id_cours = ?";
-            PreparedStatement pst = DB.getInstance().getConnection().prepareStatement(rq);
-            pst.setInt(1, cours_id);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                Reservation r = new Reservation();
-                r.setId(rs.getInt("id"));
-                r.setId_cours(rs.getInt("id_cours"));
-                r.setId_user(rs.getInt("id_user"));
-                r.setId_codepromo(rs.getInt("id_codepromo"));
-                r.setDateReservation(rs.getTimestamp("date_reservation").toLocalDateTime());
-                r.setResStatus(rs.getBoolean("resStatus"));
-                r.setPrixd(rs.getFloat("prixd"));
-                myList.add(r);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return myList;
-    }
+
     public List<Reservation> getAllReservations() {
         List<Reservation> reservations = new ArrayList<>();
         String query = "SELECT * FROM reservation";
@@ -172,6 +154,7 @@ public class ReservationService {
                 LocalDateTime dateReservation = resultSet.getTimestamp("date_reservation").toLocalDateTime();
                 int id_codepromo = resultSet.getInt("id_codepromo");
                 float prixd = resultSet.getFloat("prixd");
+                boolean paidStatus = resultSet.getBoolean("paidStatus");
 
                 Reservation reservation = new Reservation();
                 reservation.setId(id);
@@ -181,7 +164,7 @@ public class ReservationService {
                 reservation.setDateReservation(dateReservation);
                 reservation.setId_codepromo(id_codepromo);
                 reservation.setPrixd(prixd);
-
+                reservation.setPaidStatus(paidStatus);
                 reservations.add(reservation);
             }
             return reservations;
@@ -191,14 +174,27 @@ public class ReservationService {
         return null;
     }
 
-    public List<Reservation> cours_reservations_by_year(int cours_id, int year) {
-        List<Reservation> myList = new ArrayList<>();
+    public void addPaidStatus(int reservationId, boolean paidStatus) {
         try {
-            String rq = "SELECT * FROM reservation WHERE id_cours = ? AND YEAR(date_reservation) = ?";
+            String rq = "UPDATE reservation SET paidStatus = ? WHERE id = ?";
             PreparedStatement pst = DB.getInstance().getConnection().prepareStatement(rq);
-            pst.setInt(1, cours_id);
-            pst.setInt(2, year);
+            pst.setBoolean(1, paidStatus);
+            pst.setInt(2, reservationId);
+            pst.executeUpdate();
+            System.out.println("Paid status has been updated.");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public List<Reservation> getReservationsByStatus(boolean resStatus) {
+        List<Reservation> filteredReservations = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM reservation WHERE resStatus = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setBoolean(1, resStatus);
             ResultSet rs = pst.executeQuery();
+
             while (rs.next()) {
                 Reservation r = new Reservation();
                 r.setId(rs.getInt("id"));
@@ -208,38 +204,42 @@ public class ReservationService {
                 r.setDateReservation(rs.getTimestamp("date_reservation").toLocalDateTime());
                 r.setResStatus(rs.getBoolean("resStatus"));
                 r.setPrixd(rs.getFloat("prixd"));
-                myList.add(r);
+                r.setPaidStatus(rs.getBoolean("paidStatus"));
+                filteredReservations.add(r);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return myList;
+        return filteredReservations;
     }
 
-    public List<Reservation> cours_reservations_by_month(int cours_id, int year, int month) {
-        List<Reservation> myList = new ArrayList<>();
 
-        try {
-            String rq = "SELECT * FROM reservation WHERE id_cours = ? AND YEAR(date_reservation) = ? AND MONTH(date_reservation) = ?";
-            PreparedStatement pst = DB.getInstance().getConnection().prepareStatement(rq);
-            pst.setInt(1, cours_id);
-            pst.setInt(2, year);
-            pst.setInt(3, month);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                Reservation r = new Reservation();
-                r.setId(rs.getInt("id"));
-                r.setId_cours(rs.getInt("id_cours"));
-                r.setId_user(rs.getInt("id_user"));
-                r.setId_codepromo(rs.getInt("id_codepromo"));
-                r.setDateReservation(rs.getTimestamp("date_reservation").toLocalDateTime());
-                r.setResStatus(rs.getBoolean("resStatus"));
-                r.setPrixd(rs.getFloat("prixd"));
-                myList.add(r);
+
+        public List<Reservation> getReservationsByStatusAndUser(boolean paidStatus, int userId) {
+            List<Reservation> filteredReservations = new ArrayList<>();
+            try {
+                String query = "SELECT * FROM reservation WHERE paidStatus = ? AND id_user = ?";
+                PreparedStatement pst = connection.prepareStatement(query);
+                pst.setBoolean(1, paidStatus);
+                pst.setInt(2, userId);
+                ResultSet rs = pst.executeQuery();
+
+                while (rs.next()) {
+                    Reservation r = new Reservation();
+                    r.setId(rs.getInt("id"));
+                    r.setId_cours(rs.getInt("id_cours"));
+                    r.setId_user(rs.getInt("id_user"));
+                    r.setId_codepromo(rs.getInt("id_codepromo"));
+                    r.setDateReservation(rs.getTimestamp("date_reservation").toLocalDateTime());
+                    r.setResStatus(rs.getBoolean("resStatus"));
+                    r.setPrixd(rs.getFloat("prixd"));
+                    r.setPaidStatus(rs.getBoolean("paidStatus"));
+                    filteredReservations.add(r);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
             }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            return filteredReservations;
         }
-        return myList;
-    }
+
 }

@@ -53,6 +53,10 @@ public class ReservationViewUserController {
     private TextField chid;
     @FXML
     private Button returntohome;
+    @FXML
+    private TableColumn paidcol;
+    @FXML
+    private Button paybtn;
 
     @FXML
     private void initialize() {
@@ -63,15 +67,21 @@ public class ReservationViewUserController {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("dateReservation"));
         promoIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_codepromo"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("prixd"));
-
+        paidcol.setCellValueFactory(new PropertyValueFactory<>("paidStatus"));
         reservationService = new ReservationService();
         // Fetch reservations for the specified user ID (e.g., user ID 1)
-        reservations = FXCollections.observableArrayList(reservationService.myReservation(1));
+        reservations = FXCollections.observableArrayList(reservationService.getReservationsByStatusAndUser(false, 1));
 
         // Set the data to the table
         tableView.setItems(reservations);
 
         chid.textProperty().addListener((observable, oldValue, newValue) -> filterTable(newValue));
+
+        // Check if there are reservations with a status of true
+        boolean hasTrueStatusReservations = reservations.stream().anyMatch(Reservation::isResStatus);
+
+        // Enable or disable the "Pay" button based on the condition
+        paybtn.setDisable(!hasTrueStatusReservations);
     }
 
     private void filterTable(String keyword) {
@@ -157,6 +167,16 @@ public class ReservationViewUserController {
     }
 
 
+
+    private float calculateSumOfReservations() {
+        float sum = 0;
+        for (Reservation reservation : reservations) {
+            if (reservation.isResStatus()) {
+                sum += reservation.getPrixd();
+            }
+        }
+        return sum;
+    }
     @FXML
     public void pay(ActionEvent actionEvent) {
         try {
@@ -177,6 +197,8 @@ public class ReservationViewUserController {
             PayController payController = loader.getController();
             payController.setSum(sum);
 
+
+
             // Create the new stage
             Stage newStage = new Stage();
             newStage.setTitle("EDUWAVE");
@@ -190,15 +212,8 @@ public class ReservationViewUserController {
     }
 
 
-    private float calculateSumOfReservations() {
-        float sum = 0;
-        for (Reservation reservation : reservations) {
-            if (reservation.isResStatus()) {
-                sum += reservation.getPrixd();
-            }
-        }
-        return sum;
-    }
+
+
     @FXML
     public void returntohome(ActionEvent actionEvent) {
 

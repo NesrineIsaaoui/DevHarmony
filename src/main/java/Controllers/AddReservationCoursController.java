@@ -118,8 +118,9 @@ public class AddReservationCoursController implements Initializable {
             Reservation reservation = new Reservation();
             reservation.setId_user(1);
             reservation.setId_cours(1);
-            reservation.setResStatus(false); // Set the reservation status
-            reservation.setDateReservation(LocalDateTime.now()); // Set the current date and time
+            reservation.setResStatus(false);
+            reservation.setDateReservation(LocalDateTime.now());
+            reservation.setPaidStatus(false);
 
             // Use CategorieCodePromoService to get the id of the promo code
             CategorieCodePromoService categorieCodePromoService = new CategorieCodePromoService();

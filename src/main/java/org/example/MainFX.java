@@ -30,7 +30,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        URL fxmlUrl = getClass().getResource("/adminajoutcodep.fxml");
+        URL fxmlUrl = getClass().getResource("/Payment.fxml");
         System.out.println("FXML URL: " + fxmlUrl);
         FXMLLoader loader = new FXMLLoader(fxmlUrl);
         Parent root = loader.load();

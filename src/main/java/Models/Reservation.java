@@ -13,6 +13,9 @@ public class Reservation {
     private int id_codepromo;
 
     private float prixd;
+    private boolean paidStatus;
+
+
     public Reservation() {
     }
 
@@ -33,6 +36,14 @@ public class Reservation {
         this.dateReservation = dateReservation;
         this.id_codepromo = id_codepromo;
         this.prixd = prixd;
+    }
+
+    public boolean isPaidStatus() {
+        return paidStatus;
+    }
+
+    public void setPaidStatus(boolean paidStatus) {
+        this.paidStatus = paidStatus;
     }
 
     public int getId() {

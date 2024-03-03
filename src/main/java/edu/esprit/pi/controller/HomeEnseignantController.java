@@ -87,6 +87,7 @@ public class HomeEnseignantController implements Initializable {
     }
     @FXML
     private void NavConnexion(ActionEvent event) throws IOException {
+        SeconnecterController.clearRememberedCredentials();
         javafx.scene.Parent menu = FXMLLoader.load(MainFx.class.getResource("fxml/SeConnecter.fxml"));
         stck.getChildren().removeAll();
         stck.getChildren().setAll(menu);
@@ -98,5 +99,6 @@ public class HomeEnseignantController implements Initializable {
         Scene editProfileScene = new Scene(menu, 1043, 730);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(editProfileScene);
+        //stage.centerOnScreen();
     }
 }

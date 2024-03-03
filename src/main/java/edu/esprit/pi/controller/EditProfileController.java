@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -90,12 +91,18 @@ public class EditProfileController implements Initializable {
     @FXML
     private void DesactiverProfile(ActionEvent event) {
         try {
+            // Create a confirmation dialog
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Confirmation de désactivation");
+            alert.setContentText("Êtes-vous sûr de vouloir désactiver votre profil?");
 
-
-            Us.InvertStatus(currentUser.getEmail());
-            currentUser = Us.getByEmail(currentUser.getEmail());
-            setUserData(currentUser);
-            navigateToHome("fxml/SeConnecter.fxml");
+            if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+                Us.InvertStatus(currentUser.getEmail());
+                currentUser = Us.getByEmail(currentUser.getEmail());
+                setUserData(currentUser);
+                navigateToHome("fxml/SeConnecter.fxml");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {

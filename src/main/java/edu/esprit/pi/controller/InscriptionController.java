@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.mail.*;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Random;
 
-public class InscriptionController   {
+public class InscriptionController {
     UserService us = new UserService();
 
     @FXML
@@ -63,11 +64,11 @@ public class InscriptionController   {
 
 
     @FXML
-     void inscrire(javafx.event.ActionEvent event) throws SQLException {
+    void inscrire(javafx.event.ActionEvent event) throws SQLException {
         if (tfemail.getText().equals("")
                 || tfnom.getText().equals("")
                 || tfprenom.getText().equals("")
-                || tfmdp.getText().equals("")){
+                || tfmdp.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Contrôle de saisie");
             alert.setContentText("vous pouvez les remplir soigneusement");
@@ -79,7 +80,8 @@ public class InscriptionController   {
             tfmdp.setText("");
             tfconfirmmdp.setText("");
             return;
-        }if (!tfemail.getText().contains("@") || !tfemail.getText().contains(".")){
+        }
+        if (!tfemail.getText().contains("@") || !tfemail.getText().contains(".")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Contrôle de saisie");
             alert.setContentText("Respecter format mail");
@@ -91,7 +93,8 @@ public class InscriptionController   {
             tfmdp.setText("");
             tfconfirmmdp.setText("");
             return;
-        }if (tfmdp.getText().length() < 8 ){
+        }
+        if (tfmdp.getText().length() < 8) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Contrôle de saisie");
             alert.setContentText("le Mot de passe doit contenir au moins 9 caractères");
@@ -104,7 +107,7 @@ public class InscriptionController   {
             tfconfirmmdp.setText("");
             return;
         }
-        if(!tfmdp.getText().equals(tfconfirmmdp.getText()) ){
+        if (!tfmdp.getText().equals(tfconfirmmdp.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("mots de passe ne correspondent pas");
             alert.setContentText("mot de passe et confirmer le mot de mot de passe devraient avoir le même contenu");
@@ -117,7 +120,7 @@ public class InscriptionController   {
             tfconfirmmdp.setText("");
             return;
         }
-        if(us.userExist(tfemail.getText())){
+        if (us.userExist(tfemail.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("l'utilisateur existe déjà");
             alert.setContentText("Il y a déjà un utilisateur avec cet e-mail");
@@ -132,58 +135,74 @@ public class InscriptionController   {
         }
         String role;
         User u1;
-        if(rbtEnseignant.isSelected()){
-            role = "Enseignant" ;
-            u1 = new Enseigant(tfnom.getText(),tfprenom.getText(),role,tfemail.getText(),tfmdp.getText());
+        if (rbtEnseignant.isSelected()) {
+            role = "Enseignant";
+            u1 = new Enseigant(tfnom.getText(), tfprenom.getText(), role, tfemail.getText(), tfmdp.getText());
             us.addEnseignant((Enseigant) u1);
 
-    } else if (rbtParent.isSelected()) {
+        } else if (rbtParent.isSelected()) {
             role = "Parent";
-            u1 = new Parent(tfnom.getText(),tfprenom.getText(),role,tfemail.getText(),tfmdp.getText());
+            u1 = new Parent(tfnom.getText(), tfprenom.getText(), role, tfemail.getText(), tfmdp.getText());
             us.addParent((Parent) u1);
-        } else{
+        } else {
             role = "Eleve";
-            u1 = new Eleve(tfnom.getText(),tfprenom.getText(),role,tfemail.getText(),tfmdp.getText());
+            u1 = new Eleve(tfnom.getText(), tfprenom.getText(), role, tfemail.getText(), tfmdp.getText());
             us.addEleve((Eleve) u1);
-            }
+        }
         //Confirmer Mail
-       /* Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        SendConfirmEmailCode(tfemail.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Validation E-mail");
         alert.setHeaderText("Check your email please ");
-        alert.showAndWait();
+        alert.show();
         try {
             FXMLLoader loader = new FXMLLoader(MainFx.class.getResource("fxml/ConfirmerMail.fxml"));
             javafx.scene.Parent menu = loader.load();
-            Scene editProfileScene = new Scene(menu, 1043, 730);
+            ConfirmerMailController confirmerMailController = loader.getController();
+            confirmerMailController.setEmail(tfemail.getText());
+            Scene ConfirmerMailController = new Scene(menu, 1043, 730);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(editProfileScene);
+            stage.setScene(ConfirmerMailController);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+    }
+
+    private void SendConfirmEmailCode(String recipientEmail) {
+        int randomcode = new Random().nextInt(900000) + 100000;
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("liliajemai2@gmail.com", "corr oldg pptm lmjh");
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("liliajemai2@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Confirm Email Request");
+            message.setText("Code: " + randomcode);
+            Transport.send(message);
+
+            us.storeCodeConfirmEmailInDatabase(recipientEmail, String.valueOf(randomcode));
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
+    @FXML
+    void ConnectionWithGmail() {
 
-
-        //Compte créer avec succée aprés la validation
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-         alert.setTitle("Compte créé avec succès");
-         alert.setHeaderText("Votre Compte a été créé avec succès");
-         alert.showAndWait();
-         try {
-             FXMLLoader loader = new FXMLLoader(MainFx.class.getResource("fxml/SeConnecter.fxml"));
-             javafx.scene.Parent menu = loader.load();
-             Scene editProfileScene = new Scene(menu, 1043, 730);
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(editProfileScene);
-         } catch (IOException e) {
-             e.printStackTrace();
-         }
-
-
-
-}
-
-
+    }
 
 
 }

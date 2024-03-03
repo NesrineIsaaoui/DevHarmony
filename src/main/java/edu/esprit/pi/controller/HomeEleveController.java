@@ -81,6 +81,7 @@ public class HomeEleveController implements Initializable {
     }
     @FXML
     private void NavConnexion(ActionEvent event) throws IOException {
+        SeconnecterController.clearRememberedCredentials();
         javafx.scene.Parent menu = FXMLLoader.load(MainFx.class.getResource("fxml/SeConnecter.fxml"));
         stck.getChildren().removeAll();
         stck.getChildren().setAll(menu);

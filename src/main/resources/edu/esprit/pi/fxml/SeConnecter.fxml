@@ -122,7 +122,7 @@
             </HBox>
             <HBox layoutX="488.0" layoutY="314.0" prefHeight="72.0" prefWidth="401.0">
                <children>
-                  <CheckBox fx:id="checkRememberMe" mnemonicParsing="false" onAction="#rememberMe" text="Se Souvenir moi">
+                  <CheckBox fx:id="checkRememberMe" mnemonicParsing="false" text="Se Souvenir moi">
                      <HBox.margin>
                         <Insets left="15.0" top="20.0" />
                      </HBox.margin>

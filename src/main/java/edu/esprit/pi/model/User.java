@@ -13,8 +13,9 @@ public class User {
     private String email;
     private String pwd;
     private String status = "Active" ;
-
     private int resetCode;
+    private String confirmcode;
+    private int statuscode;
 
     public int getResetCode() {
         return resetCode;
@@ -22,6 +23,22 @@ public class User {
 
     public void setResetCode(int resetCode) {
         this.resetCode = resetCode;
+    }
+
+    public String getConfirmCode() {
+        return confirmcode;
+    }
+
+    public void setConfirmCode(String confirmcode) {
+        this.confirmcode = confirmcode;
+    }
+
+    public int getStatuscode() {
+        return statuscode;
+    }
+
+    public void setStatuscode(int statuscode) {
+        this.statuscode = statuscode;
     }
 
     public User(int id, String role, String text, String tfmdpText, String tfnomText, String pwd) {

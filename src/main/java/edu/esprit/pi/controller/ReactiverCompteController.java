@@ -1,81 +1,77 @@
 package edu.esprit.pi.controller;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import edu.esprit.pi.MainFx;
+import edu.esprit.pi.service.UserService;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+
+import java.io.IOException;
 import java.net.URL;
-import java.util.Base64;
-import java.util.Random;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
 
 public class ReactiverCompteController {
-    // These values should ideally be read from configuration
-    private static final String USERNAME = "lilia_jemai";
-    private static final String PASSWORD = "lilia@123";
-    private static final String API_URL = "https://api.bulksms.com/v1/messages";
+    @FXML
+    private StackPane stck;
+    UserService Us = new UserService();
+    private Integer phoneNumber;
+    private String email;
+    @FXML
+    private TextField tfreseactiver;
 
-    private Random random;
-    private static String phoneNumber;
-
-    public ReactiverCompteController(String phoneNumber) {
+    public void setPhone(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
-        this.random = new Random();
     }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    @FXML
+    private void Handlereactiver() throws SQLException {
+        Integer pin = Integer.valueOf(tfreseactiver.getText());
 
-    public void sendVerificationCode() {
-        int min = 100000;
-        int max = 999999;
-        int code = random.nextInt((max - min))+max;
+        if (tfreseactiver.getText().isEmpty()) {
+            showAlert("Empty Field", "Please enter the PIN code.");
+            return;
+        }
 
-        // The details of the message we want to send
-        String message = "{\"to\": \"" +phoneNumber+ "\", \"body\": \"Votre code de réactiver compte: " +code+ "\"}";
+        if (!Us.verifyReactiverAccountCode(email, pin)) {
+            showAlert("Incorrect PIN", "The entered PIN does not match. Please try again.");
+            return;
+        }
+
+        Us.InvertStatus(email);
 
         try {
-            URL url = new URL(API_URL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Set up connection
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-
-            // Set up authentication
-            String authString = USERNAME + ":" + PASSWORD;
-            String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
-            connection.setRequestProperty("Authorization", "Basic " + encodedAuthString);
-            connection.setRequestProperty("Content-Type", "application/json");
-
-            // Write data to request
-            try (OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream())) {
-                out.write(message);
-            }
-
-            // Handle response
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                InputStream response = connection.getInputStream();
-                BufferedReader in = new BufferedReader(new InputStreamReader(response));
-                String replyText;
-                while ((replyText = in.readLine()) != null) {
-                    System.out.println(replyText);
-                }
-                in.close();
-            } else {
-                System.out.println("Failed to send message. Response code: " + responseCode);
-            }
-
-            connection.disconnect();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            NavPageConnexion();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
-        String phoneNumber = "+21627438527"; // Replace this with the desired phone number
-        ReactiverCompteController controller = new ReactiverCompteController(phoneNumber);
-        controller.sendVerificationCode();
+    @FXML
+    void NavPageConnexion() throws IOException {
+        javafx.scene.Parent menu = FXMLLoader.load(MainFx.class.getResource("fxml/SeConnecter.fxml"));
+        stck.getChildren().removeAll();
+        stck.getChildren().setAll(menu);
     }
+
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 
 }
 

@@ -37,6 +37,8 @@ public class UserService implements IService<User> {
             user.setPwd(rs.getString("mdp"));
             user.setStatus(rs.getString("status"));
             user.setResetCode(rs.getInt("resetcode"));
+            user.setConfirmCode(rs.getString("confirmcode"));
+            user.setStatuscode(rs.getInt("statuscode"));
         }
         return user;
     }
@@ -59,6 +61,8 @@ public class UserService implements IService<User> {
             user.setPwd(rs.getString("mdp"));
             user.setStatus(rs.getString("status"));
             user.setResetCode(rs.getInt("resetcode"));
+            user.setConfirmCode(rs.getString("confirmcode"));
+            user.setStatuscode(rs.getInt("statuscode"));
         }
         return user;
     }
@@ -80,10 +84,11 @@ public class UserService implements IService<User> {
 
     public void storeRandomCodeInDatabase(String email, int randomCode) {
         try {
-            UserService userService = new UserService();
-            User user = userService.getByEmail(email);
-            user.setResetCode(randomCode);
-            userService.update(user, email);
+            String query = "UPDATE user SET resetcode = ? WHERE email = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, randomCode);
+            ps.setString(2, email);
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,6 +96,53 @@ public class UserService implements IService<User> {
     }
 
 
+    public void storeCodeConfirmEmailInDatabase(String email, String confirmCode) {
+        try {
+            String query = "UPDATE user SET confirmcode = ? WHERE email = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, confirmCode);
+            ps.setString(2, email);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean verifyConfirmationCode(String email, String code) throws SQLException {
+        User user = getByEmail(email);
+        return code.equals(user.getConfirmCode());
+    }
+
+    public void updateCodeConfirmEmailStatus(String email) throws SQLException {
+        String query = "UPDATE user SET confirmcode = 'verified' WHERE email = ?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, email);
+        ps.executeUpdate();
+    }
+
+    public void storeCodeReactiverAccount(String email, Integer code) {
+        try {
+            String query = "UPDATE user SET statuscode = ? WHERE email = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, code);
+            ps.setString(2, email);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean verifyReactiverAccountCode(String email, Integer code) throws SQLException {
+        User user = getByEmail(email);
+
+        // Add System.out for debugging or logging
+        System.out.println("Received code: " + code);
+        System.out.println("User's code: " + user.getStatuscode());
+
+        return code.equals(user.getStatuscode());
+    }
 
     public boolean userExist(String e) throws SQLException{
         String query = "SELECT COUNT(*) FROM user WHERE email = ?";
@@ -193,14 +245,14 @@ public class UserService implements IService<User> {
             ps.setString(1, "Active");
         }
         ps.setString(2,email);
-        System.out.println("done image uploaded");
+        //System.out.println("done image uploaded");
         ps.executeUpdate();
     }
 
     public void update(User t , String email) throws SQLException {
         String hashedPassword = BCrypt.hashpw(t.getPwd(), BCrypt.gensalt());
 
-        String query = "UPDATE user SET age = ?, nom = ?  , email = ? , mdp = ? , num_tel = ?, image = ?, resetcode = ? WHERE email = ?";
+        String query = "UPDATE user SET age = ?, nom = ?  , email = ? , mdp = ? , num_tel = ?, image = ?, resetcode = ?, confirmcode = ? WHERE email = ?";
 
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setInt(1, t.getAge());
@@ -210,7 +262,8 @@ public class UserService implements IService<User> {
         ps.setInt(5, t.getNum_tel());
         ps.setString(6, t.getImage());
         ps.setInt(7,t.getResetCode());
-        ps.setString(8, email);
+        ps.setString(8,t.getConfirmCode());
+        ps.setString(9, email);
         ps.executeUpdate();
     }
 

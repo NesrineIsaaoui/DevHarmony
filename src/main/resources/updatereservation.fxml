@@ -23,7 +23,7 @@
                <children>
                     <RadioButton fx:id="statusRadioButton" layoutX="226.0" layoutY="390.0" text="Status" />
                     <Button fx:id="saveButton" layoutX="305.0" layoutY="386.0" mnemonicParsing="false" onAction="#saveReservation" prefHeight="25.0" prefWidth="137.0" text="Save" />
-                  <TableView fx:id="tableView" layoutX="51.0" layoutY="128.0" prefHeight="184.0" prefWidth="562.0">
+                  <TableView fx:id="tableView" layoutX="51.0" layoutY="128.0" prefHeight="184.0" prefWidth="562.0" stylesheets="@style.css">
                      <columns>
                         <TableColumn fx:id="idColumn" text="ID" />
                         <TableColumn fx:id="userIdColumn" text="User ID" />
@@ -109,7 +109,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="136.0" fitWidth="176.0" layoutX="14.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="136.0" fitWidth="176.0" layoutX="679.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@logo.png" />
                      </image>

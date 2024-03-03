@@ -1,89 +1,71 @@
-/* Global Styles */
-* {
-    -fx-font-size: 14px;
+/* Apply general styling to the entire scene */
+.root {
+    -fx-font-family: "Arial", sans-serif;
 }
 
-/* AnchorPane Style */
-.anchor-pane {
-    -fx-background-color: #AA00FF;
-}
-
-/* BorderPane Style */
-.border-pane {
-    -fx-background-color: #FFFFFF;
-}
-
-/* SplitPane Style */
-.split-pane {
-    -fx-background-color: #1e1e1e;
-}
-
-/* TableView Style */
 .table-view {
-    -fx-table-cell-border-color: transparent;
+    -fx-background-color: #f4f4f4;
 }
 
-/* TableColumn Style */
+.table-view .column-header-background {
+    -fx-background-color: #da88ff;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #f2d3ff;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #e0e0e0;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #b6ffb6;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+
+
+.table-cell {
+    -fx-alignment: CENTER;
+    -fx-padding: 5px;
+}
+
+.table-cell:empty {
+    -fx-background-color: transparent;
+}
+
 .table-column {
     -fx-alignment: CENTER;
 }
 
-/* TextField Style */
-.text-field {
-    -fx-background-color: #f0f0f0;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
+.table-column .label {
+    -fx-font-weight: bold;
 }
 
-.text-field:focused {
-    -fx-border-color: #AA00FF;
+.table-cell:editable {
+    -fx-background-color: #FFFF88;
 }
 
-/* Button Style */
 .button {
-    -fx-background-color: #AA00FF, linear-gradient(#FF00FF, #AA00FF);
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 5, 4;
-    -fx-pref-height: 50px;
-    -fx-font-size: 14px;
+    -fx-background-color: #1f1e2f;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: none;
+    -fx-font-weight: bold;
+    -fx-transition: 0.5s;
 }
 
 .button:hover {
-    -fx-background-color: #AA00FF, linear-gradient(#AA00FF, #FF00FF);
+    -fx-background-color: #da88ff;
+    -fx-effect: dropshadow( three-pass-box , rgb(251, 239, 255), 6, 0.0 , 0 , 1);
+    -fx-transform: scale(1.05);
 }
 
-/* Label Style */
-.label {
-    -fx-font-size: 14px;
-}
 
-/* Top Pane Style */
-#top-pane {
-    -fx-background-color: #AA00FF;
-}
-
-/* ImageView Style */
-.image-view {
-    -fx-effect: dropshadow(three-pass-box, #000, 10, 0, 0, 0);
-}
-
-/* Text Style */
-.text {
-    -fx-fill: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, #000, 5, 0, 0, 0);
-}
-
-/* Left Pane Buttons Style */
-#profile, #reservations, #calander, #promos {
-    -fx-pref-width: 100%;
-    -fx-pref-height: 59.0;
-    -fx-background-color: #AA00FF;
-    -fx-text-fill: white;
-    -fx-font-size: 12.0;
-}
-
-#profile:hover, #reservations:hover, #calander:hover, #promos:hover {
-    -fx-background-color: #8B008B;
-}

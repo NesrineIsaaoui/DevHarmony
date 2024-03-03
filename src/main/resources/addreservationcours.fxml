@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddReservationCoursController">
    <center>
-      <Pane prefHeight="316.0" prefWidth="338.0" style="-fx-background-color: #DEA1FF;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="349.0" prefWidth="486.0" style="-fx-background-color: #DEA1FF;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="99.0" layoutY="10.0" prefHeight="33.0" prefWidth="330.0" text="AJOUTER RESERVATION POUR UN COURS" textAlignment="CENTER">
                <font>
@@ -65,7 +65,7 @@
    <top>
       <Pane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: #FFFFFA;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="returntocours" layoutX="31.0" layoutY="15.0" mnemonicParsing="false" onAction="#returntocourslist" style="-fx-background-color: #FFFFFA;">
+            <Button fx:id="returntocours" layoutX="31.0" layoutY="15.0" mnemonicParsing="false" onAction="#returntocourslist" style="-fx-background-color: #FFFFFA;" stylesheets="@style.css">
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -33,7 +33,7 @@
                </AnchorPane>
              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="769.0" style="-fx-background-color: #F1DEFF;">
                   <children>
-                      <TableView fx:id="tableView" layoutX="46.0" layoutY="3.0" prefHeight="277.0" prefWidth="554.0">
+                      <TableView fx:id="tableView" layoutX="46.0" layoutY="3.0" prefHeight="214.0" prefWidth="574.0" stylesheets="@style.css">
                           <columns>
                               <TableColumn fx:id="idColumn" text="ID" />
                               <TableColumn fx:id="userIdColumn" text="User ID" />
@@ -41,7 +41,7 @@
                               <TableColumn fx:id="statusColumn" text="Status" />
                               <TableColumn fx:id="dateColumn" text="Date" />
                               <TableColumn fx:id="promoIdColumn" text="Promo ID" />
-                              <TableColumn fx:id="priceColumn" text="Price" />
+                              <TableColumn fx:id="priceColumn" prefWidth="93.60001220703123" text="Price" />
                           </columns>
                       </TableView>
                       <Button layoutX="624.0" layoutY="14.0" mnemonicParsing="false" onAction="#insertReservation" prefHeight="78.0" prefWidth="114.0" style="-fx-background-color: #F1DEFF;">

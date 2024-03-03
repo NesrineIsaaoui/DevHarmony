@@ -161,6 +161,27 @@ public class ReservationViewUserController {
 
     @FXML
     public void pay(ActionEvent actionEvent) {
+        try {
+            // Get the current stage
+            Stage currentStage = (Stage) returntohome.getScene().getWindow();
+
+            // Close the current window
+            currentStage.close();
+
+            // Load the new window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Payment.fxml"));
+            Parent root = loader.load();
+
+            // Create the new stage
+            Stage newStage = new Stage();
+            newStage.setTitle("EDUWAVE");
+            newStage.setScene(new Scene(root));
+
+            // Show the new stage
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -187,10 +208,6 @@ public class ReservationViewUserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
 
     }
 }

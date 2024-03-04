@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stck" prefHeight="769.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReactiverCompteController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="558.0" style="-fx-background-color: #FFF;">
+         <children>
+            <HBox layoutX="86.0" layoutY="375.0" prefHeight="61.0" prefWidth="389.0" AnchorPane.topAnchor="375.0">
+               <children>
+                  <TextField fx:id="tfreseactiver" prefHeight="31.0" prefWidth="389.0" promptText="Code">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="-430.0" top="20.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@securite.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label alignment="CENTER" layoutX="85.0" layoutY="24.0" prefHeight="21.0" prefWidth="389.0" text="Réactiver Compte">
+               <font>
+                  <Font name="Arial Bold" size="27.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="257.0" fitWidth="401.0" layoutX="74.0" layoutY="100.0">
+               <image>
+                  <Image url="@resetpass.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="260.0" layoutY="577.0" onMouseClicked="#NavPageConnexion" text="Retour" textFill="#dd1ad4">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <HBox layoutX="19.0" layoutY="442.0" prefHeight="69.0" prefWidth="462.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mdp.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="-430.0" top="7.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox layoutX="18.0" layoutY="498.0" prefHeight="69.0" prefWidth="462.0">
+               <children>
+                  <HBox prefHeight="69.0" prefWidth="438.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#Handlereactiver" prefHeight="40.0" prefWidth="274.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" stylesheets="@form.css" text="Confirmer" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="130.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children></HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

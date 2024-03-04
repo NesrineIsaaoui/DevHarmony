@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="nh" prefHeight="769.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Modifiercategory">
+   <children>
+      <ImageView fitHeight="782.0" fitWidth="1280.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@bg2.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="fx_categoriename" layoutX="916.0" layoutY="414.0" prefHeight="42.0" prefWidth="310.0" />
+      <Label layoutX="876.0" layoutY="350.0" prefHeight="42.0" prefWidth="276.0" text="Nom du catégorie" textFill="#ff9d26">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="ModifierButton" layoutX="1064.0" layoutY="504.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="65.0" prefWidth="161.0" style="-fx-background-radius: 18; -fx-background-color: #ff9d26;" text="Modifier" textFill="#261a0c">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="596.0" layoutY="234.0" text="Formulaire du modification du catégorie  " textFill="#ff9d26">
+         <font>
+            <Font name="Times New Roman Bold" size="34.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="100.0" fitWidth="115.0" layoutX="1117.0" layoutY="31.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@prev.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

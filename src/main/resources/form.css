@@ -1,0 +1,44 @@
+
+.root {
+    -fx-font-family: 'Arial Narrow';
+}
+
+.input label{
+    pointer-events:none;
+    transition:.5s;
+}
+.input{
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline:none;
+    padding: 4px 20px 0;
+    width: 100%;
+    
+
+}
+
+.button {
+    -fx-background-color: #FFAE3B;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 6, 0.0 , 0 , 1);
+    -fx-transition: 0.5s;
+}
+
+.button:hover {
+    -fx-effect: none;
+    -fx-transform: scale(1.05);
+}
+
+#vbox {
+    -fx-alignment: center;
+
+}
+

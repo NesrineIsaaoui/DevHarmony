@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="587.0" prefWidth="780.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreatePost">
+    <children>
+        <!-- Background Image -->
+        <ImageView fitHeight="587.0" fitWidth="404.0" pickOnBounds="true">
+            <image>
+                <Image url="@430186643_768280201486124_9130330012694911447_n.jpg" />
+            </image>
+        </ImageView>
+
+        <!-- Title Label -->
+        <Label layoutX="410.0" layoutY="14.0" prefHeight="48.0" prefWidth="301.0" text="Create Publication" textFill="#9767ff">
+            <font>
+                <Font name="Bernard MT Condensed" size="26.0" />
+            </font>
+        </Label>
+
+        <!-- Title TextField -->
+        <Label layoutX="413.0" layoutY="110.0" prefHeight="38.0" prefWidth="120.0" text="Title:" textFill="#b281ff">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <TextField fx:id="title" layoutX="413.0" layoutY="161.0" prefHeight="48.0" prefWidth="360.0" promptText="Enter title">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </TextField>
+
+        <!-- Content Label -->
+        <Label layoutX="413.0" layoutY="243.0" prefHeight="38.0" prefWidth="200.0" text="Content:" textFill="#b281ff">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+
+        <!-- Content TextArea -->
+        <TextArea fx:id="description" layoutX="413.0" layoutY="294.0" prefHeight="168.0" prefWidth="360.0" promptText="Enter content">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </TextArea>
+
+        <!-- Save Button -->
+        <Button fx:id="saveButton" layoutX="420.0" layoutY="487.0" mnemonicParsing="false" onAction="#onSave" prefHeight="40.0" prefWidth="105.0" styleClass="menu-button" text="Sauvgarder">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+
+        <!-- Cancel Button -->
+        <Button fx:id="cancelButton" layoutX="613.0" layoutY="487.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="40.0" prefWidth="105.0" styleClass="menu-button" text="Annuler">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

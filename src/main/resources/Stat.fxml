@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+         <image>
+            <Image url="@430186643_768280201486124_9130330012694911447_n.jpg" />
+         </image>
+      </ImageView>
+
+      <VBox alignment="CENTER" spacing="10" style="-fx-background-color: rgba(0, 0, 0, 0.6);">
+
+         <!-- Buttons Section -->
+         <HBox alignment="CENTER" spacing="10" />
+
+         <!-- Chart Section -->
+         <AnchorPane fx:id="chartNode" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" />
+      </VBox>
+      <Button layoutX="626.0" layoutY="67.0" mnemonicParsing="false" onAction="#globalChart" prefHeight="60.0" prefWidth="150.0" styleClass="menu-button" text="Global" />
+      <Button layoutX="626.0" layoutY="350.0" mnemonicParsing="false" onAction="#convertirPDF" prefHeight="60.0" prefWidth="150.0" styleClass="menu-button" text="Convertir PDF" />
+      <Button layoutX="626.0" layoutY="214.0" mnemonicParsing="false" onAction="#lineChart" prefHeight="60.0" prefWidth="150.0" styleClass="menu-button" text="Line Chart" />
+
+      <!-- Back Button -->
+      <Button layoutX="671.0" layoutY="536.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="100.0" styleClass="menu-button" text="Back" />
+   </children>
+</AnchorPane>

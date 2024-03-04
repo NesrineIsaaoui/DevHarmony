@@ -1,0 +1,51 @@
+/* styles.css */
+
+/* Style for buttons on hover */
+.button:hover {
+    -fx-background-color: #c8b0eb; /* Change this to the desired hover color */
+    -fx-background-radius: 30 0 0 30;
+}
+
+.button
+{
+    -fx-background-color: #9370DB; /* Change this to the desired hover color */
+    -fx-background-radius: 30 0 0 30;
+}
+
+.button:pressed
+{
+    -fx-background-color: #9370DB; /* Change this to the desired hover color */
+    -fx-background-radius: 30 0 0 30;
+}
+
+/* alertStyle.css */
+
+.alert {
+    -fx-background-color: #f0f8ff; /* Light blue background color */
+}
+
+/* Style.css */
+
+.alert {
+    -fx-font-size: 14px;
+}
+
+.alert .dialog-pane {
+    -fx-background-color: #ffffff; /* Set background color */
+}
+
+.alert .title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #663399; /* Set title text color */
+}
+
+.alert .header {
+    -fx-font-size: 16px;
+    -fx-text-fill: #663399; /* Set header text color */
+}
+
+.alert .content {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Set content text color */
+}
+

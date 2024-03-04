@@ -70,3 +70,14 @@
     -fx-font-size: 18;
     -fx-text-fill: #666;
 }
+/* Mode clair */
+.light-mode {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+/* Mode sombre */
+.dark-mode {
+    -fx-background-color: orchid;
+    -fx-text-fill: orchid;
+}

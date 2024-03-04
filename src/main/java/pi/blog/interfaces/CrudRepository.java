@@ -19,5 +19,5 @@ public interface CrudRepository<T> {
 
     // Delete
     void deleteById(int id);
-    public ObservableList<T> findAllWithUserDetails();
+
 }

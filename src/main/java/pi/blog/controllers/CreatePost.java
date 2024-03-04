@@ -1,36 +1,23 @@
 package pi.blog.controllers;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
-import pi.blog.HelloApplication;
+import pi.blog.MainFX;
 import pi.blog.models.Publication;
 import pi.blog.services.PublicationRepository;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreatePost implements Initializable {
@@ -56,8 +43,10 @@ public class CreatePost implements Initializable {
         if (title.getText().isEmpty() ||description.getText().isEmpty()  ) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
-            alert.setHeaderText("Test");
+            alert.setHeaderText("Post is Empty");
             alert.setContentText("Check Fields Again");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/pi/blog/Style.css").toExternalForm());
             alert.showAndWait();
         }
         else {
@@ -74,6 +63,8 @@ public class CreatePost implements Initializable {
             alert.setTitle("Success");
             alert.setHeaderText(null);
             alert.setContentText("Publication Added Successfully.");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/pi/blog/Style.css").toExternalForm());
             alert.showAndWait();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pi/blog/AffichagePostFront.fxml"));
@@ -92,7 +83,7 @@ public class CreatePost implements Initializable {
     void onCancel(ActionEvent event) throws IOException {
 
         Stage stage = (Stage) title.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/pi/blog/AffichagePostFront.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFX.class.getResource("/pi/blog/AffichagePostFront.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);

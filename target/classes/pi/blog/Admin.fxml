@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="492.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.blog.controllers.AdminController">
+<AnchorPane stylesheets="@style.css" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.blog.controllers.AdminController">
    <children>
-      <ImageView fitHeight="492.0" fitWidth="705.0" pickOnBounds="true" smooth="false">
+      <!-- Background Image -->
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@429786539_2226240851044053_7139333435303047686_n.jpg" />
          </image>
       </ImageView>
-      <Button mnemonicParsing="false" onAction="#openModifInterface3" prefHeight="56.0" prefWidth="245.0" style="-fx-background-color: #B281FF;" text="Consultez Posts">
+
+      <!-- Button: Consultez Posts -->
+      <Button styleClass="menu-button" layoutX="50.0" layoutY="250.0" mnemonicParsing="false" onAction="#openModifInterface3" text="Consultez Posts">
          <font>
-            <Font size="26.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="245.0" mnemonicParsing="false" onAction="#openModifInterface2" prefHeight="56.0" prefWidth="286.0" style="-fx-background-color: #B281FF;" text="Consultez Comments">
+
+      <!-- Button: Consultez Comments -->
+      <Button styleClass="menu-button" layoutX="340.0" layoutY="250.0" mnemonicParsing="false" onAction="#openModifInterface2" text="Consultez Comments">
          <font>
-            <Font size="26.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="523.0" mnemonicParsing="false" onAction="#openModifInterface1" prefHeight="56.0" prefWidth="182.0" style="-fx-background-color: #B281FF;" text="Satistiques">
+
+      <!-- Button: Statistiques -->
+      <Button styleClass="menu-button" layoutX="650.0" layoutY="250.0" mnemonicParsing="false" onAction="#openModifInterface1" text="Statistiques">
          <font>
-            <Font size="26.0" />
+            <Font size="20.0" />
          </font>
       </Button>
    </children>
-
 </AnchorPane>

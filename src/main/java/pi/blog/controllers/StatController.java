@@ -9,8 +9,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.*;
@@ -62,7 +64,19 @@ public class StatController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         detaillePrix();
     }
- 
+    @FXML
+    private void goBack(ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pi/blog/Admin.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Admin Page");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 
     public ObservableList buildDataNbPB() {

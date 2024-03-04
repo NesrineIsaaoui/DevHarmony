@@ -191,9 +191,9 @@ public class PublicationRepository implements CrudRepository<Publication> {
         }
         return publications;
     }
-    @Override
-    public ObservableList<Publication> findAllWithUserDetails() {
-        ObservableList<Publication> publications = FXCollections.observableArrayList();
+
+    public List<Publication> findAllWithUserDetails() {
+        List<Publication> publications = new ArrayList<>();
 
         try {
             String query = "SELECT Publication.*, CONCAT(Utilisateur.nom, ' ', Utilisateur.prenom) AS userName, Utilisateur.role " +

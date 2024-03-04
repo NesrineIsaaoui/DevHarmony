@@ -156,8 +156,5 @@ public class CommentaireRepository implements CrudRepository<Commentaire> {
         }
     }
 
-    @Override
-    public ObservableList<Commentaire> findAllWithUserDetails() {
-        return null;
-    }
+
 }

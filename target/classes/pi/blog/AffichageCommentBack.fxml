@@ -9,39 +9,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="793.0" style="-fx-background-color: #b281ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.blog.controllers.AffichageCommentBack">
+<AnchorPane stylesheets="@style.css" id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f7f7f7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pi.blog.controllers.AffichageCommentBack">
    <children>
-      <TableView fx:id="tableView" layoutY="132.0" prefHeight="457.0" prefWidth="793.0">
-        <columns>
-          <TableColumn fx:id="TitrePub" prefWidth="166.0" text="Titre Pub" />
-          <TableColumn fx:id="userName" prefWidth="159.0" text="User" />
-            <TableColumn fx:id="message" prefWidth="336.0" text="Contenue" />
-            <TableColumn fx:id="date" prefWidth="131.0" text="Date" />
-        </columns>
-      </TableView>
-      <Text layoutX="222.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Commentaires">
+      <Text layoutX="280.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Commentaires">
          <font>
-            <Font name="Andalus" size="39.0" />
+            <Font name="Arial" size="32.0" />
          </font>
       </Text>
-      <HBox prefHeight="58.0" prefWidth="793.0">
+      <HBox prefHeight="58.0" prefWidth="800.0" spacing="20.0" style="-fx-padding: 10; -fx-background-color: #b281ff;">
          <children>
-            <TextField fx:id="filtre" onKeyPressed="#handleSearch" prefHeight="58.0" prefWidth="412.0" promptText="Rechercher..." style="-fx-background-color: white;">
+            <TextField fx:id="filtre" onKeyPressed="#handleSearch" prefHeight="40.0" prefWidth="400.0" promptText="Rechercher..." >
                <font>
-                  <Font name="Bodoni MT Black" size="19.0" />
+                  <Font name="Arial" size="14.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#supprimer" prefHeight="58.0" prefWidth="178.0" style="-fx-background-color: #b281ff;" text="Supprimer">
+            <Button styleClass="menu-button" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="150.0"  text="Supprimer">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#Back" prefHeight="58.0" prefWidth="207.0" style="-fx-background-color: #b281ff;" text="Retour">
+            <Button styleClass="menu-button" mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="150.0"  text="Retour">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="Arial" size="14.0" />
                </font>
             </Button>
          </children>
       </HBox>
+      <TableView fx:id="tableView" layoutY="120.0" prefHeight="400.0" prefWidth="800.0" >
+         <columns>
+            <TableColumn fx:id="TitrePub" prefWidth="160.0" text="Titre Pub" />
+            <TableColumn fx:id="userName" prefWidth="150.0" text="User" />
+            <TableColumn fx:id="message" prefWidth="320.0" text="Contenu" />
+            <TableColumn fx:id="date" prefWidth="130.0" text="Date" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

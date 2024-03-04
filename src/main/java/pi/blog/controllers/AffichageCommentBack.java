@@ -17,14 +17,12 @@ import javafx.stage.Stage;
 import pi.blog.models.Commentaire;
 import pi.blog.services.CommentaireRepository;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AffichageCommentBack implements Initializable {
-
 
     @FXML
     private TableView<Commentaire> tableView;
@@ -34,46 +32,29 @@ public class AffichageCommentBack implements Initializable {
     private TableColumn<Commentaire, String> TitrePub;
     @FXML
     private TableColumn<String, String> userName;
-
     @FXML
     private TableColumn<Commentaire, String> date;
-
-
+    @FXML
+    private TextField filtre;
 
     CommentaireRepository a = new CommentaireRepository();
-    public static  Commentaire pr ;
-
-    @FXML
-    private TextField filtre ;
-    ObservableList< Commentaire> obList= FXCollections.observableArrayList();
-
-    /**
-     * Initializes the controller class.
-     */
+    public static Commentaire pr;
+    ObservableList<Commentaire> obList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         show();
-
     }
 
     public void show() {
-         obList = a.findAll();
+        obList = a.findAll();
         TitrePub.setCellValueFactory(new PropertyValueFactory<>("titrePublication"));
-
         userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
         message.setCellValueFactory(new PropertyValueFactory<>("contenu"));
-       // type.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-         date.setCellValueFactory(new PropertyValueFactory<>("dateCommentaire"));
-
+        date.setCellValueFactory(new PropertyValueFactory<>("dateCommentaire"));
 
         tableView.setItems(obList);
     }
-
-
-
-
 
     @FXML
     private void Back(ActionEvent event) {
@@ -85,38 +66,25 @@ public class AffichageCommentBack implements Initializable {
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        };
+        }
+        ;
     }
 
     @FXML
     private void supprimer(ActionEvent event) {
-        Commentaire selectedLN =  tableView.getSelectionModel().getSelectedItem();
+        Commentaire selectedLN = tableView.getSelectionModel().getSelectedItem();
         if (selectedLN == null) {
-            // Afficher un message d'erreur
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Impossible de supprimer !! ");
-            alert.setContentText("Veuillez selectionner une poste Ã  supprimer !");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de supprimer !! ",
+                    "Veuillez selectionner une poste à supprimer !");
         }
-        if(selectedLN != null){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation de suppression");
-            alert.setHeaderText("Voulez-vous vraiment supprimer ce Commentaire ?");
-            alert.setContentText("Cliquez sur OK pour confirmer la suppression.");
-
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // L'utilisateur a confirmé la suppression, vous pouvez maintenant supprimer la réservation.
-                 a.deleteById(selectedLN.getId());
-                show(); // Peut-être une mise à jour de l'interface utilisateur après la suppression
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert1.setTitle("Information");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Commentaire supprimée avec succès!");
-                alert1.showAndWait();
-
+        if (selectedLN != null) {
+            if (showConfirmationDialog("Confirmation de suppression",
+                    "Voulez-vous vraiment supprimer ce Commentaire ?",
+                    "Cliquez sur OK pour confirmer la suppression.")) {
+                a.deleteById(selectedLN.getId());
+                show();
+                showAlert(Alert.AlertType.INFORMATION, "Information", null,
+                        "Commentaire supprimée avec succès!");
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("/pi/blog/AffichageCommentBack.fxml"));
                     Scene scene = new Scene(root);
@@ -125,12 +93,11 @@ public class AffichageCommentBack implements Initializable {
                     stage.show();
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
-                };
+                }
+                ;
             }
         }
     }
-
-
 
     @FXML
     public void handleSearch(KeyEvent event) {
@@ -142,32 +109,41 @@ public class AffichageCommentBack implements Initializable {
                 ObservableList<Commentaire> filteredList = FXCollections.observableArrayList();
                 boolean CommentaireFound = false;
                 for (Commentaire b : obList) {
-                    // search for name or description
-                    if ((b.getTitrePublication().toLowerCase().contains(searchText.toLowerCase())))
-                    {
+                    if ((b.getTitrePublication().toLowerCase().contains(searchText.toLowerCase()))) {
                         filteredList.add(b);
                         CommentaireFound = true;
                     }
                 }
                 if (!CommentaireFound) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Commentaire non trouvee ");
-                    alert.setHeaderText("Aucun Commentaire ne correspond � votre recherche");
-                    alert.setContentText("Veuillez essayer une autre recherche.");
-                    alert.showAndWait();
+                    showAlert(Alert.AlertType.INFORMATION, "Commentaire non trouvee ",
+                            "Aucun Commentaire ne correspond à votre recherche",
+                            "Veuillez essayer une autre recherche.");
                 }
                 tableView.setItems(filteredList);
             }
         }
     }
 
+    private void showAlert(Alert.AlertType alertType, String title, String headerText, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        applyDialogStyle(alert.getDialogPane());
+        alert.showAndWait();
+    }
 
+    private boolean showConfirmationDialog(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        applyDialogStyle(alert.getDialogPane());
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
 
-
-
-
-
-
+    private void applyDialogStyle(DialogPane dialogPane) {
+        dialogPane.getStylesheets().add(getClass().getResource("/pi/blog/AlertStyle.css").toExternalForm());
+    }
 }
-
-

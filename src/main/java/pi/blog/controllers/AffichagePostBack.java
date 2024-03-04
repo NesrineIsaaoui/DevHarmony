@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import pi.blog.HelloApplication;
 import pi.blog.models.Publication;
 import pi.blog.services.PublicationRepository;
 
@@ -98,6 +97,8 @@ public class AffichagePostBack implements Initializable {
             alert.setTitle("Erreur");
             alert.setHeaderText("Impossible de supprimer !! ");
             alert.setContentText("Veuillez selectionner une poste Ã  supprimer !");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/pi/blog/Style.css").toExternalForm());
             alert.showAndWait();
         }
         if(selectedLN != null){
@@ -152,8 +153,10 @@ public class AffichagePostBack implements Initializable {
                 if (!PublicationFound) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Publication non trouvee ");
-                    alert.setHeaderText("Aucun Publication ne correspond � votre recherche");
+                    alert.setHeaderText("Aucun Publication ne correspond a votre recherche");
                     alert.setContentText("Veuillez essayer une autre recherche.");
+                    DialogPane dialogPane = alert.getDialogPane();
+                    dialogPane.getStylesheets().add(getClass().getResource("/pi/blog/Style.css").toExternalForm());
                     alert.showAndWait();
                 }
                 tableView.setItems(filteredList);

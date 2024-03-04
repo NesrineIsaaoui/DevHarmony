@@ -1,0 +1,20 @@
+/* AlertStyle.css */
+
+.dialog-pane {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #b281FF;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #b281FF;
+    -fx-border-color: #b281FF;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .content {
+    -fx-background-color: #f0f0f0;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #b281FF;
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AuthentificationController">
+   <children>
+      <AnchorPane layoutX="385.0" prefHeight="654.0" prefWidth="715.0" style="-fx-background-color: #07000E;">
+         <children>
+            <AnchorPane layoutX="95.0" layoutY="138.0" prefHeight="402.0" prefWidth="525.0" style="-fx-background-color: #EECC8D; -fx-border-color: #8A2C02;">
+               <children>
+                  <TextField fx:id="loginInput" layoutX="132.0" layoutY="119.0" prefHeight="25.0" prefWidth="262.0" promptText="Login" />
+                  <PasswordField fx:id="passwordInput" layoutX="132.0" layoutY="169.0" prefHeight="25.0" prefWidth="262.0" promptText="Mot De Passe" />
+                  <Hyperlink layoutX="273.0" layoutY="201.0" prefHeight="29.0" prefWidth="161.0" style="-fx-text-fill: #8A2C02;" text="Mot de passe oublié?" />
+                  <Button fx:id="authentifierBt" layoutX="192.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleAuthentifierBt" prefHeight="25.0" prefWidth="161.0" style="-fx-text-fill: white; -fx-background-color: #8A2C02;" text="S'authentifier" />
+                  <Hyperlink fx:id="inscrireBtn" alignment="CENTER" layoutX="192.0" layoutY="309.0" onAction="#handleInscrireAction" prefHeight="23.0" prefWidth="161.0" style="-fx-text-fill: #8A2C02; -fx-border-color: #8A2C02;" text="S'inscrire" />
+                  <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="96.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/student.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="96.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/password.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="132.0" layoutY="41.0" prefHeight="34.0" prefWidth="262.0" style="-fx-text-fill: #07000E;" text="Hey, content de te revoir!">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="erreurLabel" alignment="CENTER" layoutX="122.0" layoutY="236.0" prefHeight="17.0" prefWidth="302.0" textFill="#f50c0c" />
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

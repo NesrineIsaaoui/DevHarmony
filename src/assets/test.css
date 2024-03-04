@@ -1,0 +1,62 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.button{
+    -fx-background-color: #f08b33 ;
+}
+
+.button:hover {
+    -fx-background-color: #EECC8D ;
+}
+.label{
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+#tabAdd,#listQuiz,#stat{
+    -fx-background-color: #EECC8D  ;
+    -fx-text-fill: #07000E;
+
+}
+.table-view {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, #07000E, #070000);
+    -fx-background-radius: 1px 1px 0px 0px;
+    -fx-background-insets: 0 2px 0 0;
+    -fx-padding: 0 0 2px 0;
+    -fx-text-fill: #EECC8D ;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+.table-row-cell: hover {
+    -fx-background-color:#EECC8D;
+    -fx-text-background-color: red;
+    
+}
+/*.table-row-cell: odd{
+    -fx-background-color: #eecc8d;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell: even{
+    -fx-background-color: #fff;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}*/

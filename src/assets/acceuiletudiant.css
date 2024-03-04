@@ -1,0 +1,46 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.buttons{
+    -fx-text-fill: #EECC8D ;
+    -fx-border-color:  #EECC8D ;
+    -fx-background-color: none ;
+}
+.buttonsQuiz{
+    -fx-text-fill: #EECC8D ;
+    -fx-border-color:  #EECC8D ;
+    -fx-background-color:  #07000E ;
+}
+
+.buttonsQuiz:hover{
+    -fx-text-fill: black ;
+    -fx-border-color: #07000E  ;
+    -fx-background-color:   #EECC8D;
+}
+
+.buttons:hover{
+    -fx-background-color: #EECC8D ;
+    -fx-text-fill: black ;
+}
+
+.labels{
+    -fx-text-fill: black ;
+
+}
+.boxes{
+    -fx-border-radius : 10 ;
+    -fx-background-color : lightgrey ;
+}
+#testBox:hover{
+    -fx-background-color : #EECC8D ;
+    -fx-border-color :  black;
+    -fx-border-width : 5 ;
+}
+.vboxes{
+   -fx-border-radius : 15 ; 
+}

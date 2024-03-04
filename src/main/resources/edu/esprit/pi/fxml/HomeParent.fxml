@@ -7,60 +7,89 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <StackPane fx:id="stck" minHeight="800.0" prefWidth="1300.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.pi.controller.HomeEnseignantController">
    <children>
-      <AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #fff;">
+      <AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #fff; -fx-background-radius: 20;">
          <children>
-            <Pane layoutX="31.0" layoutY="23.0" prefHeight="761.0" prefWidth="232.0" style="-fx-background-color: #1f1e30; -fx-background-radius: 20px;">
+            <Pane layoutX="31.0" layoutY="23.0" prefHeight="761.0" prefWidth="232.0" style="-fx-background-color: #1F1E2F; -fx-background-radius: 20px;">
                <children>
-                  <Button layoutX="16.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;" text="Cours" textFill="WHITE" />
-                  <Button layoutX="42.0" layoutY="699.0" mnemonicParsing="false" onAction="#NavConnexion" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #1f1e30;" text="Déconnecter" textFill="WHITE" />
-                  <Text fx:id="tnom" fill="WHITE" layoutX="66.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="71.9296875" />
-                  <Text fx:id="tprenom" fill="WHITE" layoutX="102.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" wrappingWidth="71.92964851856232" />
-                  <Text fx:id="trole" fill="#ffe361" layoutX="69.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="             Role" wrappingWidth="106.00002980232239">
+                  <Button fx:id="btncours" layoutX="14.0" layoutY="328.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;" stylesheets="@form.css" text="Cours" textFill="WHITE">
+                     <padding>
+                        <Insets left="-35.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/book.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="20.0" layoutY="699.0" mnemonicParsing="false" onAction="#NavConnexion" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #1f1e30;" stylesheets="@form.css" text="Déconnecter" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnprofil" layoutX="14.0" layoutY="262.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #e14ffb;" stylesheets="@form.css" text="Profil" textFill="WHITE">
+                     <padding>
+                        <Insets left="-35.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="392.0" lineSpacing="5.0" mnemonicParsing="false" onAction="#NavEditProfil" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1F1E2F; -fx-border-radius: 20;" stylesheets="@form.css" text="Paramétres" textAlignment="CENTER" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/setting.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fill="WHITE" layoutX="42.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escpace">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Arial" size="24.0" />
                      </font>
                   </Text>
-                  <Button layoutX="17.0" layoutY="303.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;" text="Home" textFill="WHITE" />
-                  <HBox layoutX="53.0" layoutY="53.0" prefHeight="83.0" prefWidth="115.0" style="-fx-border-color: #d7f275;">
-                     <children>
-                        <ImageView fx:id="PreviewImage" fitHeight="83.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/nophoto.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets top="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <Button layoutX="22.0" layoutY="408.0" mnemonicParsing="false" onAction="#NavEditProfil" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #FFE361; -fx-border-radius: 20;" text="Paramétres" textFill="WHITE" />
+                  <Text fx:id="trole" fill="#e14ffb" layoutX="137.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" wrappingWidth="71.99998795986176">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="35.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EduWave">
+                     <font>
+                        <Font name="Arial Bold Italic" size="36.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
-            <ImageView fitHeight="83.0" fitWidth="83.0" layoutX="1217.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/logo.png" />
-               </image>
-            </ImageView>
             <Text layoutX="277.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back ! " wrappingWidth="187.6708984375">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Text>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="456.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="550.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/welcome.png" />
                </image>
             </ImageView>
-            <TextField layoutX="527.0" layoutY="38.0" prefHeight="40.0" prefWidth="442.0" promptText="Recherche" style="-fx-background-radius: 20;" />
-            <Button layoutX="923.0" layoutY="43.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="37.0" style="-fx-background-radius: 25;">
+            <TextField layoutX="634.0" layoutY="28.0" prefHeight="40.0" prefWidth="369.0" promptText="Recherche" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../../../style.css" />
+            <Button layoutX="955.0" layoutY="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="37.0" style="-fx-background-radius: 20; -fx-background-color: #e14ffb;" stylesheets="@../../../../../../../../../PaymentForm.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -69,7 +98,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="990.0" layoutY="34.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" style="-fx-background-color: #FFE361;">
+            <Button layoutX="1012.0" layoutY="28.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="57.0" style="-fx-background-color: #e14ffb;" stylesheets="@form.css">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -78,6 +107,23 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Text fx:id="tnom" layoutX="461.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="39.99999761581421">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="PreviewImage" fitHeight="50.0" fitWidth="72.0" layoutX="1201.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/nophoto.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="tprenom" layoutX="493.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" wrappingWidth="56.92964851856232">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2789e500" height="46.0" layoutX="1209.0" layoutY="31.0" stroke="BLACK" strokeType="INSIDE" width="57.0" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="494.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

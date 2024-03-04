@@ -12,9 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <StackPane fx:id="stck" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.pi.controller.InscriptionController">
    <children>
@@ -57,7 +55,7 @@
          </VBox>
          <VBox prefHeight="120.0" prefWidth="417.0" AnchorPane.bottomAnchor="50.0">
             <children>
-               <Button fx:id="btnlogin" mnemonicParsing="false" onAction="#NavPageLogin" prefHeight="31.0" prefWidth="203.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Se Connecter" textFill="WHITE">
+               <Button fx:id="btnlogin" mnemonicParsing="false" onAction="#NavPageLogin" prefHeight="31.0" prefWidth="203.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" stylesheets="@form.css" text="Se Connecter" textFill="WHITE">
                   <VBox.margin>
                      <Insets left="120.0" top="50.0" />
                   </VBox.margin>
@@ -89,19 +87,19 @@
          </HBox>
          <HBox layoutX="417.0" layoutY="146.0" prefHeight="61.0" prefWidth="485.0" spacing="10.0">
             <children>
-               <TextField fx:id="tfnom" prefHeight="31.0" prefWidth="197.0" promptText="nom">
+               <TextField fx:id="tfnom" prefHeight="39.0" prefWidth="197.0" promptText="nom" styleClass="input" stylesheets="@form.css">
                   <HBox.margin>
                      <Insets left="80.0" top="20.0" />
                   </HBox.margin>
                </TextField>
-               <TextField fx:id="tfprenom" prefHeight="31.0" prefWidth="185.0" promptText="prénom">
+               <TextField fx:id="tfprenom" prefHeight="39.0" prefWidth="185.0" promptText="prénom" styleClass="TextFiled">
                   <HBox.margin>
                      <Insets top="20.0" />
                   </HBox.margin>
                </TextField>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <HBox.margin>
-                     <Insets left="-440.0" top="20.0" />
+                     <Insets left="-440.0" top="25.0" />
                   </HBox.margin>
                   <image>
                      <Image url="@../icons/user.png" />
@@ -111,14 +109,14 @@
          </HBox>
          <HBox layoutX="500.0" layoutY="224.0" prefHeight="61.0" prefWidth="389.0" AnchorPane.topAnchor="200.0">
             <children>
-               <TextField fx:id="tfemail" prefHeight="31.0" prefWidth="389.0" promptText="email">
+               <TextField fx:id="tfemail" prefHeight="39.0" prefWidth="389.0" promptText="email" styleClass="TextFiled">
                   <HBox.margin>
                      <Insets top="20.0" />
                   </HBox.margin>
                </TextField>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <HBox.margin>
-                     <Insets left="-430.0" top="20.0" />
+                     <Insets left="-430.0" top="25.0" />
                   </HBox.margin>
                   <image>
                      <Image url="@../icons/email.png" />
@@ -128,7 +126,7 @@
          </HBox>
          <HBox layoutX="500.0" layoutY="266.0" prefHeight="61.0" prefWidth="389.0">
             <children>
-               <PasswordField fx:id="tfmdp" prefHeight="31.0" prefWidth="389.0" promptText="mot de passe">
+               <PasswordField fx:id="tfmdp" prefHeight="39.0" prefWidth="389.0" promptText="mot de passe" styleClass="TextFiled">
                   <HBox.margin>
                      <Insets top="10.0" />
                   </HBox.margin>
@@ -138,14 +136,14 @@
                      <Image url="@../icons/mdp.png" />
                   </image>
                   <HBox.margin>
-                     <Insets left="-430.0" top="10.0" />
+                     <Insets left="-430.0" top="15.0" />
                   </HBox.margin>
                </ImageView>
             </children>
          </HBox>
          <HBox layoutX="432.0" layoutY="327.0" prefHeight="69.0" prefWidth="462.0">
             <children>
-               <PasswordField fx:id="tfconfirmmdp" prefHeight="31.0" prefWidth="389.0" promptText="confirm mot de passe">
+               <PasswordField fx:id="tfconfirmmdp" prefHeight="39.0" prefWidth="389.0" promptText="confirm mot de passe" styleClass="TextFiled">
                   <HBox.margin>
                      <Insets left="70.0" top="10.0" />
                   </HBox.margin>
@@ -155,7 +153,7 @@
                      <Image url="@../icons/mdp.png" />
                   </image>
                   <HBox.margin>
-                     <Insets left="-430.0" top="7.0" />
+                     <Insets left="-430.0" top="15.0" />
                   </HBox.margin>
                </ImageView>
             </children>
@@ -187,9 +185,9 @@
                </RadioButton>
             </children>
          </HBox>
-         <HBox layoutX="478.0" layoutY="519.0" prefHeight="86.0" prefWidth="417.0">
+         <HBox layoutX="477.0" layoutY="564.0" prefHeight="86.0" prefWidth="417.0">
             <children>
-               <Button fx:id="btnconfirmer" mnemonicParsing="false" onAction="#inscrire" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Confirmer" textFill="WHITE">
+               <Button fx:id="btnconfirmer" mnemonicParsing="false" onAction="#inscrire" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" stylesheets="@form.css" text="Confirmer" textFill="WHITE">
                   <font>
                      <Font name="Arial" size="18.0" />
                   </font>
@@ -199,18 +197,6 @@
                </Button>
             </children>
          </HBox>
-         <Line endX="22.0" layoutX="594.0" layoutY="620.0" startX="-100.0" />
-         <Line endX="100.0" layoutX="818.0" layoutY="620.0" startX="-16.0" />
-         <Text layoutX="645.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ou Connecter Avec" />
-         <Button fx:id="btnCnxGmail" layoutX="500.0" layoutY="646.0" mnemonicParsing="false" onAction="#ConnectionWithGmail" prefHeight="40.0" prefWidth="389.0" style="-fx-background-color: #fff;" text="Se Connecter avec Gmail">
-            <graphic>
-               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../icons/gmail.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
       </AnchorPane>
    </children>
 </StackPane>

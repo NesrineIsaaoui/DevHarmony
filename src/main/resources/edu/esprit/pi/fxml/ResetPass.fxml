@@ -18,7 +18,7 @@
             <children>
                 <HBox layoutX="86.0" layoutY="375.0" prefHeight="61.0" prefWidth="389.0" AnchorPane.topAnchor="375.0">
                     <children>
-                        <TextField fx:id="tfresetcode" prefHeight="31.0" prefWidth="389.0" promptText="Pin Code">
+                        <TextField fx:id="tfresetcode" prefHeight="31.0" prefWidth="389.0" promptText="Code">
                             <HBox.margin>
                                 <Insets top="20.0" />
                             </HBox.margin>
@@ -35,7 +35,7 @@
                 </HBox>
                 <HBox layoutX="71.0" layoutY="567.0" prefHeight="100.0" prefWidth="417.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#HandleChangePass" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Save" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#HandleChangePass" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" stylesheets="@form.css" text="Confirmer" textFill="WHITE">
                             <font>
                                 <Font name="Arial" size="18.0" />
                             </font>
@@ -45,7 +45,7 @@
                         </Button>
                     </children>
                 </HBox>
-                <Label alignment="CENTER" layoutX="85.0" layoutY="24.0" prefHeight="21.0" prefWidth="389.0" text="Change Password">
+                <Label alignment="CENTER" layoutX="85.0" layoutY="24.0" prefHeight="21.0" prefWidth="389.0" text="Changer Mot de Passe">
                     <font>
                         <Font name="Arial Bold" size="27.0" />
                     </font>
@@ -55,7 +55,7 @@
                         <Image url="@../images/resetpass.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="202.0" layoutY="667.0" onMouseClicked="#NavPageConnexion" text="Back to connexion?" textFill="#dd1ad4">
+                <Label layoutX="265.0" layoutY="667.0" onMouseClicked="#NavPageConnexion" text="Retour" textFill="#dd1ad4">
                     <font>
                         <Font name="Arial" size="18.0" />
                     </font>

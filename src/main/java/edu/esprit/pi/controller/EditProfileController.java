@@ -72,6 +72,7 @@ public class EditProfileController implements Initializable {
             File imageFile = new File("C:\\xampp\\htdocs\\pi\\" + user.getImage());
             Image image = new Image(imageFile.toURI().toString());
             PreviewImage.setImage(image);
+            PreviewImage.setImage(image);
         }
     }
 
@@ -84,7 +85,7 @@ public class EditProfileController implements Initializable {
         if (selectedImageFile != null) {
             FileUtils.copyFileToDirectory(selectedImageFile, dest);
             Image image = new Image(selectedImageFile.toURI().toString());
-            PreviewImage.setImage(image);
+        PreviewImage.setImage(image);
         }
     }
 

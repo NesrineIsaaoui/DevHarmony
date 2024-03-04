@@ -5,30 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0278f07-5aec-4837-9959-2a9649974e30" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/ConfirmerMailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/ConfirmerMailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/LoginAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeAdmin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/LoginAdmin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/dashboard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/addimage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/book.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/deleteUser.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/list.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/logout.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/network.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/planner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/quie.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/setting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/users.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/MainFx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/EditProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/EditProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeEleveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeEleveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeEnseignantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeEnseignantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeParentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/HomeParentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/InscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/InscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/ReactiverCompteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/ReactiverCompteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/SeconnecterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/controller/SeconnecterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/esprit/pi/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ConfirmerMail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ConfirmerMail.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/EditProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/EditProfile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ForgetPass.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ForgetPass.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeEleve.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeEleve.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeEnseignant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeEnseignant.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeParent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/HomeParent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/Inscription.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/Inscription.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ReactiverCompte.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ReactiverCompte.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ResetPass.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/ResetPass.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/SeConnecter.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/fxml/SeConnecter.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/email.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/email.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/mdp.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/mdp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/panier.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/panier.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/search.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/esprit/pi/icons/search.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,14 +77,24 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "GestionUtilisateurs",
-    "last_opened_file_path": "C:/Users/Lilia_Jemai/Downloads/final/pi",
+    "last_opened_file_path": "C:/Users/Lilia_Jemai/Downloads/final/pi/src/main/resources/edu/esprit/pi/icons",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lilia_Jemai\Downloads\final\pi\src\main\resources\edu\esprit\pi\icons" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="MainFx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.esprit.pi.MainFx" />
@@ -83,7 +123,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709492792008</updated>
-      <workItem from="1709492793566" duration="3632000" />
+      <workItem from="1709492793566" duration="26564000" />
     </task>
     <servers />
   </component>

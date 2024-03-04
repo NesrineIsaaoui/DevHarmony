@@ -1,0 +1,71 @@
+/* Apply general styling to the entire scene */
+.root {
+    -fx-font-family: "Arial", sans-serif;
+}
+
+.table-view {
+    -fx-background-color: #f4f4f4;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #da88ff;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #f2d3ff;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #e0e0e0;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #b6ffb6;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+
+
+.table-cell {
+    -fx-alignment: CENTER;
+    -fx-padding: 5px;
+}
+
+.table-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-column .label {
+    -fx-font-weight: bold;
+}
+
+.table-cell:editable {
+    -fx-background-color: #FFFF88;
+}
+
+.button {
+    -fx-background-color: #1f1e2f;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: none;
+    -fx-font-weight: bold;
+    -fx-transition: 0.5s;
+}
+
+.button:hover {
+    -fx-background-color: #da88ff;
+    -fx-effect: dropshadow( three-pass-box , rgb(251, 239, 255), 6, 0.0 , 0 , 1);
+    -fx-transform: scale(2);
+}
+
+

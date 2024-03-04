@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 import java.util.prefs.Preferences;
 import java.sql.SQLException;
@@ -47,9 +48,9 @@ public class SeconnecterController {
     UserService Us = new UserService();
     @FXML
     private StackPane stck;
-    private  String ACCOUNT_SID = "AC5826096ab0822893f60739424205071f";
-    private  String AUTH_TOKEN = "27ac076955e5cfb73433b80bc76fc9b7";
-    private  String TWILIO_PHONE_NUMBER = "+13367153033";
+    private  String ACCOUNT_SID = "AC50977c3984b064ffb395e2b40e287ed9";
+    private  String AUTH_TOKEN = "6d280075529319b45a9a1c0d3fdaf2b6";
+    private  String TWILIO_PHONE_NUMBER = "+16178602915";
     @FXML
     private void initialize() {
         tfemail.setText(getRememberedEmail());
@@ -110,7 +111,7 @@ public class SeconnecterController {
 
         if (user != null && user.getPwd() != null  && BCrypt.checkpw(tfmdp.getText(), user.getPwd())) {
             if (user.getStatus().equals("Desactive")) {
-                System.out.println("desavtibe");
+                System.out.println("desavtive");
                 Alert reactivateAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 reactivateAlert.setTitle("Account Deactivated");
                 reactivateAlert.setHeaderText("Your account is currently deactivated. Do you want to reactivate and log in?");
@@ -130,7 +131,7 @@ public class SeconnecterController {
                     return;
                 }
             }
-            if (user.getConfirmCode().equals("verified")) {
+            if (Objects.equals(user.getConfirmCode(),"verified")) {
                 idCurrentUser = user.getId();
                 roleCurrentUser = user.getRole();
                 if (checkRememberMe.isSelected()) {

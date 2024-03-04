@@ -13,6 +13,8 @@ public class MainFx extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainFx.class.getResource("fxml/SeConnecter.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle("Module User!");
         stage.getIcons().add(new Image(MainFx.class.getResourceAsStream("icons/user.png")));
         stage.setScene(scene);

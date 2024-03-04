@@ -17,7 +17,7 @@
          <children>
             <HBox layoutX="86.0" layoutY="375.0" prefHeight="61.0" prefWidth="389.0" AnchorPane.topAnchor="375.0">
                <children>
-                  <TextField fx:id="tfreseactiver" prefHeight="31.0" prefWidth="389.0" promptText="Pin Code">
+                  <TextField fx:id="tfreseactiver" prefHeight="31.0" prefWidth="389.0" promptText="Code">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
@@ -32,18 +32,6 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox layoutX="71.0" layoutY="567.0" prefHeight="100.0" prefWidth="417.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#Handlereactiver" prefHeight="40.0" prefWidth="353.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" text="Confirmer" textFill="WHITE">
-                     <font>
-                        <Font name="Arial" size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="40.0" top="20.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
             <Label alignment="CENTER" layoutX="85.0" layoutY="24.0" prefHeight="21.0" prefWidth="389.0" text="Réactiver Compte">
                <font>
                   <Font name="Arial Bold" size="27.0" />
@@ -54,7 +42,7 @@
                   <Image url="@../images/resetpass.png" />
                </image>
             </ImageView>
-            <Label layoutX="202.0" layoutY="667.0" onMouseClicked="#NavPageConnexion" text="Back to connexion?" textFill="#dd1ad4">
+            <Label layoutX="260.0" layoutY="577.0" onMouseClicked="#NavPageConnexion" text="Retour" textFill="#dd1ad4">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
@@ -71,7 +59,21 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox layoutX="18.0" layoutY="498.0" prefHeight="69.0" prefWidth="462.0" />
+            <HBox layoutX="18.0" layoutY="498.0" prefHeight="69.0" prefWidth="462.0">
+               <children>
+                  <HBox prefHeight="69.0" prefWidth="438.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#Handlereactiver" prefHeight="40.0" prefWidth="274.0" style="-fx-background-color: #cc2cc7; -fx-border-radius: 20px;" stylesheets="@form.css" text="Confirmer" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="130.0" top="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children></HBox>
          </children>
       </AnchorPane>
    </children>

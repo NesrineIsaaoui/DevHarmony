@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPaneE1" prefHeight="625.0" prefWidth="754.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffichagePostFrontControllers">
+<AnchorPane id="AnchorPane" fx:id="anchorPaneE1" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffichagePostFrontControllers">
     <children>
         <VBox prefHeight="625.0" prefWidth="754.0" spacing="10">
            <children>
                <!-- Button and TextField section -->
-               <HBox alignment="CENTER" prefHeight="54.0" prefWidth="695.0" spacing="10">
+               <HBox alignment="CENTER" prefHeight="54.0" prefWidth="994.0" spacing="10">
                   <children>
 
                       <!-- Search TextField -->
@@ -43,7 +43,7 @@
                <!-- ScrollPane section -->
                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="529.0" prefWidth="695.0">
                    <content>
-                       <ListView fx:id="publicationsListView" layoutX="10.0" layoutY="50.0" prefHeight="550.0" prefWidth="741.0">
+                       <ListView fx:id="publicationsListView" layoutX="10.0" layoutY="50.0" prefHeight="700.0" prefWidth="1000.0">
 
                        </ListView>
                    </content>

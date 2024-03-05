@@ -9,33 +9,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane stylesheets="@style.css" id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f7f7f7;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffichageCommentBack">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f7f7f7;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AffichageCommentBack">
    <children>
       <Text layoutX="280.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Commentaires">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Text>
-      <HBox prefHeight="58.0" prefWidth="800.0" spacing="20.0" style="-fx-padding: 10; -fx-background-color: #b281ff;">
+      <HBox prefHeight="118.0" prefWidth="1000.0" spacing="20.0" style="-fx-padding: 10; -fx-background-color: #b281ff;">
          <children>
-            <TextField fx:id="filtre" onKeyPressed="#handleSearch" prefHeight="40.0" prefWidth="400.0" promptText="Rechercher..." >
+            <TextField fx:id="filtre" onKeyPressed="#handleSearch" prefHeight="40.0" prefWidth="400.0" promptText="Rechercher...">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </TextField>
-            <Button styleClass="menu-button" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="150.0"  text="Supprimer">
+            <Button mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="150.0" styleClass="menu-button" text="Supprimer">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button styleClass="menu-button" mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="150.0"  text="Retour">
+            <Button mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="150.0" styleClass="menu-button" text="Retour">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="tableView" layoutY="120.0" prefHeight="400.0" prefWidth="800.0" >
+      <TableView fx:id="tableView" layoutY="120.0" prefHeight="582.0" prefWidth="1000.0">
          <columns>
             <TableColumn fx:id="TitrePub" prefWidth="160.0" text="Titre Pub" />
             <TableColumn fx:id="userName" prefWidth="150.0" text="User" />

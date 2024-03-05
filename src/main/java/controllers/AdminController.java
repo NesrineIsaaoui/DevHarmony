@@ -23,10 +23,10 @@ public class AdminController implements Initializable {
     @FXML
     public void openModifInterface3(ActionEvent event) {
         try {
-            // Load the Modif.fxml file
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichagePostBack.fxml"));
             Parent root = loader.load();
-            // Show the Modif.fxml interface
+
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -41,11 +41,11 @@ public class AdminController implements Initializable {
     @FXML
     public void openModifInterface2(ActionEvent event) {
         try {
-            // Load the Modif.fxml file
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageCommentBack.fxml"));
             Parent root = loader.load();
 
-            // Show the Modif.fxml interface
+
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -61,11 +61,11 @@ public class AdminController implements Initializable {
     @FXML
     public void openModifInterface1(ActionEvent event) {
         try {
-            // Load the Modif.fxml file
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Stat.fxml"));
             Parent root = loader.load();
 
-            // Show the Modif.fxml interface
+
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

@@ -143,7 +143,7 @@ public class AffichagePostBack implements Initializable {
                 ObservableList<Publication> filteredList = FXCollections.observableArrayList();
                 boolean PublicationFound = false;
                 for (Publication b : obList) {
-                    // search for name or description
+
                     if ((b.getTitre().toLowerCase().contains(searchText.toLowerCase())))
                     {
                         filteredList.add(b);

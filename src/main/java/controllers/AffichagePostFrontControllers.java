@@ -123,35 +123,7 @@ public class AffichagePostFrontControllers implements Initializable {
             deletebtn.setOnAction(event -> handleDeleteButton(publication));
 
 
-//            deletebtn.setOnAction(event -> {
-//                // Afficher une boîte de dialogue de confirmation
-//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                alert.setTitle("Confirmation");
-//                alert.setHeaderText("Supprimer la publication");
-//                alert.setContentText("Êtes-vous sûr de vouloir supprimer cette publication?");
-//DialogPane dialogPane = alert.getDialogPane();
-//            dialogPane.getStylesheets().add(getClass().getResource("/pi/blog/Style.css").toExternalForm());
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (result.isPresent() && result.get() == ButtonType.OK) {
-//                    PublicationRepository ps =new PublicationRepository();
-//
-//                     ps.deleteById(publication.getId());
-//
-//                     publicationsListView.getItems().remove(publication);
-//
-//                    Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-//                    alert1.setTitle("Success");
-//                    alert1.setHeaderText(null);
-//                    alert1.setContentText("Post Deleted Successfully.");
 
-//                    alert1.showAndWait();
-//                    // Actualiser la liste des publications (remplacez-le par votre logique de rafraîchissement)
-//                    publicationsListView.refresh();
-//
-//                    // Vous pouvez également supprimer la cellule de la vue actuelle si vous avez une référence à la vue
-//                    // supprimer la cellule de la vue parente
-//                }
-//            });
             updatedBtn.setOnAction(event -> {
                 Dialog<Pair<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Modifier la publication");

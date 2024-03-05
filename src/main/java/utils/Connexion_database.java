@@ -14,7 +14,7 @@ public class Connexion_database {
     private final String host = "localhost:3306";
     private final String user = "root";
     private final String password = "";
-    private final String database = "blog";
+    private final String database = "blog1";
 
     public static Connexion_database getInstance() {
         if (instance == null) {

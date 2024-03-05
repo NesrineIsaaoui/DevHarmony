@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+      <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true">
          <image>
             <Image url="@430186643_768280201486124_9130330012694911447_n.jpg" />
          </image>
@@ -23,11 +23,11 @@
          <!-- Chart Section -->
          <AnchorPane fx:id="chartNode" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" />
       </VBox>
-      <Button layoutX="626.0" layoutY="67.0" mnemonicParsing="false" onAction="#globalChart" prefHeight="60.0" prefWidth="150.0" styleClass="menu-button" text="Global" />
-      <Button layoutX="626.0" layoutY="350.0" mnemonicParsing="false" onAction="#convertirPDF" prefHeight="60.0" prefWidth="150.0" styleClass="menu-button" text="Convertir PDF" />
-      <Button layoutX="626.0" layoutY="214.0" mnemonicParsing="false" onAction="#lineChart" prefHeight="60.0" prefWidth="150.0" styleClass="menu-button" text="Line Chart" />
+      <Button layoutX="683.0" layoutY="31.0" mnemonicParsing="false" onAction="#globalChart" prefHeight="78.0" prefWidth="186.0" styleClass="menu-button" text="Global" />
+      <Button layoutX="683.0" layoutY="350.0" mnemonicParsing="false" onAction="#convertirPDF" prefHeight="78.0" prefWidth="186.0" styleClass="menu-button" text="Convertir PDF" />
+      <Button layoutX="683.0" layoutY="183.0" mnemonicParsing="false" onAction="#lineChart" prefHeight="78.0" prefWidth="186.0" styleClass="menu-button" text="Line Chart" />
 
       <!-- Back Button -->
-      <Button layoutX="671.0" layoutY="536.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="100.0" styleClass="menu-button" text="Back" />
+      <Button layoutX="821.0" layoutY="622.0" mnemonicParsing="false" onAction="#goBack" prefHeight="53.0" prefWidth="142.0" styleClass="menu-button" text="Back" />
    </children>
 </AnchorPane>

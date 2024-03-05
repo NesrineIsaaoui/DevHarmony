@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="886.0" style="-fx-background-color: #C3A4FC;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminAjoutCodePromoController">
+   <children>
+      <BorderPane layoutX="17.0" layoutY="14.0" prefHeight="594.0" prefWidth="821.0" style="-fx-background-color: #C3A4FC;">
+         <center>
+            <SplitPane dividerPositions="0.12685560053981107" orientation="VERTICAL" prefHeight="487.0" prefWidth="716.0" style="-fx-background-color: #FFFFFA;" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="114.0" prefWidth="658.0" style="-fx-background-color: #C3A4FC;">
+                     <children>
+                        <ImageView fitHeight="47.0" fitWidth="50.0" layoutX="122.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-search-64.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="chid" layoutX="201.0" layoutY="21.0" prefHeight="26.0" prefWidth="263.0" promptText="chercher....">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </TextField>
+                        <ImageView fitHeight="105.0" fitWidth="126.0" layoutX="516.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="650.0" style="-fx-background-color: #C3A4FC;" stylesheets="@style.css">
+                     <children>
+                        <TableView fx:id="CodePromoTable" layoutX="80.0" layoutY="14.0" prefHeight="198.0" prefWidth="458.0" style="-fx-background-color: #F7F7F8; -fx-background-radius: 10;" styleClass="table-row-cell" stylesheets="@style.css">
+                           <columns>
+                              <TableColumn fx:id="Id" prefWidth="70.40003395080566" text="Id" />
+                              <TableColumn fx:id="Code" prefWidth="108.79999542236328" text="Code" />
+                              <TableColumn fx:id="value" prefWidth="122.39997863769531" text="Valeur" />
+                              <TableColumn fx:id="nb_users" prefWidth="138.4000244140625" text="Max Nombre Users" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="supprimer" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="294.0" layoutY="212.0" mnemonicParsing="false" onAction="#supprimerCode" prefHeight="64.0" prefWidth="77.0" style="-fx-background-color: #C3A4FC;">
+                           <graphic>
+                              <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons8-delete-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane layoutX="14.0" layoutY="277.0" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="300.0" style="-fx-background-color: #F7F7F8; -fx-background-radius: 20;">
+                           <children>
+                              <Button fx:id="ajouter" layoutX="127.0" layoutY="154.0" mnemonicParsing="false" onAction="#ajouterCode" prefHeight="51.0" prefWidth="53.0" style="-fx-background-color: #F7F7F8;">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons8-add-64.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <TextField fx:id="codeField" layoutX="112.0" layoutY="14.0" />
+                              <TextField fx:id="valueField" layoutX="112.0" layoutY="58.0" />
+                              <TextField fx:id="nbUsersField" layoutX="112.0" layoutY="102.0" />
+                              <Label fx:id="code" layoutX="37.0" layoutY="17.0" prefHeight="18.0" prefWidth="61.0" text="Code" />
+                              <Label fx:id="valeur" layoutX="37.0" layoutY="62.0" text="valeur" />
+                              <Label fx:id="nb" layoutX="24.0" layoutY="105.0" prefHeight="18.0" prefWidth="88.0" text="nombre users" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="333.0" layoutY="277.0" minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="275.0" style="-fx-background-color: #F7F7F8; -fx-background-radius: 20;">
+                           <children>
+                              <TextField fx:id="codem" layoutX="113.0" layoutY="14.0" />
+                              <TextField fx:id="valm" layoutX="113.0" layoutY="55.0" />
+                              <TextField fx:id="nbm" layoutX="113.0" layoutY="93.0" />
+                              <Label fx:id="code1" layoutX="22.0" layoutY="18.0" text="Code" />
+                              <Label fx:id="val1" layoutX="20.0" layoutY="59.0" text="valeur" />
+                              <Label fx:id="nb1" layoutX="22.0" layoutY="97.0" text="nombre users" />
+                              <Button fx:id="modifier" layoutX="134.0" layoutY="154.0" mnemonicParsing="false" onAction="#modifierCode" prefHeight="51.0" prefWidth="52.0" style="-fx-background-color: #F7F7F8;">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons8-change-64.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+         <left>
+            <Pane prefHeight="594.0" prefWidth="199.0" style="-fx-background-color: #1F1E2F; -fx-background-radius: 20;" styleClass="button" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="profile" layoutX="5.0" layoutY="221.0" mnemonicParsing="false" onAction="#profileadmin" prefHeight="59.0" prefWidth="169.0" style="-fx-background-radius: 40;" stylesheets="@PaymentForm.css" text="PROFILE            " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-admin-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="reservations" layoutX="3.0" layoutY="297.0" mnemonicParsing="false" onAction="#reservationscharts" prefHeight="59.0" prefWidth="172.0" style="-fx-background-radius: 40;" stylesheets="@PaymentForm.css" text="RESERVATIONS" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-money-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="calander" layoutX="3.0" layoutY="392.0" mnemonicParsing="false" onAction="#calanderpage" prefHeight="59.0" prefWidth="181.0" style="-fx-background-radius: 40;" stylesheets="@PaymentForm.css" text="CALANDRIER   " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-planner-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="promos" layoutX="3.0" layoutY="479.0" mnemonicParsing="false" onAction="#promospage" prefHeight="59.0" prefWidth="178.0" style="-fx-background-radius: 40;" stylesheets="@PaymentForm.css" text="PROMOS         " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-promo-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EduWave" wrappingWidth="205.5067138671875">
+                     <font>
+                        <Font name="Calibri" size="42.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="profile1" alignment="BOTTOM_LEFT" layoutX="3.0" layoutY="130.0" mnemonicParsing="false" onAction="#profileadmin" prefHeight="64.0" prefWidth="172.0" style="-fx-background-radius: 40;" text="MENU" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="51.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-planner-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@style.css" />
+                        <URL value="@PaymentForm.css" />
+                     </stylesheets>
+                  </Button>
+               </children>
+            </Pane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

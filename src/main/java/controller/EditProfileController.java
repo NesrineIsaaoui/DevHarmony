@@ -147,11 +147,11 @@ public class EditProfileController implements Initializable {
     @FXML
     private void HandleBack(ActionEvent event) throws IOException {
         if (roleCurrentUser.equals("Parent")) {
-            navigateToHome("fxml/HomeParent.fxml");
+            navigateToHome("/HomeParent.fxml");
         } else if (roleCurrentUser.equals("Eleve")) {
-            navigateToHome("fxml/HomeEleve.fxml");
+            navigateToHome("/HomeEleve.fxml");
         } else if (roleCurrentUser.equals("Enseignant")) {
-            navigateToHome("fxml/HomeEnseignant.fxml");
+            navigateToHome("/HomeEnseignant.fxml");
         }
     }
 

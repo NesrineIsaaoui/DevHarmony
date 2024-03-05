@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="stck" prefHeight="769.0" prefWidth="1186.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeEnseignantController">
+<StackPane fx:id="stck" prefHeight="769.0" prefWidth="1186.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeEleveController">
    <children>
       <AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #fff; -fx-background-radius: 20;">
          <children>
@@ -103,8 +103,8 @@
                   <Image url="@welcome.png" />
                </image>
             </ImageView>
-            <TextField layoutX="634.0" layoutY="28.0" prefHeight="40.0" prefWidth="369.0" promptText="Recherche" style="-fx-background-radius: 20;" stylesheets="@../../../../../../../../../style.css" />
-            <Button layoutX="955.0" layoutY="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="37.0" style="-fx-background-radius: 20; -fx-background-color: #e14ffb;" stylesheets="@../../../../../../../../../PaymentForm.css">
+            <TextField layoutX="634.0" layoutY="28.0" prefHeight="40.0" prefWidth="369.0" promptText="Recherche" style="-fx-background-radius: 20;" stylesheets="@style.css" />
+            <Button layoutX="955.0" layoutY="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="37.0" style="-fx-background-radius: 20; -fx-background-color: #e14ffb;" stylesheets="@PaymentForm.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

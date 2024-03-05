@@ -29,21 +29,11 @@ import static controller.SeconnecterController.idCurrentUser;
 
 public class HomeParentController implements Initializable {
     @FXML
-    private ImageView imageview;
-    @FXML
     private Text tnom;
     @FXML
     private Text tprenom;
     @FXML
     private Text trole;
-    @FXML
-    private Button bprofil;
-    @FXML
-    private Button bcour;
-    @FXML
-    private Button bdeconnect;
-    @FXML
-    private VBox recherche;
     private User currentUser;
     @FXML
     private StackPane stck;
@@ -53,6 +43,12 @@ public class HomeParentController implements Initializable {
     @FXML
     private AnchorPane nh;
     UserService Us = new UserService();
+    @FXML
+    private Button btnres;
+    @FXML
+    private Button btnprofil;
+    @FXML
+    private Button btncours;
 
 
     @Override
@@ -105,6 +101,27 @@ public class HomeParentController implements Initializable {
             nh.getChildren().setAll(root);
         } catch (IOException ex) {
             System.out.println("Erreur lors du chargement de la vue : " + ex.getMessage());
+        }
+
+
+
+    }
+
+    @FXML
+    private void gotoreservationslist(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReservationUserView.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller of the new FXML file
+            ReservationViewUserController reservationController = loader.getController();
+
+            // Set the user ID in the ReservationViewUserController
+            reservationController.setLoggedInUserId(idCurrentUser);
+
+            stck.getChildren().setAll(root);
+        } catch (IOException ex) {
+            System.out.println("Error loading the view: " + ex.getMessage());
         }
     }
 }

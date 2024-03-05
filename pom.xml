@@ -14,16 +14,48 @@
 <junit.version>5.10.0</junit.version>  </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>21</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>21</version>
-    </dependency>
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>8.0.32</version>
+      </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-fxml</artifactId>
+          <version>21.0.2</version>
+      </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-controls</artifactId>
+          <version>21.0.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.stripe</groupId>
+          <artifactId>stripe-java</artifactId>
+          <version>24.17.0</version>
+      </dependency>
+      <!-- Apache POI -->
+      <dependency>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi</artifactId>
+          <version>5.1.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi-ooxml</artifactId>
+          <version>5.1.0</version>
+      </dependency>
+      <!-- Log4j2 -->
+      <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-api</artifactId>
+          <version>2.14.1</version> <!-- Use the latest version available -->
+      </dependency>
+      <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-core</artifactId>
+          <version>2.14.1</version> <!-- Use the latest version available -->
+      </dependency>
 
       <dependency>
           <groupId>com.twilio.sdk</groupId>

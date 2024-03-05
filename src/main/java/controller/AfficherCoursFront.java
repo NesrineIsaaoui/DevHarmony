@@ -9,9 +9,7 @@
     import javafx.scene.Node;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
-    import javafx.scene.control.Alert;
-    import javafx.scene.control.Label;
-    import javafx.scene.control.Tooltip;
+    import javafx.scene.control.*;
     import javafx.scene.effect.DropShadow;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
@@ -21,6 +19,7 @@
     import javafx.scene.layout.HBox;
     import javafx.scene.layout.VBox;
     import javafx.scene.paint.Color;
+    import javafx.scene.text.Text;
     import javafx.stage.Stage;
     import model.Cours;
     import service.ServiceCours;
@@ -32,6 +31,8 @@
     import java.util.ArrayList;
     import java.util.List;
     import java.util.ResourceBundle;
+
+    import static controller.SeconnecterController.idCurrentUser;
 
     public class AfficherCoursFront implements Initializable {
         ServiceCours sa = new ServiceCours();
@@ -45,10 +46,18 @@
 
         @FXML
         private AnchorPane nh;
-        @FXML
-        private AnchorPane root;
 
         private boolean isDarkMode = false;
+        @FXML
+        private Button resbtn;
+        @FXML
+        private Text trole;
+        @FXML
+        private Button btnprofil;
+        @FXML
+        private Button btncours;
+        @FXML
+        private ToggleButton switchMode;
 
         @FXML
         private void switchMode() {
@@ -176,7 +185,33 @@
             alert.setHeaderText(null);
             alert.setContentText("Vous avez réservé le cours : " + cours.getCoursName());
             alert.showAndWait();
+
+            try {
+                // Load the new FXML file
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/addreservationcours.fxml"));
+                Parent root = loader.load();
+
+                // Get the controller of the new FXML file
+                AddReservationCoursController addReservationController = loader.getController();
+
+                // Get the controller instance and set the user ID
+                addReservationController.setLoggedInUserId(idCurrentUser);
+                // Pass any necessary data to the controller if needed
+                // For example, you can pass the selected 'Cours' object
+                addReservationController.setCours(cours);
+
+                // Create a new stage
+                Stage newStage = new Stage();
+                newStage.setTitle("Add Reservation");
+                newStage.setScene(new Scene(root));
+
+                // Show the new stage
+                newStage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
 
         // Créez un HBox pour contenir les étoiles
         private HBox createRatingBox(Cours cours) {
@@ -276,9 +311,57 @@
         private void goToFrontGestionCours(ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(MainFX.class.getResource("/AfficherCoursFront.fxml"));
             Parent menu = loader.load();
-            Scene editProfileScene = new Scene(menu, 1043, 730);
+            Scene editProfileScene = new Scene(menu);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(editProfileScene);
         }
 
-    }
+        @FXML
+        public void gotolistreservations(ActionEvent actionEvent) {
+
+            try {
+                URL fxmlUrl = getClass().getResource("/ReservationUserView.fxml");
+                System.out.println("FXML URL: " + fxmlUrl);
+                FXMLLoader loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                // Get the current stage
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("EDUWAVE");
+
+                // Set the new scene in the stage
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        @FXML
+        public void CoursAchetes(ActionEvent actionEvent) {
+            try {
+                URL fxmlUrl = getClass().getResource("/MesCoursP.fxml");
+                System.out.println("FXML URL: " + fxmlUrl);
+                FXMLLoader loader = new FXMLLoader(fxmlUrl);
+                Parent root = loader.load();
+                mescours mescours = loader.getController();
+
+                mescours.setLoggedInUserId(idCurrentUser);
+
+                Scene scene = new Scene(root);
+
+                // Get the current stage
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("EDUWAVE");
+
+                // Set the new scene in the stage
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        }

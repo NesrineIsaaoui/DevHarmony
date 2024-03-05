@@ -31,7 +31,7 @@
             <Font name="Times New Roman Bold" size="34.0" />
          </font>
       </Label>
-      <ImageView fitHeight="100.0" fitWidth="115.0" layoutX="1117.0" layoutY="31.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="115.0" layoutX="979.0" layoutY="47.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@prev.gif" />
          </image>

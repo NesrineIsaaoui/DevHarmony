@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="546.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReservationChartController">
+   <children>
+      <ImageView fitHeight="587.0" fitWidth="922.0" layoutX="-1.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@bg.png" />
+         </image>
+      </ImageView>
+      <MenuButton layoutX="751.0" layoutY="195.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" styleClass="button" stylesheets="@style.css" text="statistiques">
+        <items>
+          <MenuItem mnemonicParsing="false" text="piechart">
+               <graphic>
+                  <PieChart fx:id="userCoursePieChart" prefHeight="381.0" prefWidth="500.0" />
+               </graphic>
+            </MenuItem>
+          <MenuItem mnemonicParsing="false" text="barchart">
+               <graphic>
+                  <BarChart fx:id="revenues">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </graphic>
+            </MenuItem>
+        </items>
+      </MenuButton>
+      <Label fx:id="label" layoutX="769.0" layoutY="347.0" prefHeight="46.0" prefWidth="98.0" />
+      <Button layoutX="21.0" layoutY="19.0" mnemonicParsing="false" onAction="#returntoreservations" prefHeight="54.0" prefWidth="56.0" stylesheets="@PaymentForm.css">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+       <ComboBox fx:id="timePeriodComboBox" layoutX="567.0" layoutY="195.0" prefWidth="150.0" promptText="choisir le temps" styleClass="button" stylesheets="@PaymentForm.css">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:value="Year" />
+                   <String fx:value="Month" />
+                   <String fx:value="Day" />
+               </FXCollections>
+           </items>
+       </ComboBox>
+      <Label fx:id="totalRevenueLabel" layoutX="77.0" layoutY="155.0" />
+      <ImageView fitHeight="167.0" fitWidth="173.0" layoutX="543.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@stat.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

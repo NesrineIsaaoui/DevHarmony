@@ -13,7 +13,7 @@
             <Image url="@bg.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="goToCours" fitHeight="188.0" fitWidth="189.0" layoutX="855.0" layoutY="405.0" onDragDetected="#goToCours" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="goToCours" fitHeight="196.0" fitWidth="204.0" layoutX="839.0" layoutY="397.0" onDragDetected="#goToCours" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@goToCours.png" />
          </image>
@@ -33,7 +33,7 @@
             <Font name="Times New Roman Bold" size="31.0" />
          </font>
       </Label>
-      <ImageView fitHeight="67.0" fitWidth="91.0" layoutX="894.0" layoutY="8.0" onDragDetected="#returnToAfficheHomeEnseignant" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="123.0" fitWidth="171.0" layoutX="894.0" layoutY="8.0" onDragDetected="#returnToAfficheHomeEnseignant" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@prev.gif" />
          </image>

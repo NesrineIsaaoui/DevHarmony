@@ -81,7 +81,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btncours1" layoutX="290.0" layoutY="314.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="188.0" style="-fx-background-color: #9400D3;" stylesheets="@form.css" text="Mes Réservations" textFill="WHITE">
+                  <Button layoutX="290.0" layoutY="314.0" mnemonicParsing="false" onAction="#gotoreservationback" prefHeight="88.0" prefWidth="188.0" style="-fx-background-color: #9400D3;" stylesheets="@form.css" text="Les Réservations" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>

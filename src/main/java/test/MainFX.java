@@ -18,11 +18,11 @@ public class MainFX extends Application {
             root = FXMLLoader.load(getClass().getResource("/SeConnecter.fxml"));
             // root = FXMLLoader.load(getClass().getResource("/AfficherCoursFront.fxml"));
 
-            Scene scene = new Scene(root, 1186, 770);
+            Scene scene = new Scene(root);
 
             primaryStage.setTitle("EduWave");
             primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
+            //primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

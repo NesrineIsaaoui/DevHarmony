@@ -15,16 +15,17 @@ public class DataSource {
         try {
             cnx= DriverManager.getConnection(url,login,pwd);
             System.out.println("succes");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
 
     public static DataSource getInstance(){
-        if (instance==null)
+        if(instance==null){
             instance=new DataSource();
+        }
         return instance;
-    };
+    }
 
     public Connection getCnx() {
         return cnx;
@@ -35,5 +36,7 @@ public class DataSource {
     public Connection getConnection(){
         return this.cnx;
     }
+
+
 }
 

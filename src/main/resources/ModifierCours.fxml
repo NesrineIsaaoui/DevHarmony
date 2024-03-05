@@ -58,7 +58,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <ImageView fitHeight="103.0" fitWidth="121.0" layoutX="1177.0" layoutY="14.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="174.0" layoutX="975.0" layoutY="14.0" onDragDetected="#returnToAffiche" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@prev.gif" />
          </image>

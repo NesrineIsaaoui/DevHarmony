@@ -28,8 +28,6 @@ import java.util.ResourceBundle;
 import static controller.SeconnecterController.idCurrentUser;
 
 public class HomeEnseignantController implements Initializable {
-    @FXML
-    private ImageView imageview;
 
     @FXML
     private Text tnom;
@@ -41,29 +39,24 @@ public class HomeEnseignantController implements Initializable {
     private Text trole;
 
     @FXML
-    private Button bprofile;
-    @FXML
     private AnchorPane nh;
-    @FXML
-    private Button bcour;
 
-    @FXML
-    private Button bdeconnect;
-
-    @FXML
-    private Button bplanning;
-
-    @FXML
-    private VBox recherche;
-
-    @FXML
-    private Button bajoutcour;
     @FXML
     private StackPane stck;
     @FXML
     private ImageView PreviewImage;
     UserService Us = new UserService();
     private User currentUser;
+    @FXML
+    private Button btnprofil;
+    @FXML
+    private Button btncommunity1;
+    @FXML
+    private Button btnquiz;
+    @FXML
+    private Button btncommunity;
+    @FXML
+    private Button btncours;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -119,4 +112,26 @@ public class HomeEnseignantController implements Initializable {
     }
 
 
+    @FXML
+    public void gotoreservationback(ActionEvent actionEvent) throws IOException{
+
+        try {
+            URL fxmlUrl = getClass().getResource("/updatereservation.fxml");
+            System.out.println("FXML URL: " + fxmlUrl);
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("EDUWAVE");
+
+            // Set the new scene in the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -48,7 +48,7 @@ public class SeconnecterController {
     @FXML
     private StackPane stck;
     private  String ACCOUNT_SID = "AC50977c3984b064ffb395e2b40e287ed9";
-    private  String AUTH_TOKEN = "6d280075529319b45a9a1c0d3fdaf2b6";
+    private  String AUTH_TOKEN = "ee36c27a53a72f2d71e09c902441c885";
     private  String TWILIO_PHONE_NUMBER = "+16178602915";
     @FXML
     private void initialize() {

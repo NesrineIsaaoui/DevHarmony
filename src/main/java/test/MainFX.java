@@ -22,7 +22,7 @@ public class MainFX extends Application {
 
             primaryStage.setTitle("EduWave");
             primaryStage.setScene(scene);
-            //primaryStage.setResizable(false);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

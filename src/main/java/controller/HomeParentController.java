@@ -49,6 +49,8 @@ public class HomeParentController implements Initializable {
     private Button btnprofil;
     @FXML
     private Button btncours;
+    @FXML
+    private Button btnres1;
 
 
     @Override
@@ -123,5 +125,30 @@ public class HomeParentController implements Initializable {
         } catch (IOException ex) {
             System.out.println("Error loading the view: " + ex.getMessage());
         }
+    }
+
+    @FXML
+    public void blog(ActionEvent actionEvent) {
+        try {
+            URL fxmlUrl = getClass().getResource("/AffichagePostFront.fxml");
+            System.out.println("FXML URL: " + fxmlUrl);
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("EDUWAVE");
+
+            // Set the new scene in the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
     }
 }

@@ -53,7 +53,6 @@ public class PayController {
             String token = createTestToken();
 
             if (token != null) {
-                // Update the paid status for selected reservations
                 updatePaidStatusForSelectedReservations();
                 showConfirmationDialog();
                 showPaymentSuccessWindow();
@@ -68,7 +67,6 @@ public class PayController {
             return false;
         }
 
-        // Add more specific validation if needed
 
         return true;
     }
@@ -90,10 +88,8 @@ public class PayController {
         try {
             ReservationService reservationService = new ReservationService();
 
-            // Get the selected reservations with resStatus set to true
             List<Reservation> selectedReservations = reservationService.getReservationsByStatus(true);
 
-            // Update the paid status in the database for selected reservations
             for (Reservation reservation : selectedReservations) {
                 reservationService.addPaidStatus(reservation.getId(), true);
                 reservation.setResStatus(true);

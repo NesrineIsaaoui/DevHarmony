@@ -72,10 +72,8 @@ public class AddReservationCoursController implements Initializable {
 
     }
     private void setupInputValidation() {
-        // Validate priceField (allow only positive floats)
         setupFloatInputValidation(priceField);
 
-        // Validate promoCodeField (allow any non-empty string)
         promoCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (isReserverButtonClicked && newValue.trim().isEmpty()) {
                 showAlert("Invalid Input", "Promo code cannot be empty.");
@@ -83,7 +81,6 @@ public class AddReservationCoursController implements Initializable {
             }
         });
 
-        // Validate discountedPriceField (allow only positive floats)
         setupFloatInputValidation(discountedPriceField);
     }
 
@@ -109,7 +106,6 @@ public class AddReservationCoursController implements Initializable {
             float discountedPrice = applyPromoCode(promoCode, price);
             displayDiscountedPrice(discountedPrice);
 
-            // Update nb_users in CategorieCodePromo table
             updateNbUsers(promoCode);
         } else {
             showAlert("Invalid Promo Code", "The entered promo code is not valid.");
@@ -118,53 +114,44 @@ public class AddReservationCoursController implements Initializable {
     @FXML
     void addReservation(ActionEvent event) {
         try {
-            // Check if the user is authenticated
             if (loggedInUserId == 0) {
                 showAlert("Authentication Error", "User not authenticated. Please log in.");
                 return;
             }
 
 
-            // Set the flag to indicate "Reserver" button is clicked
             isReserverButtonClicked = true;
-            // Get the necessary data from the UI
             float originalPrice = Float.parseFloat(priceField.getText().trim());
             String promoCode = promoCodeField.getText().trim();
             float discountedPrice = Float.parseFloat(discountedPriceField.getText().trim());
 
-            // Check if any of the values is zero
             if (originalPrice <= 0 || discountedPrice <= 0) {
                 showAlert("Invalid Input", "Please enter valid numeric values for the price and discounted price.");
-                return; // exit the method if any value is zero
+                return;
             }
 
-            // Create a Reservation object and set its properties
             Reservation reservation = new Reservation();
-            reservation.setId_user(loggedInUserId);  // Set the user ID
+            reservation.setId_user(loggedInUserId);  // user ID
             reservation.setId_cours(selectedCours.getId());
             reservation.setResStatus(false);
             reservation.setDateReservation(LocalDateTime.now());
             reservation.setPaidStatus(false);
 
-            // Use CategorieCodePromoService to get the id of the promo code
             CategorieCodePromoService categorieCodePromoService = new CategorieCodePromoService();
             int promoCodeId = categorieCodePromoService.getIdByCode(promoCode);
 
-            reservation.setId_codepromo(promoCodeId); // Set the promo code ID
+            reservation.setId_codepromo(promoCodeId); //  promo code ID
             reservation.setPrixd(discountedPrice);
 
             ReservationService reservationService = new ReservationService();
             reservationService.addEntity(reservation);
 
-            // Display a success message
             showAlert("Reservation Added", "Reservation added successfully.");
-            // Show confirmation dialog for loading another FXML file
             Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
             confirmation.setTitle("Confirmation");
             confirmation.setHeaderText(null);
             confirmation.setContentText("Do you want to see your reservations?");
 
-            // Handle the user's choice
             confirmation.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
@@ -174,7 +161,6 @@ public class AddReservationCoursController implements Initializable {
                         newStage.setScene(new Scene(root));
                         newStage.show();
 
-                        // Get the current stage and close it
                         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         currentStage.hide();
                     } catch (IOException e) {
@@ -186,7 +172,6 @@ public class AddReservationCoursController implements Initializable {
         } catch (NumberFormatException e) {
             showAlert("Invalid Input", "Please enter valid numeric values for the price and discounted price.");
         } finally {
-            // Reset the flag after processing
             isReserverButtonClicked = false;
         }
     }
@@ -252,11 +237,9 @@ public class AddReservationCoursController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            // Get the current stage
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("EDUWAVE");
 
-            // Set the new scene in the stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

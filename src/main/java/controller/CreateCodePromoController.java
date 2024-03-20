@@ -57,26 +57,23 @@ public class CreateCodePromoController {
     public void initialize() {
         codePromoData = FXCollections.observableArrayList(categorieCodePromoService.getAllCategories());
 
-        // Set cell value factories for each column
         Id.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         Code.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCode()));
         value.setCellValueFactory(cellData -> new SimpleFloatProperty(cellData.getValue().getValue()).asObject());
         nb_users.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getNb_users()).asObject());
 
-        // Set the items in the TableView
         CodePromoTable.setItems(codePromoData);
         CodePromoTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 populateFieldsForModification();
             }
         });
-        // Create a filtered list to hold the filtered data
         FilteredList<CategorieCodePromo> filteredData = new FilteredList<>(codePromoData, p -> true);
 
         chid.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(codePromo -> {
                 if (newValue == null || newValue.isEmpty()) {
-                    return true; // Show all data when search field is empty
+                    return true;
                 }
 
                 String lowerCaseFilter = newValue.toLowerCase();
@@ -89,22 +86,17 @@ public class CreateCodePromoController {
         });
 
 
-        // Wrap the filtered data in a SortedList
         SortedList<CategorieCodePromo> sortedData = new SortedList<>(filteredData);
 
-        // Bind the SortedList comparator to the TableView comparator
         sortedData.comparatorProperty().bind(CodePromoTable.comparatorProperty());
 
-        // Set the items in the TableView to the sorted and filtered data
         CodePromoTable.setItems(sortedData);
     }
     @javafx.fxml.FXML
     public void populateFieldsForModification() {
-        // Get the selected code promo from the TableView
         CategorieCodePromo selectedCodePromo = CodePromoTable.getSelectionModel().getSelectedItem();
 
         if (selectedCodePromo != null) {
-            // Set the values to the text fields for modification
             codem.setText(selectedCodePromo.getCode());
             valm.setText(String.valueOf(selectedCodePromo.getValue()));
             nbm.setText(String.valueOf(selectedCodePromo.getNb_users()));
@@ -115,10 +107,8 @@ public class CreateCodePromoController {
     public void supprimerCode(ActionEvent actionEvent) {
         CategorieCodePromo selectedCodePromo = CodePromoTable.getSelectionModel().getSelectedItem();
         if (selectedCodePromo != null) {
-            // Handle deletion logic here
             codePromoData.remove(selectedCodePromo);
             System.out.println("Supprimer Code Promo: " + selectedCodePromo.getCode());
-            // Delete from the database if needed
             categorieCodePromoService.deleteCategorieCodePromo(selectedCodePromo.getId());
         }
     }
@@ -135,24 +125,18 @@ public class CreateCodePromoController {
               int nbUsers = Integer.parseInt(nbUsersText);
               float value = Float.parseFloat(valueText);
 
-              // Check if the code already exists in the data
               if (!isCodePromoCodeExists(code)) {
-                  // Add the new code promo to the TableView
                   CategorieCodePromo newCodePromo = new CategorieCodePromo(code, value, nbUsers);
                   CategorieCodePromoService newCodePromos = new CategorieCodePromoService();
 
-                  // Check if the code exists before adding
                   CategorieCodePromo existingCodePromo = newCodePromos.getCategorieByCode(code);
                   if (existingCodePromo == null) {
-                      // Add the code to the database and get the generated ID
                       int generatedId = newCodePromos.addCategorieCodePromoId(newCodePromo);
 
-                      // Set the generated ID
                       newCodePromo.setId_code(generatedId);
 
                       codePromoData.add(newCodePromo);
 
-                      // Clear input fields
                       codeField.clear();
                       valueField.clear();
                       nbUsersField.clear();
@@ -175,7 +159,6 @@ public class CreateCodePromoController {
         CategorieCodePromo selectedCodePromo = CodePromoTable.getSelectionModel().getSelectedItem();
         if (selectedCodePromo != null) {
             try {
-                // Get values from the text fields
                 String code = codem.getText();
                 String valueText = valm.getText();
                 String nbUsersText = nbm.getText();
@@ -184,23 +167,19 @@ public class CreateCodePromoController {
                     int nbUsers = Integer.parseInt(nbUsersText);
                     float value = Float.parseFloat(valueText);
 
-                    // Check if the code already exists in the data excluding the selected code promo
                     boolean isUniqueCode = codePromoData.stream()
                             .filter(promo -> promo.getId() != selectedCodePromo.getId())
                             .noneMatch(promo -> promo.getCode().equals(code));
 
                     if (isUniqueCode) {
-                        // Update the selected code promo
                         selectedCodePromo.setCode(code);
                         selectedCodePromo.setValue(value);
                         selectedCodePromo.setNb_users(nbUsers);
 
-                        // Update the TableView and the database
                         int selectedIndex = CodePromoTable.getSelectionModel().getSelectedIndex();
                         codePromoData.set(selectedIndex, selectedCodePromo);
                         categorieCodePromoService.updateCategorieCodePromo(selectedCodePromo);
 
-                        // Clear input fields
                         codem.clear();
                         valm.clear();
                         nbm.clear();
@@ -235,7 +214,6 @@ public class CreateCodePromoController {
                 return false;
             }
 
-            // Additional validation for integer fields
             try {
                 Integer.parseInt(nbUsers);
             } catch (NumberFormatException e) {

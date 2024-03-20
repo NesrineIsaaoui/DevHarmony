@@ -68,7 +68,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button fx:id="btncommunity" layoutX="17.0" layoutY="431.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;" stylesheets="@form.css" text="Community" textFill="WHITE">
+                  <Button fx:id="btncommunity" layoutX="17.0" layoutY="431.0" mnemonicParsing="false" onAction="#goToFrontBlog" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1f1e30;" stylesheets="@form.css" text="Community" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -134,4 +134,29 @@ public class HomeEnseignantController implements Initializable {
         }
 
     }
+
+    @FXML
+    public void blog(ActionEvent actionEvent) {
+
+        try {
+            URL fxmlUrl = getClass().getResource("/Blog-view.fxml");
+            System.out.println("FXML URL: " + fxmlUrl);
+            FXMLLoader loader = new FXMLLoader(fxmlUrl);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("EDUWAVE");
+
+            // Set the new scene in the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
 }

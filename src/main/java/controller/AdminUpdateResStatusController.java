@@ -77,7 +77,6 @@ public class AdminUpdateResStatusController implements Initializable {
 
         Data = FXCollections.observableArrayList(reservationService.getAllReservations());
 
-        // Set cell value factories for each column
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_user"));
         courseIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cours"));
@@ -87,17 +86,15 @@ public class AdminUpdateResStatusController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("prixd"));
         paidcol.setCellValueFactory(new PropertyValueFactory<>("paidStatus"));
 
-        // Set the items in the TableView
         tableView.setItems(Data);
 
 
-        // Create a filtered list to hold the filtered data
         FilteredList<Reservation> filteredData = new FilteredList<>(Data, p -> true);
 
         chid.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(reservation -> {
                 if (newValue == null || newValue.isEmpty()) {
-                    return true; // Show all data when search field is empty
+                    return true;
                 }
 
                 String lowerCaseFilter = newValue.toLowerCase();
@@ -115,13 +112,10 @@ public class AdminUpdateResStatusController implements Initializable {
         });
 
 
-        // Wrap the filtered data in a SortedList
         SortedList<Reservation> sortedData = new SortedList<>(filteredData);
 
-        // Bind the SortedList comparator to the TableView comparator
         sortedData.comparatorProperty().bind(tableView.comparatorProperty());
 
-        // Set the items in the TableView to the sorted and filtered data
         tableView.setItems(sortedData);
 
     }
@@ -129,35 +123,26 @@ public class AdminUpdateResStatusController implements Initializable {
 
     @FXML
     void saveReservation(ActionEvent event) {
-        // Retrieve the selected reservation from the TableView
         Reservation selectedReservation = tableView.getSelectionModel().getSelectedItem();
 
         if (selectedReservation != null) {
-            // Update the status based on the RadioButton
             selectedReservation.setResStatus(statusRadioButton.isSelected());
-// If statusRadioButton is not selected, set status to false
             if (!statusRadioButton.isSelected()) {
                 selectedReservation.setResStatus(false);
             }
-            // Update the reservation in the database
             reservationService.updateEntity(selectedReservation);
 
-            // Refresh the TableView to reflect the changes
             tableView.refresh();
 
-            // Clear the UI components and disable the saveButton
             clearUI();
         }
     }
 
     private void clearUI() {
         chid.clear();
-        // Clear other UI components as needed
 
-        // Disable the saveButton
         saveButton.setDisable(true);
 
-        // Clear the selection in the TableView
         tableView.getSelectionModel().clearSelection();
         statusRadioButton.setSelected(false);
 
@@ -168,22 +153,17 @@ public class AdminUpdateResStatusController implements Initializable {
     @FXML
     public void promospage(ActionEvent actionEvent) {
         try {
-            // Get the current stage
             Stage currentStage = (Stage) saveButton.getScene().getWindow();
 
-            // Close the current window
             currentStage.close();
 
-            // Load the new window
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminajoutcodep.fxml"));
             Parent root = loader.load();
 
-            // Create the new stage
             Stage newStage = new Stage();
             newStage.setTitle("EDUWAVE");
             newStage.setScene(new Scene(root));
 
-            // Show the new stage
             newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -204,11 +184,9 @@ public class AdminUpdateResStatusController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
-            // Get the current stage
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("EDUWAVE");
 
-            // Set the new scene in the stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -220,32 +198,24 @@ public class AdminUpdateResStatusController implements Initializable {
     @FXML
     public void piechart(ActionEvent actionEvent) {
         try {
-            // Get the current stage
             Stage currentStage = (Stage) saveButton.getScene().getWindow();
 
-            // Close the current window
             currentStage.close();
 
-            // Load the new window
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/reservationchart.fxml"));
             Parent root = loader.load();
 
-            // Get the controller of the new window
             ReservationChartController reservationChartController = loader.getController();
 
-            // Fetch reservations using your ReservationService or your data retrieval logic
-            ReservationService reservationService = new ReservationService(); // Replace with your actual service
+            ReservationService reservationService = new ReservationService();
             ObservableList<Reservation> reservations = FXCollections.observableArrayList(reservationService.getAllReservations());
 
-            // Pass the list of reservations to the ReservationChartController
             reservationChartController.setReservations(reservations);
 
-            // Create the new stage
             Stage newStage = new Stage();
             newStage.setTitle("EDUWAVE");
             newStage.setScene(new Scene(root));
 
-            // Show the new stage
             newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -256,11 +226,9 @@ public class AdminUpdateResStatusController implements Initializable {
     @FXML
     public void fileexcel(ActionEvent actionEvent) {
         try {
-            // Create a new Workbook
             Workbook workbook = new XSSFWorkbook();
             Sheet sheet = workbook.createSheet("Reservations");
 
-            // Create header row
             Row headerRow = sheet.createRow(0);
             headerRow.createCell(0).setCellValue("Reservation ID");
             headerRow.createCell(1).setCellValue("User ID");
@@ -270,7 +238,6 @@ public class AdminUpdateResStatusController implements Initializable {
             headerRow.createCell(5).setCellValue("Promo ID");
             headerRow.createCell(6).setCellValue("Price");
 
-            // Fill data rows
             int rowNum = 1;
             for (Reservation reservation : Data) {
                 Row row = sheet.createRow(rowNum++);
@@ -283,12 +250,10 @@ public class AdminUpdateResStatusController implements Initializable {
                 row.createCell(6).setCellValue(reservation.getPrixd());
             }
 
-            // Save the workbook to a file
             try (FileOutputStream fileOut = new FileOutputStream("reservations.xlsx")) {
                 workbook.write(fileOut);
             }
 
-            // Close the workbook to release resources
             workbook.close();
 
             System.out.println("Excel file created successfully.");
